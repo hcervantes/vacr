@@ -1,0 +1,47 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "VacrStore",
+        "autoLoad": true,
+        "storeId": "MyJsonStore",
+        "model": "VacrData"
+    },
+    "id": "ExtBox1-ext-gen8806",
+    "designerId": "462152bc-f5a4-470c-99c7-9f1c6f41068e",
+    "cn": [
+        {
+            "type": "ajaxproxy",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyAjaxProxy",
+                "url": "getVACR.php"
+            },
+            "designerId": "37031f43-15e9-40df-9db8-4f829a18e9bc",
+            "cn": [
+                {
+                    "type": "jsonreader",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyJsonReader",
+                        "root": "vacr",
+                        "record": ""
+                    },
+                    "designerId": "a7ebe00f-821e-498c-bf33-a79fc87894ca"
+                }
+            ]
+        }
+    ]
+}

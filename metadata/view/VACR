@@ -1,0 +1,591 @@
+{
+    "type": "panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "VACR",
+        "designer|initialView": true,
+        "height": null,
+        "width": 750,
+        "layout": "accordion",
+        "title": "Visual Aircraft Recognition"
+    },
+    "id": "ExtBox1-ext-gen53433",
+    "designerId": "1e643051-8498-45cb-a441-6fb48a322733",
+    "cn": [
+        {
+            "type": "panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyPanel3",
+                "itemId": "reviewPanel",
+                "collapsed": false,
+                "title": "Review"
+            },
+            "designerId": "333f0078-90d9-4394-96d7-f41152a9686c",
+            "cn": [
+                {
+                    "type": "form",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyForm",
+                        "height": 500,
+                        "itemId": "mainPanel",
+                        "layout": "border",
+                        "collapsed": false,
+                        "title": ""
+                    },
+                    "designerId": "bb877074-f2ce-4e72-b516-409091fa061c",
+                    "cn": [
+                        {
+                            "type": "gridpanel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": null,
+                                "layout|region": "west",
+                                "designer|userClassName": "MyGridPanel",
+                                "designer|displayName": "AircraftGrid",
+                                "itemId": "vacrGrid",
+                                "width": null,
+                                "title": null,
+                                "store": "VacrStore"
+                            },
+                            "designerId": "6c189729-99a5-4b27-8093-2f7f9a4f3255",
+                            "cn": [
+                                {
+                                    "type": "gridview",
+                                    "reference": {
+                                        "name": "viewConfig",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "MyGridView"
+                                    },
+                                    "designerId": "94b7a127-f2ed-4142-a8c1-645d315686bc"
+                                },
+                                {
+                                    "type": "gridcolumn",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "MyColumn2",
+                                        "dataIndex": "name",
+                                        "text": "Name"
+                                    },
+                                    "designerId": "6558eb38-0b04-4813-a647-0acaff8f3ea6"
+                                },
+                                {
+                                    "type": "gridcolumn",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "MyColumn3",
+                                        "dataIndex": "modelno",
+                                        "text": "Modelno"
+                                    },
+                                    "designerId": "2e0981af-3ab8-4d03-aa67-e3a9b06b430a"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "onGridpanelSelect",
+                                        "fn": "onGridpanelSelect",
+                                        "implHandler": [
+                                            "// grab a reference to the detailPanel via itemId",
+                                            "// the # in front of the id indicates that we would like to grab a reference by",
+                                            "var detailPanel = this.down('#detailPanel');",
+                                            "// update the detailPanel with data",
+                                            "// this will trigger the tpl to become updates",
+                                            "detailPanel.update(record.data);",
+                                            "// grab a reference to the pictureView, notice we use down here instead of child",
+                                            "// because down will go down the container hierarchy at any depth and child will",
+                                            "// only retrieve direct children",
+                                            "var picView = this.down('#pictureView');",
+                                            "// get the pictures field out of this record",
+                                            "var picData = record.get('pictures');",
+                                            "picView.store.loadData(picData);",
+                                            "// get the descriptions field",
+                                            "var descData = record.get('descriptions');",
+                                            "var descView = this.down('#descriptionView');",
+                                            "descView.store.loadData(descData);"
+                                        ],
+                                        "name": "select",
+                                        "scope": "me"
+                                    },
+                                    "designerId": "040edf99-701b-4393-9c5a-4458d78af465"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": null,
+                                "layout|region": "center",
+                                "container|align": null,
+                                "designer|userClassName": "MyPanel6",
+                                "itemId": "bottomPanel",
+                                "layout": "vbox",
+                                "title": "Aircraft Detail"
+                            },
+                            "designerId": "5dcee1ce-e9ae-460d-b944-855802d6b3b3",
+                            "cn": [
+                                {
+                                    "type": "panel",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "MyPanel4",
+                                        "height": null,
+                                        "id": "detailPanel",
+                                        "itemId": "detailPanel",
+                                        "layout": "fit",
+                                        "title": null
+                                    },
+                                    "designerId": "915c57a4-b13b-4a01-ac1d-2a8a0be39a6a",
+                                    "cn": [
+                                        {
+                                            "type": "template",
+                                            "reference": {
+                                                "name": "tpl",
+                                                "type": "object"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|userClassName": "tpl",
+                                                "implHandler": [
+                                                    "",
+                                                    "<b>Name: {name}</b><br>",
+                                                    "<b><i>Model: {modelno}</i></b><br>",
+                                                    ""
+                                                ],
+                                                "designer|displayName": "tpl"
+                                            },
+                                            "designerId": "5a0fc0c6-18cb-4a61-b67d-a81462c01ca0"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "panel",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|flex": 1,
+                                        "container|align": "stretch",
+                                        "designer|userClassName": "MyPanel6",
+                                        "layout": "hbox",
+                                        "title": null
+                                    },
+                                    "designerId": "f5279210-4d96-45d2-acd6-931e73c7748b",
+                                    "cn": [
+                                        {
+                                            "type": "panel",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|userClassName": "MyPanel5",
+                                                "border": 1,
+                                                "frame": true,
+                                                "height": 450,
+                                                "width": 230,
+                                                "autoScroll": true,
+                                                "title": null
+                                            },
+                                            "designerId": "e082f475-58ec-4b19-a638-2d37ac4f1d6b",
+                                            "cn": [
+                                                {
+                                                    "type": "dataview",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "dock": null,
+                                                        "designer|userClassName": "MyView",
+                                                        "height": null,
+                                                        "itemId": "pictureView",
+                                                        "width": null,
+                                                        "autoScroll": true,
+                                                        "itemSelector": "div.thumb-wrap",
+                                                        "store": "pictureStore"
+                                                    },
+                                                    "designerId": "0763bbb9-633f-4242-a95d-87061ce7b8de",
+                                                    "cn": [
+                                                        {
+                                                            "type": "template",
+                                                            "reference": {
+                                                                "name": "itemTpl",
+                                                                "type": "object"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "designer|userClassName": "itemTpl",
+                                                                "implHandler": [
+                                                                    "<div style=\"margin-bottom: 10px;\" class=\"thumb-wrap\">",
+                                                                    "    <img src=\"images/{picture}\" width=\"200\" />",
+                                                                    "        </div>"
+                                                                ],
+                                                                "designer|displayName": "itemTpl"
+                                                            },
+                                                            "designerId": "62ca632b-549b-4cfc-b7a2-3677c2c85387"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "panel",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "layout|flex": null,
+                                                "designer|userClassName": "MyPanel10",
+                                                "itemId": "descriptionPanel",
+                                                "width": 300,
+                                                "title": "Characteristics"
+                                            },
+                                            "designerId": "57d122b4-cfba-4253-9146-da8e83da3656",
+                                            "cn": [
+                                                {
+                                                    "type": "dataview",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|userClassName": "MyView2",
+                                                        "itemId": "descriptionView",
+                                                        "itemSelector": "div.thumb-wrap",
+                                                        "store": "descriptionStore"
+                                                    },
+                                                    "designerId": "10fd4dce-e2cc-459b-bef5-ff2107b7b918",
+                                                    "cn": [
+                                                        {
+                                                            "type": "template",
+                                                            "reference": {
+                                                                "name": "itemTpl",
+                                                                "type": "object"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "designer|userClassName": "itemTpl",
+                                                                "implHandler": [
+                                                                    "<div style=\"margin-bottom: 10px;\" class=\"thumb-wrap\">",
+                                                                    "    <li>{description}</li>",
+                                                                    "</div>"
+                                                                ],
+                                                                "designer|displayName": "itemTpl"
+                                                            },
+                                                            "designerId": "3dcbd945-16d4-40c7-8f83-f06e369a06de"
+                                                        },
+                                                        {
+                                                            "type": "template",
+                                                            "reference": {
+                                                                "name": "tpl",
+                                                                "type": "object"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "designer|userClassName": "tpl",
+                                                                "implHandler": [
+                                                                    "<ul>",
+                                                                    "</ul>"
+                                                                ],
+                                                                "designer|displayName": "tpl"
+                                                            },
+                                                            "designerId": "3d034635-521c-4dea-8090-4e4dfa563945"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyPanel5",
+                "itemId": "practicePanel",
+                "collapsed": false,
+                "title": "Practice Test"
+            },
+            "designerId": "5cd4461a-ee99-4d26-9c51-d4b591cece36",
+            "cn": [
+                {
+                    "type": "form",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyForm1",
+                        "height": 500,
+                        "autoScroll": true,
+                        "bodyPadding": 10,
+                        "title": ""
+                    },
+                    "designerId": "0336894b-689e-4109-976b-ca57519cb523",
+                    "cn": [
+                        {
+                            "type": "dataview",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dock": null,
+                                "designer|userClassName": "MyView",
+                                "height": null,
+                                "itemId": "pictureQuizView",
+                                "width": null,
+                                "autoScroll": true,
+                                "itemSelector": "div.thumb-wrap",
+                                "store": "quizPictureStore"
+                            },
+                            "designerId": "5c733468-a84e-433a-bc6f-ac89d3c58b7e",
+                            "cn": [
+                                {
+                                    "type": "template",
+                                    "reference": {
+                                        "name": "itemTpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "itemTpl",
+                                        "implHandler": [
+                                            "<div style=\"margin-bottom: 10px;\" class=\"thumb-wrap\">",
+                                            "    <img src=\"images/{picture}\" width=\"200\" />",
+                                            "        </div>"
+                                        ],
+                                        "designer|displayName": "itemTpl"
+                                    },
+                                    "designerId": "cb18669d-10e3-40b4-b8ae-a4fab38a5848"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "combobox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|anchor": "100%",
+                                "designer|userClassName": "MyComboBox",
+                                "autoRender": true,
+                                "itemId": "cmbChoice",
+                                "maxWidth": 300,
+                                "fieldLabel": "Select correct choice",
+                                "labelWidth": 150,
+                                "autoSelect": false,
+                                "displayField": "description",
+                                "queryMode": "local",
+                                "store": "choiceStore",
+                                "valueField": "choice"
+                            },
+                            "designerId": "5b888fd0-18ae-4afd-9803-bb3a31bbdd23"
+                        },
+                        {
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "MyButton",
+                                "itemId": "btnNext",
+                                "text": "Next"
+                            },
+                            "designerId": "7da425f9-1e11-4736-a67c-014a9ee2cb1e",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "onBtnNextClick",
+                                        "fn": "onBtnNextClick",
+                                        "implHandler": [
+                                            "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
+                                            "//Check if at end",
+                                            "if(VACR.view.Globals.currentRecord >= quizData.getCount() - 1)",
+                                            "{",
+                                            "    //Reset current record",
+                                            "    VACR.view.Globals.currentRecord = 0;    ",
+                                            "}",
+                                            "else",
+                                            "{",
+                                            "    //Increase current record",
+                                            "    ++VACR.view.Globals.currentRecord;",
+                                            "}",
+                                            "",
+                                            "VACR.view.Globals.doUpdate(this);",
+                                            ""
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "designerId": "1b83178c-ac05-4505-995e-83d75a542aff"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "MyButton",
+                                "itemId": "btnPrev",
+                                "text": "Next"
+                            },
+                            "designerId": "2bbb6c10-a2ae-4fe9-b39c-a436fb6b525f",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "onBtnPrevClick",
+                                        "fn": "onBtnPrevClick",
+                                        "implHandler": [
+                                            "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
+                                            "//Check if at end",
+                                            "if(VACR.view.Globals.currentRecord === 0)",
+                                            "{",
+                                            "    //Reset current record",
+                                            "    VACR.view.Globals.currentRecord = quizData.getCount() - 1;    ",
+                                            "}",
+                                            "else",
+                                            "{",
+                                            "    //Increase current record",
+                                            "    --VACR.view.Globals.currentRecord;",
+                                            "}",
+                                            "",
+                                            "VACR.view.Globals.doUpdate(this);"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "designerId": "f792d270-172e-45da-9320-8f8fd6d7592d"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onPracticePanelExpand",
+                        "fn": "onPracticePanelExpand",
+                        "implHandler": [
+                            "// Build data collection",
+                            "var theData = this.down('#vacrGrid').store;",
+                            "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
+                            "theData.each(function(item, index, count) { ",
+                            "    var recID = item.data.id;",
+                            "    var recDesc = item.data.modelno + \" - \" + item.data.name;",
+                            "    quizData.add({id: recID, selectedchoice: -1, choices: ",
+                            "        [{choice:0, description: recDesc},",
+                            "        {choice:2, description: \"C130\"},",
+                            "        {choice:1, description: \"C131\"},",
+                            "        {choice:3, description: \"C132\"}],",
+                            "        pictures: item.data.pictures",
+                            "    });",
+                            "});",
+                            "VACR.view.Globals.currentRecord = 0;",
+                            "var record = quizData.getAt(VACR.view.Globals.currentRecord);",
+                            "var pictureQuizView = this.down('#pictureQuizView');",
+                            "// get the pictures field out of this record",
+                            "var picData = record.get('pictures');",
+                            "pictureQuizView.store.loadData(picData);",
+                            "",
+                            "// Load the choiceStore with data",
+                            "var choiceStore = Ext.data.StoreManager.lookup('choiceStore');",
+                            "var choiceData = record.get('choices');",
+                            "choiceStore.loadData(choiceData);",
+                            ""
+                        ],
+                        "name": "expand",
+                        "scope": "me"
+                    },
+                    "designerId": "14295aa7-fa65-4d17-abde-08166d4157e6"
+                }
+            ]
+        }
+    ]
+}

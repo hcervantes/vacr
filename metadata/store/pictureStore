@@ -1,0 +1,15 @@
+{
+    "type": "store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "pictureStore",
+        "storeId": "MyStore",
+        "model": "ImageData"
+    },
+    "id": "ExtBox1-ext-gen22438",
+    "designerId": "f35dacd6-52af-4e7f-82b5-5fd4df904de8"
+}

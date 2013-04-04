@@ -1,0 +1,112 @@
+{
+    "vacr": [
+        {
+            "id": 20,
+            "name": "FLOGGER",
+            "modelno": "MIG-27",
+            "descriptions": [
+                {
+                    "description": "DESCRIPTION 22"
+                },
+                {
+                    "description": "DESCRIPTION 3"
+                },
+                {
+                    "description": "DESCRIPTION 4"
+                },
+                {
+                    "description": "DESCRIPTION 14"
+                }
+            ],
+            "pictures": [
+                {
+                    "picture": "mig27flogger.jpg"
+                },
+                {
+                    "picture": "mig27flogger2.jpg"
+                },
+                {
+                    "picture": "mig27flogger3.jpg"
+                }
+            ]
+        },
+        {
+            "id": 21,
+            "name": "FISHBED",
+            "modelno": "MIG-21",
+            "descriptions": [
+                {
+                    "description": "DESCRIPTION 5"
+                },
+                {
+                    "description": "DESCRIPTION 6"
+                },
+                {
+                    "description": "DESCRIPTION 7"
+                }
+            ],
+            "pictures": [
+                {
+                    "picture": "mig21fishbed.jpg"
+                },
+                {
+                    "picture": "mig21fishbed2.jpg"
+                },
+                {
+                    "picture": "mig21fishbed3.jpg"
+                }
+            ]
+        },
+        {
+            "id": 22,
+            "name": "FULCRUM",
+            "modelno": "MIG-29",
+            "descriptions": [
+                {
+                    "description": "DESCRIPTION 8"
+                },
+                {
+                    "description": "DESCRIPTION 9"
+                },
+                {
+                    "description": "DESCRIPTION 10"
+                }
+            ],
+            "pictures": [
+                {
+                    "picture": "MIG-29FULCRUM.jpeg"
+                },
+                {
+                    "picture": "MIG-29FULCRUM2.jpg"
+                },
+                {
+                    "picture": "MIG-29FULCRUM3.jpg"
+                }
+            ]
+        },
+        {
+            "id": 23,
+            "name": "FENCER",
+            "modelno": "SU-24",
+            "descriptions": [
+                {
+                    "description": "DESCRIPTION 11"
+                },
+                {
+                    "description": "DESCRIPTION 12"
+                },
+                {
+                    "description": "DESCRIPTION 13"
+                }
+            ],
+            "pictures": [
+                {
+                    "picture": "Su-24FENCER2.jpg"
+                },
+                {
+                    "picture": "Su-24Fencer3.jpg"
+                }
+            ]
+        }
+    ]
+}

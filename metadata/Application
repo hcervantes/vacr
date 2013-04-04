@@ -1,0 +1,31 @@
+{
+    "type": "application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "models": [
+            "VacrData",
+            "ImageData",
+            "DescriptionData",
+            "choiceModel"
+        ],
+        "stores": [
+            "VacrStore",
+            "pictureStore",
+            "descriptionStore",
+            "quizDataStore",
+            "choiceStore",
+            "quizPictureStore"
+        ],
+        "views": [
+            "VACR"
+        ],
+        "autoCreateViewport": true,
+        "name": "VACR"
+    },
+    "id": "ExtBox1-ext-gen1587",
+    "designerId": "application"
+}

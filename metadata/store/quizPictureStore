@@ -1,0 +1,15 @@
+{
+    "type": "store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "quizPictureStore",
+        "storeId": "MyStore3",
+        "model": "ImageData"
+    },
+    "id": "ExtBox1-ext-gen4838",
+    "designerId": "8425e772-17e0-478a-9bc8-5e7eb1d97731"
+}

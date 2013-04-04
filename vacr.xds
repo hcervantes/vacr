@@ -1,0 +1,168 @@
+{
+    "name": "vacr",
+    "settings": {
+        "urlPrefix": "http://localhost/vacr",
+        "spacesToIndent": 4,
+        "exportPath": "/opt/lampp/htdocs/vacr",
+        "sdkPath": "",
+        "lineEnding": "LF",
+        "genTimestamps": false,
+        "cacheBust": false
+    },
+    "xdsVersion": "2.1.0",
+    "xdsBuild": 678,
+    "schemaVersion": 1,
+    "upgradeVersion": 210000000498,
+    "framework": "ext41",
+    "topInstanceFileMap": {
+        "269a30ea-09ba-46eb-9b07-736b87315292": {
+            "paths": [
+                "metadata/resource/Library"
+            ],
+            "className": "Library"
+        },
+        "462152bc-f5a4-470c-99c7-9f1c6f41068e": {
+            "paths": [
+                "metadata/store/VacrStore",
+                "app/store/override/VacrStore.js",
+                "app/store/VacrStore.js"
+            ],
+            "className": "VacrStore"
+        },
+        "311678fa-1327-41e5-86ad-78af58e5e23f": {
+            "paths": [
+                "metadata/model/VacrData",
+                "app/model/override/VacrData.js",
+                "app/model/VacrData.js"
+            ],
+            "className": "VacrData"
+        },
+        "116a5aab-eef2-4dd7-ba6c-470d94ba7ab8": {
+            "paths": [
+                "metadata/model/ImageData",
+                "app/model/override/ImageData.js",
+                "app/model/ImageData.js"
+            ],
+            "className": "ImageData"
+        },
+        "26cfeaab-ab1b-4a0c-99ea-26ea4a6d1c6e": {
+            "paths": [
+                "metadata/model/DescriptionData",
+                "app/model/override/DescriptionData.js",
+                "app/model/DescriptionData.js"
+            ],
+            "className": "DescriptionData"
+        },
+        "f35dacd6-52af-4e7f-82b5-5fd4df904de8": {
+            "paths": [
+                "metadata/store/pictureStore",
+                "app/store/override/pictureStore.js",
+                "app/store/pictureStore.js"
+            ],
+            "className": "pictureStore"
+        },
+        "1cadd5b2-9de1-47a1-a73c-cdb7c480ff6b": {
+            "paths": [
+                "metadata/store/descriptionStore",
+                "app/store/override/descriptionStore.js",
+                "app/store/descriptionStore.js"
+            ],
+            "className": "descriptionStore"
+        },
+        "1e643051-8498-45cb-a441-6fb48a322733": {
+            "paths": [
+                "metadata/view/VACR",
+                "app/view/override/VACR.js",
+                "app/view/VACR.js",
+                "app/view/Viewport.js"
+            ],
+            "className": "VACR"
+        },
+        "6ba7e818-b947-4a33-9e54-75c5e35465f6": {
+            "paths": [
+                "metadata/store/quizDataStore",
+                "app/store/override/quizDataStore.js",
+                "app/store/quizDataStore.js"
+            ],
+            "className": "quizDataStore"
+        },
+        "672fda46-41f9-46f9-a5a0-95126354f7c1": {
+            "paths": [
+                "metadata/model/quizDataModel",
+                "app/model/override/quizDataModel.js",
+                "app/model/quizDataModel.js"
+            ],
+            "className": "quizDataModel"
+        },
+        "df1ce0e7-274c-48bf-b191-0c51d1160da5": {
+            "paths": [
+                "metadata/store/choiceStore",
+                "app/store/override/choiceStore.js",
+                "app/store/choiceStore.js"
+            ],
+            "className": "choiceStore"
+        },
+        "6c0f9344-663f-4d9f-a602-1236b5ba6d73": {
+            "paths": [
+                "metadata/model/choiceModel",
+                "app/model/override/choiceModel.js",
+                "app/model/choiceModel.js"
+            ],
+            "className": "choiceModel"
+        },
+        "8425e772-17e0-478a-9bc8-5e7eb1d97731": {
+            "paths": [
+                "metadata/store/quizPictureStore",
+                "app/store/override/quizPictureStore.js",
+                "app/store/quizPictureStore.js"
+            ],
+            "className": "quizPictureStore"
+        },
+        "28556880-da9a-49ca-8f2e-e78c6d217225": {
+            "paths": [
+                "metadata/view/Globals",
+                "app/view/override/Globals.js",
+                "app/view/Globals.js"
+            ],
+            "className": "Globals"
+        },
+        "cf3dab49-b4e0-4872-ae68-4b53afc087f9": {
+            "paths": [
+                "metadata/controller/MyClass1",
+                "app/controller/override/MyClass1.js",
+                "app/controller/MyClass1.js"
+            ],
+            "className": "MyClass1"
+        }
+    },
+    "viewOrderMap": {
+        "view": [
+            "1e643051-8498-45cb-a441-6fb48a322733",
+            "28556880-da9a-49ca-8f2e-e78c6d217225"
+        ],
+        "store": [
+            "462152bc-f5a4-470c-99c7-9f1c6f41068e",
+            "f35dacd6-52af-4e7f-82b5-5fd4df904de8",
+            "1cadd5b2-9de1-47a1-a73c-cdb7c480ff6b",
+            "6ba7e818-b947-4a33-9e54-75c5e35465f6",
+            "df1ce0e7-274c-48bf-b191-0c51d1160da5",
+            "8425e772-17e0-478a-9bc8-5e7eb1d97731"
+        ],
+        "controller": [
+            "cf3dab49-b4e0-4872-ae68-4b53afc087f9"
+        ],
+        "model": [
+            "311678fa-1327-41e5-86ad-78af58e5e23f",
+            "116a5aab-eef2-4dd7-ba6c-470d94ba7ab8",
+            "26cfeaab-ab1b-4a0c-99ea-26ea4a6d1c6e",
+            "672fda46-41f9-46f9-a5a0-95126354f7c1",
+            "6c0f9344-663f-4d9f-a602-1236b5ba6d73"
+        ],
+        "resource": [
+            "269a30ea-09ba-46eb-9b07-736b87315292"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

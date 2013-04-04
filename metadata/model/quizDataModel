@@ -1,0 +1,69 @@
+{
+    "type": "datamodel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "quizDataModel"
+    },
+    "id": "ExtBox1-ext-gen77353",
+    "designerId": "672fda46-41f9-46f9-a5a0-95126354f7c1",
+    "cn": [
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field7",
+                "name": "id",
+                "type": "int"
+            },
+            "designerId": "76b64ea9-e7b2-4891-aca7-564bb9deb005"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field8",
+                "name": "selectedchoice",
+                "type": "int"
+            },
+            "designerId": "261f056b-eddd-4cc2-9216-53164f545e69"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field9",
+                "name": "choices"
+            },
+            "designerId": "8e4d3aaf-e14f-4cbe-b6b9-6b25cab9b5b0"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field12",
+                "name": "pictures"
+            },
+            "designerId": "8e41042b-fa7b-4236-8904-0a328ef3b1b6"
+        }
+    ]
+}
