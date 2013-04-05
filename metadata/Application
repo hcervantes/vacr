@@ -1,5 +1,5 @@
 {
-    "type": "application",
+    "type": "Ext.app.Application",
     "reference": {
         "name": "items",
         "type": "array"
@@ -10,7 +10,8 @@
             "VacrData",
             "ImageData",
             "DescriptionData",
-            "choiceModel"
+            "choiceModel",
+            "vacrModel"
         ],
         "stores": [
             "VacrStore",
@@ -18,7 +19,8 @@
             "descriptionStore",
             "quizDataStore",
             "choiceStore",
-            "quizPictureStore"
+            "quizPictureStore",
+            "listVacrStore"
         ],
         "views": [
             "VACR"
@@ -26,6 +28,5 @@
         "autoCreateViewport": true,
         "name": "VACR"
     },
-    "id": "ExtBox1-ext-gen1587",
     "designerId": "application"
 }

@@ -1,5 +1,5 @@
 {
-    "type": "datamodel",
+    "type": "Ext.data.Model",
     "reference": {
         "name": "items",
         "type": "array"
@@ -8,71 +8,70 @@
     "userConfig": {
         "designer|userClassName": "VacrData"
     },
-    "id": "ExtBox1-ext-gen7619",
     "designerId": "311678fa-1327-41e5-86ad-78af58e5e23f",
     "cn": [
         {
-            "type": "datafield",
+            "type": "Ext.data.Field",
             "reference": {
                 "name": "fields",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "designer|userClassName": "field",
-                "name": "name"
+                "name": "name",
+                "designer|userClassName": "field"
             },
             "designerId": "759fee9d-abb6-4c0a-bad2-5c9979409497"
         },
         {
-            "type": "datafield",
+            "type": "Ext.data.Field",
             "reference": {
                 "name": "fields",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "designer|userClassName": "field1",
-                "name": "modelno"
+                "name": "modelno",
+                "designer|userClassName": "field1"
             },
             "designerId": "34e2aa40-7e72-4096-91b2-1c48e369a6be"
         },
         {
-            "type": "datafield",
+            "type": "Ext.data.Field",
             "reference": {
                 "name": "fields",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "designer|userClassName": "field3",
-                "name": "id"
+                "name": "id",
+                "designer|userClassName": "field3"
             },
             "designerId": "e502d1ad-054f-4520-8255-dfe6fbf3ab50"
         },
         {
-            "type": "datafield",
+            "type": "Ext.data.Field",
             "reference": {
                 "name": "fields",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "designer|userClassName": "field5",
-                "name": "descriptions"
+                "name": "descriptions",
+                "designer|userClassName": "field5"
             },
             "designerId": "41753001-8aeb-4508-8bc6-c2489619edb1"
         },
         {
-            "type": "datafield",
+            "type": "Ext.data.Field",
             "reference": {
                 "name": "fields",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "designer|userClassName": "field6",
-                "name": "pictures"
+                "name": "pictures",
+                "designer|userClassName": "field6"
             },
             "designerId": "5de27962-afeb-4c19-aae0-3acb93557715"
         }

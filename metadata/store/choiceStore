@@ -1,15 +1,14 @@
 {
-    "type": "store",
+    "type": "Ext.data.Store",
     "reference": {
         "name": "items",
         "type": "array"
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "choiceStore",
+        "model": "choiceModel",
         "storeId": "MyStore2",
-        "model": "choiceModel"
+        "designer|userClassName": "choiceStore"
     },
-    "id": "ExtBox1-ext-gen84823",
     "designerId": "df1ce0e7-274c-48bf-b191-0c51d1160da5"
 }

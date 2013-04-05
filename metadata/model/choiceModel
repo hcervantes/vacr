@@ -1,5 +1,5 @@
 {
-    "type": "datamodel",
+    "type": "Ext.data.Model",
     "reference": {
         "name": "items",
         "type": "array"
@@ -8,32 +8,31 @@
     "userConfig": {
         "designer|userClassName": "choiceModel"
     },
-    "id": "ExtBox1-ext-gen84506",
     "designerId": "6c0f9344-663f-4d9f-a602-1236b5ba6d73",
     "cn": [
         {
-            "type": "datafield",
+            "type": "Ext.data.Field",
             "reference": {
                 "name": "fields",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "designer|userClassName": "field10",
-                "name": "choice"
+                "name": "choice",
+                "designer|userClassName": "field10"
             },
             "designerId": "94ce67b9-7562-456c-9681-2bdd9f37eb77"
         },
         {
-            "type": "datafield",
+            "type": "Ext.data.Field",
             "reference": {
                 "name": "fields",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "designer|userClassName": "field11",
-                "name": "description"
+                "name": "description",
+                "designer|userClassName": "field11"
             },
             "designerId": "82c69e9e-ab9d-4c36-8247-ef640891a9c2"
         }

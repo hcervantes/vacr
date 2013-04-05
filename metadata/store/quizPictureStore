@@ -1,15 +1,14 @@
 {
-    "type": "store",
+    "type": "Ext.data.Store",
     "reference": {
         "name": "items",
         "type": "array"
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "quizPictureStore",
+        "model": "ImageData",
         "storeId": "MyStore3",
-        "model": "ImageData"
+        "designer|userClassName": "quizPictureStore"
     },
-    "id": "ExtBox1-ext-gen4838",
     "designerId": "8425e772-17e0-478a-9bc8-5e7eb1d97731"
 }

@@ -1,0 +1,111 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "vacrModel"
+    },
+    "designerId": "8640975b-711d-4ad5-8d30-6cce8997ab4a",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "id",
+                "designer|userClassName": "MyField13"
+            },
+            "designerId": "88b1d5ca-6127-404d-bc6e-a1a73244bec0"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "name",
+                "designer|userClassName": "MyField14"
+            },
+            "designerId": "89635f48-8b3d-45b5-82e4-03d888adaf94"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "modelno",
+                "designer|userClassName": "MyField15"
+            },
+            "designerId": "bf0dcdb4-6b0d-4057-8c5a-7b9c208cb0a3"
+        },
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "actionMethods": "POST",
+                "designer|userClassName": "MyAjaxProxy1",
+                "api": [
+                    "{",
+                    "    read: 'listVacr.php',",
+                    "    create: 'saveVacr.php',",
+                    "    update: 'saveVacr.php',",
+                    "    destroy: 'deleteVacr.php'",
+                    "}"
+                ]
+            },
+            "designerId": "873ad92f-5cd2-4821-b31e-fc8db3f7b567",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "actionMethods",
+                    "type": "string"
+                }
+            ],
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "messageProperty": "message",
+                        "root": "data",
+                        "designer|userClassName": "MyJsonReader2"
+                    },
+                    "designerId": "53d5f1d3-d7c9-43af-8a94-6244847fb790"
+                },
+                {
+                    "type": "Ext.data.writer.Json",
+                    "reference": {
+                        "name": "writer",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyJsonWriter",
+                        "allowSingle": false,
+                        "root": "data"
+                    },
+                    "designerId": "2b5ccaab-a052-4b8d-9881-05c48ed807a6"
+                }
+            ]
+        }
+    ]
+}

@@ -1,5 +1,5 @@
 {
-    "type": "datamodel",
+    "type": "Ext.data.Model",
     "reference": {
         "name": "items",
         "type": "array"
@@ -8,19 +8,18 @@
     "userConfig": {
         "designer|userClassName": "ImageData"
     },
-    "id": "ExtBox1-ext-gen8087",
     "designerId": "116a5aab-eef2-4dd7-ba6c-470d94ba7ab8",
     "cn": [
         {
-            "type": "datafield",
+            "type": "Ext.data.Field",
             "reference": {
                 "name": "fields",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "designer|userClassName": "field2",
-                "name": "picture"
+                "name": "picture",
+                "designer|userClassName": "field2"
             },
             "designerId": "74873a7f-4f8c-4ddc-90eb-d57e3bc7399d"
         }

@@ -9,10 +9,10 @@
         "genTimestamps": false,
         "cacheBust": false
     },
-    "xdsVersion": "2.1.0",
-    "xdsBuild": 678,
+    "xdsVersion": "2.2.0",
+    "xdsBuild": 908,
     "schemaVersion": 1,
-    "upgradeVersion": 210000000498,
+    "upgradeVersion": 210000000499,
     "framework": "ext41",
     "topInstanceFileMap": {
         "269a30ea-09ba-46eb-9b07-736b87315292": {
@@ -133,6 +133,22 @@
                 "app/controller/MyClass1.js"
             ],
             "className": "MyClass1"
+        },
+        "fd5c841e-b442-4124-93b4-7b061ef8dca0": {
+            "paths": [
+                "metadata/store/listVacrStore",
+                "app/store/override/listVacrStore.js",
+                "app/store/listVacrStore.js"
+            ],
+            "className": "listVacrStore"
+        },
+        "8640975b-711d-4ad5-8d30-6cce8997ab4a": {
+            "paths": [
+                "metadata/model/vacrModel",
+                "app/model/override/vacrModel.js",
+                "app/model/vacrModel.js"
+            ],
+            "className": "vacrModel"
         }
     },
     "viewOrderMap": {
@@ -146,7 +162,8 @@
             "1cadd5b2-9de1-47a1-a73c-cdb7c480ff6b",
             "6ba7e818-b947-4a33-9e54-75c5e35465f6",
             "df1ce0e7-274c-48bf-b191-0c51d1160da5",
-            "8425e772-17e0-478a-9bc8-5e7eb1d97731"
+            "8425e772-17e0-478a-9bc8-5e7eb1d97731",
+            "fd5c841e-b442-4124-93b4-7b061ef8dca0"
         ],
         "controller": [
             "cf3dab49-b4e0-4872-ae68-4b53afc087f9"
@@ -156,7 +173,8 @@
             "116a5aab-eef2-4dd7-ba6c-470d94ba7ab8",
             "26cfeaab-ab1b-4a0c-99ea-26ea4a6d1c6e",
             "672fda46-41f9-46f9-a5a0-95126354f7c1",
-            "6c0f9344-663f-4d9f-a602-1236b5ba6d73"
+            "6c0f9344-663f-4d9f-a602-1236b5ba6d73",
+            "8640975b-711d-4ad5-8d30-6cce8997ab4a"
         ],
         "resource": [
             "269a30ea-09ba-46eb-9b07-736b87315292"

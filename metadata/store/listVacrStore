@@ -1,0 +1,30 @@
+{
+    "type": "Ext.data.Store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "model": "vacrModel",
+        "storeId": "MyStore4",
+        "designer|userClassName": "listVacrStore"
+    },
+    "designerId": "fd5c841e-b442-4124-93b4-7b061ef8dca0",
+    "cn": [
+        {
+            "type": "Ext.util.Sorter",
+            "reference": {
+                "name": "sorters",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "property": "id",
+                "designer|userClassName": "MySorter"
+            },
+            "designerId": "fc5a5c71-49bd-4fb6-a0b1-3df0818413fc"
+        }
+    ]
+}
