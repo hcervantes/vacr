@@ -242,7 +242,7 @@ Ext.define('VACR.view.VACR', {
                                     xtype: 'gridpanel',
                                     region: 'west',
                                     itemId: 'editVacrGrid',
-                                    store: 'VacrStore',
+                                    store: 'listVacrStore',
                                     columns: [
                                         {
                                             xtype: 'gridcolumn',
@@ -250,6 +250,7 @@ Ext.define('VACR.view.VACR', {
                                             text: 'Name',
                                             editor: {
                                                 xtype: 'textfield',
+                                                name: 'name',
                                                 allowBlank: false,
                                                 emptyText: 'Aircraft name'
                                             }
@@ -260,9 +261,24 @@ Ext.define('VACR.view.VACR', {
                                             text: 'Modelno',
                                             editor: {
                                                 xtype: 'textfield',
+                                                name: 'modelno',
                                                 allowBlank: false,
                                                 blankText: 'Modle number is required'
                                             }
+                                        },
+                                        {
+                                            xtype: 'actioncolumn',
+                                            width: 30,
+                                            menuDisabled: true,
+                                            items: [
+                                                {
+                                                    handler: function(view, rowIndex, colIndex, item, e, record, row) {
+                                                        this.getStore().removeAt(rowIndex);
+                                                    },
+                                                    icon: 'resources/images/delete.gif',
+                                                    tooltip: 'Delete row'
+                                                }
+                                            ]
                                         }
                                     ],
                                     listeners: {
@@ -286,6 +302,28 @@ Ext.define('VACR.view.VACR', {
                                             width: 360,
                                             displayInfo: true,
                                             store: 'VacrStore'
+                                        },
+                                        {
+                                            xtype: 'toolbar',
+                                            dock: 'top',
+                                            items: [
+                                                {
+                                                    xtype: 'button',
+                                                    width: 100,
+                                                    text: 'Add New',
+                                                    listeners: {
+                                                        click: {
+                                                            fn: me.onButtonClick,
+                                                            scope: me
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    tools: [
+                                        {
+                                            xtype: 'tool'
                                         }
                                     ]
                                 },
@@ -470,6 +508,20 @@ Ext.define('VACR.view.VACR', {
         var descData = record.get('descriptions');
         var descView = this.down('#descriptionView');
         descView.store.loadData(descData);
+    },
+
+    onButtonClick: function(button, e, eOpts) {
+        // Create a model instance
+        var rec = new VACR.model.vacrModel({
+            name: 'New aircraft name',
+            modelno: 'ZZZ'
+        });
+        var storeData = Ext.data.StoreManager.lookup('listVacrStore');
+        storeData.insert(0, rec);
+        this.cellEditing.startEditByPosition({
+            row: 0, 
+            column: 0
+        });
     }
 
 });

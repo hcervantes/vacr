@@ -633,7 +633,7 @@
                                 "designer|userClassName": "MyGridPanel",
                                 "designer|displayName": "AircraftGrid",
                                 "title": null,
-                                "store": "VacrStore"
+                                "store": "listVacrStore"
                             },
                             "designerId": "98a3307b-6df0-4ff3-99ad-ef10479b0927",
                             "cn": [
@@ -672,6 +672,7 @@
                                             "codeClass": null,
                                             "userConfig": {
                                                 "designer|userClassName": "MyTextField",
+                                                "name": "name",
                                                 "allowBlank": false,
                                                 "emptyText": "Aircraft name"
                                             },
@@ -702,6 +703,7 @@
                                             "codeClass": null,
                                             "userConfig": {
                                                 "designer|userClassName": "MyTextField1",
+                                                "name": "modelno",
                                                 "allowBlank": false,
                                                 "blankText": "Modle number is required"
                                             },
@@ -744,6 +746,63 @@
                                     "designerId": "5c6ae709-82f8-4adf-9b6f-70947b9f41c4"
                                 },
                                 {
+                                    "type": "Ext.grid.column.Action",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "width": 30,
+                                        "designer|userClassName": "MyActionColumn",
+                                        "menuDisabled": true
+                                    },
+                                    "designerId": "3c9785a4-8c4e-4b57-ae2b-6b44927008a8",
+                                    "cn": [
+                                        {
+                                            "type": "actioncolumnitem",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|userClassName": "MyActionColumnItem",
+                                                "icon": "resources/images/delete.gif",
+                                                "tooltip": "Delete row"
+                                            },
+                                            "designerId": "5164f042-1904-4b24-9302-ba19bd175737",
+                                            "cn": [
+                                                {
+                                                    "type": "fixedfunction",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|userClassName": "handler",
+                                                        "fn": "handler",
+                                                        "designer|params": [
+                                                            "view",
+                                                            "rowIndex",
+                                                            "colIndex",
+                                                            "item",
+                                                            "e",
+                                                            "record",
+                                                            "row"
+                                                        ],
+                                                        "implHandler": [
+                                                            "this.getStore().removeAt(rowIndex);"
+                                                        ]
+                                                    },
+                                                    "designerId": "aec127f4-aff0-4fcf-8a62-fb7e1e5b8d3e"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
                                     "type": "Ext.selection.RowModel",
                                     "reference": {
                                         "name": "selModel",
@@ -782,6 +841,78 @@
                                         "store": "VacrStore"
                                     },
                                     "designerId": "870cc75d-71a0-43b6-b9a8-28a27fa8508a"
+                                },
+                                {
+                                    "type": "Ext.toolbar.Toolbar",
+                                    "reference": {
+                                        "name": "dockedItems",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "dock": "top",
+                                        "designer|userClassName": "MyToolbar"
+                                    },
+                                    "designerId": "549f7fea-309b-4d46-91c3-a05fd28eb019",
+                                    "cn": [
+                                        {
+                                            "type": "Ext.button.Button",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "layout|flex": null,
+                                                "width": 100,
+                                                "designer|userClassName": "MyButton2",
+                                                "text": "Add New"
+                                            },
+                                            "designerId": "ee9a8f96-64d7-4e91-86ab-fd35fd359627",
+                                            "cn": [
+                                                {
+                                                    "type": "basiceventbinding",
+                                                    "reference": {
+                                                        "name": "listeners",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|userClassName": "onButtonClick",
+                                                        "fn": "onButtonClick",
+                                                        "implHandler": [
+                                                            "// Create a model instance",
+                                                            "        var rec = new VACR.model.vacrModel({",
+                                                            "            name: 'New aircraft name',",
+                                                            "            modelno: 'ZZZ'",
+                                                            "        });",
+                                                            "        var storeData = Ext.data.StoreManager.lookup('listVacrStore');",
+                                                            "        storeData.insert(0, rec);",
+                                                            "        this.cellEditing.startEditByPosition({",
+                                                            "            row: 0, ",
+                                                            "            column: 0",
+                                                            "        });"
+                                                        ],
+                                                        "name": "click",
+                                                        "scope": "me"
+                                                    },
+                                                    "designerId": "df9b6c64-83c3-4a27-84d8-1b8f97f784a1"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.panel.Tool",
+                                    "reference": {
+                                        "name": "tools",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "MyTool"
+                                    },
+                                    "designerId": "2f1ef7cf-ae15-451f-8a40-5a2462e3cc32"
                                 }
                             ]
                         },
