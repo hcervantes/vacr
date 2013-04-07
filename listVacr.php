@@ -1,7 +1,7 @@
 <?php   
 
 //database parameters
-$user='hcervantes_hmc'; 
+$user='hcervant_hmc'; 
 $pw='edwin1998';
 $db='hcervant_db';
 $table='aircraft';
@@ -15,7 +15,7 @@ listProducts();
     
 function listProducts() 
 {
-	$table='aircraft';
+	$table='AIRCRAFT';
     $sql = 'SELECT * FROM '. $table;
     $result = mysql_query($sql) or die (mysql_error());
     

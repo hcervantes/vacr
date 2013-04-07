@@ -18,7 +18,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "id",
+                "name": "ID",
                 "designer|userClassName": "MyField13"
             },
             "designerId": "88b1d5ca-6127-404d-bc6e-a1a73244bec0"
@@ -31,7 +31,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "name",
+                "name": "NAME",
                 "designer|userClassName": "MyField14"
             },
             "designerId": "89635f48-8b3d-45b5-82e4-03d888adaf94"
@@ -44,7 +44,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "modelno",
+                "name": "MODELNO",
                 "designer|userClassName": "MyField15"
             },
             "designerId": "bf0dcdb4-6b0d-4057-8c5a-7b9c208cb0a3"

@@ -18,13 +18,13 @@ Ext.define('VACR.model.vacrModel', {
 
     fields: [
         {
-            name: 'id'
+            name: 'ID'
         },
         {
-            name: 'name'
+            name: 'NAME'
         },
         {
-            name: 'modelno'
+            name: 'MODELNO'
         }
     ],
 

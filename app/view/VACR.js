@@ -62,7 +62,7 @@ Ext.define('VACR.view.VACR', {
                                     ],
                                     listeners: {
                                         select: {
-                                            fn: me.onGridpanelSelect,
+                                            fn: me.onVacrGridSelect,
                                             scope: me
                                         }
                                     }
@@ -246,7 +246,7 @@ Ext.define('VACR.view.VACR', {
                                     columns: [
                                         {
                                             xtype: 'gridcolumn',
-                                            dataIndex: 'name',
+                                            dataIndex: 'NAME',
                                             text: 'Name',
                                             editor: {
                                                 xtype: 'textfield',
@@ -257,7 +257,7 @@ Ext.define('VACR.view.VACR', {
                                         },
                                         {
                                             xtype: 'gridcolumn',
-                                            dataIndex: 'modelno',
+                                            dataIndex: 'MODELNO',
                                             text: 'Modelno',
                                             editor: {
                                                 xtype: 'textfield',
@@ -273,7 +273,23 @@ Ext.define('VACR.view.VACR', {
                                             items: [
                                                 {
                                                     handler: function(view, rowIndex, colIndex, item, e, record, row) {
-                                                        this.getStore().removeAt(rowIndex);
+                                                        var storeData = Ext.data.StoreManager.lookup('listVacrStore');
+                                                        storeData.remove(record);
+                                                        storeData.commitChanges();
+                                                        record.destroy({ 
+                                                            success: function(record, operation)
+                                                            {
+                                                                //record is the updated record, except for collections
+                                                                //this collection will have the full records:
+                                                                //operation.resultSet.records
+                                                                //operation.resultSet.records[i] for each one if you are batching
+                                                                Ext.Msg.alert("Success", "You have deleted record " + record.data.NAME);
+                                                            },
+                                                            failure: function(record, operation)
+                                                            {
+                                                                Ext.Msg.alert("Fail", "Cannot delte record");
+                                                            }
+                                                        });
                                                     },
                                                     icon: 'resources/images/delete.gif',
                                                     tooltip: 'Delete row'
@@ -292,7 +308,13 @@ Ext.define('VACR.view.VACR', {
                                     }),
                                     plugins: [
                                         Ext.create('Ext.grid.plugin.RowEditing', {
-
+                                            pluginId: 'rowEditing',
+                                            listeners: {
+                                                edit: {
+                                                    fn: me.onRowEditingEdit,
+                                                    scope: me
+                                                }
+                                            }
                                         })
                                     ],
                                     dockedItems: [
@@ -319,11 +341,6 @@ Ext.define('VACR.view.VACR', {
                                                     }
                                                 }
                                             ]
-                                        }
-                                    ],
-                                    tools: [
-                                        {
-                                            xtype: 'tool'
                                         }
                                     ]
                                 },
@@ -406,7 +423,7 @@ Ext.define('VACR.view.VACR', {
         me.callParent(arguments);
     },
 
-    onGridpanelSelect: function(rowmodel, record, index, eOpts) {
+    onVacrGridSelect: function(rowmodel, record, index, eOpts) {
         // grab a reference to the detailPanel via itemId
         // the # in front of the id indicates that we would like to grab a reference by
         var detailPanel = this.down('#detailPanel');
@@ -491,23 +508,34 @@ Ext.define('VACR.view.VACR', {
     },
 
     onGridpanelSelect1: function(rowmodel, record, index, eOpts) {
-        // grab a reference to the detailPanel via itemId
-        // the # in front of the id indicates that we would like to grab a reference by
-        var detailPanel = this.down('#detailPanel');
-        // update the detailPanel with data
-        // this will trigger the tpl to become updates
-        detailPanel.update(record.data);
-        // grab a reference to the pictureView, notice we use down here instead of child
-        // because down will go down the container hierarchy at any depth and child will
-        // only retrieve direct children
-        var picView = this.down('#pictureView');
-        // get the pictures field out of this record
-        var picData = record.get('pictures');
-        picView.store.loadData(picData);
-        // get the descriptions field
-        var descData = record.get('descriptions');
-        var descView = this.down('#descriptionView');
-        descView.store.loadData(descData);
+
+    },
+
+    onRowEditingEdit: function(editor, e, eOpts) {
+        // commit the changes right after editing finished
+        e.record.beginEdit();
+        e.record.save({
+
+            params: { },
+            success: function(record, operation) {
+                if(operation.action === 'create'){
+                    Ext.Msg.alert("Success", "You have created a new record " + record.data.NAME);
+                }
+                else if( operation.action === 'update'){
+                    Ext.Msg.alert("Success", "You have successfully updated record " + record.data.NAME);
+                }
+                else{
+                    Ext.Msg.alert("Success", "You have successfully completed the operation. " + record.data.NAME);
+                }
+
+
+            },
+            failure: function(record, operation) {
+                Ext.Msg.alert("Failed", "Failed to update record");
+            }
+        });
+        e.record.endEdit();
+        e.record.commit();
     },
 
     onButtonClick: function(button, e, eOpts) {
@@ -516,12 +544,13 @@ Ext.define('VACR.view.VACR', {
             name: 'New aircraft name',
             modelno: 'ZZZ'
         });
+
         var storeData = Ext.data.StoreManager.lookup('listVacrStore');
         storeData.insert(0, rec);
-        this.cellEditing.startEditByPosition({
-            row: 0, 
-            column: 0
-        });
+        var grid = this.down("#editVacrGrid");
+        var rowEditing = grid.getPlugin("rowEditing");
+        rowEditing.cancelEdit();
+        rowEditing.startEdit(0, 0);
     }
 
 });

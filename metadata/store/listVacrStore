@@ -8,7 +8,7 @@
     "userConfig": {
         "autoLoad": true,
         "model": "vacrModel",
-        "storeId": "MyStore4",
+        "storeId": "listVacrStore",
         "designer|userClassName": "listVacrStore"
     },
     "designerId": "fd5c841e-b442-4124-93b4-7b061ef8dca0",
@@ -21,7 +21,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "property": "id",
+                "property": "ID",
                 "designer|userClassName": "MySorter"
             },
             "designerId": "fc5a5c71-49bd-4fb6-a0b1-3df0818413fc"

@@ -26,9 +26,9 @@ Ext.define('VACR.store.listVacrStore', {
         me.callParent([Ext.apply({
             autoLoad: true,
             model: 'VACR.model.vacrModel',
-            storeId: 'MyStore4',
+            storeId: 'listVacrStore',
             sorters: {
-                property: 'id'
+                property: 'ID'
             }
         }, cfg)]);
     }

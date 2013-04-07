@@ -114,8 +114,8 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "designer|userClassName": "onGridpanelSelect",
-                                        "fn": "onGridpanelSelect",
+                                        "designer|userClassName": "onVacrGridSelect",
+                                        "fn": "onVacrGridSelect",
                                         "implHandler": [
                                             "// grab a reference to the detailPanel via itemId",
                                             "// the # in front of the id indicates that we would like to grab a reference by",
@@ -138,7 +138,7 @@
                                         "name": "select",
                                         "scope": "me"
                                     },
-                                    "designerId": "040edf99-701b-4393-9c5a-4458d78af465"
+                                    "designerId": "55a7b65e-a282-4114-92cf-cc7523ea12b3"
                                 }
                             ]
                         },
@@ -658,7 +658,7 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|userClassName": "MyColumn2",
-                                        "dataIndex": "name",
+                                        "dataIndex": "NAME",
                                         "text": "Name"
                                     },
                                     "designerId": "6b9bc5ee-f1e8-4588-86bc-7a6279f42e6e",
@@ -689,7 +689,7 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|userClassName": "MyColumn3",
-                                        "dataIndex": "modelno",
+                                        "dataIndex": "MODELNO",
                                         "text": "Modelno"
                                     },
                                     "designerId": "1ddf47ff-664b-4ab4-8c42-7f060970b0f1",
@@ -722,23 +722,7 @@
                                         "designer|userClassName": "onGridpanelSelect1",
                                         "fn": "onGridpanelSelect1",
                                         "implHandler": [
-                                            "// grab a reference to the detailPanel via itemId",
-                                            "// the # in front of the id indicates that we would like to grab a reference by",
-                                            "var detailPanel = this.down('#detailPanel');",
-                                            "// update the detailPanel with data",
-                                            "// this will trigger the tpl to become updates",
-                                            "detailPanel.update(record.data);",
-                                            "// grab a reference to the pictureView, notice we use down here instead of child",
-                                            "// because down will go down the container hierarchy at any depth and child will",
-                                            "// only retrieve direct children",
-                                            "var picView = this.down('#pictureView');",
-                                            "// get the pictures field out of this record",
-                                            "var picData = record.get('pictures');",
-                                            "picView.store.loadData(picData);",
-                                            "// get the descriptions field",
-                                            "var descData = record.get('descriptions');",
-                                            "var descView = this.down('#descriptionView');",
-                                            "descView.store.loadData(descData);"
+                                            ""
                                         ],
                                         "name": "select",
                                         "scope": "me"
@@ -793,7 +777,23 @@
                                                             "row"
                                                         ],
                                                         "implHandler": [
-                                                            "this.getStore().removeAt(rowIndex);"
+                                                            "var storeData = Ext.data.StoreManager.lookup('listVacrStore');",
+                                                            "storeData.remove(record);",
+                                                            "storeData.commitChanges();",
+                                                            "record.destroy({ ",
+                                                            "    success: function(record, operation)",
+                                                            "    {",
+                                                            "        //record is the updated record, except for collections",
+                                                            "        //this collection will have the full records:",
+                                                            "        //operation.resultSet.records",
+                                                            "        //operation.resultSet.records[i] for each one if you are batching",
+                                                            "        Ext.Msg.alert(\"Success\", \"You have deleted record \" + record.data.NAME);",
+                                                            "    },",
+                                                            "    failure: function(record, operation)",
+                                                            "    {",
+                                                            "       Ext.Msg.alert(\"Fail\", \"Cannot delte record\");",
+                                                            "    }",
+                                                            "});"
                                                         ]
                                                     },
                                                     "designerId": "aec127f4-aff0-4fcf-8a62-fb7e1e5b8d3e"
@@ -822,9 +822,54 @@
                                     },
                                     "codeClass": "Ext.grid.plugin.RowEditing",
                                     "userConfig": {
-                                        "designer|userClassName": "MyRowEditingPlugin"
+                                        "pluginId": "rowEditing",
+                                        "designer|userClassName": "MyRowEditingPlugin",
+                                        "designer|createClass": null
                                     },
-                                    "designerId": "5b5ca9d4-3223-4a9b-a53b-97d8d1139005"
+                                    "designerId": "5b5ca9d4-3223-4a9b-a53b-97d8d1139005",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|userClassName": "onRowEditingEdit",
+                                                "fn": "onRowEditingEdit",
+                                                "implHandler": [
+                                                    "// commit the changes right after editing finished",
+                                                    "e.record.beginEdit();",
+                                                    "e.record.save({",
+                                                    "",
+                                                    "    params: { },",
+                                                    "    success: function(record, operation) {",
+                                                    "        if(operation.action === 'create'){",
+                                                    "            Ext.Msg.alert(\"Success\", \"You have created a new record \" + record.data.NAME);",
+                                                    "        }",
+                                                    "        else if( operation.action === 'update'){",
+                                                    "            Ext.Msg.alert(\"Success\", \"You have successfully updated record \" + record.data.NAME);",
+                                                    "        }",
+                                                    "        else{",
+                                                    "            Ext.Msg.alert(\"Success\", \"You have successfully completed the operation. \" + record.data.NAME);",
+                                                    "        }",
+                                                    "",
+                                                    "",
+                                                    "    },",
+                                                    "    failure: function(record, operation) {",
+                                                    "        Ext.Msg.alert(\"Failed\", \"Failed to update record\");",
+                                                    "    }",
+                                                    "});",
+                                                    "e.record.endEdit();",
+                                                    "e.record.commit();"
+                                                ],
+                                                "name": "edit",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "c6cc8814-ef67-47ff-884e-84fa84cfa417"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.toolbar.Paging",
@@ -882,16 +927,17 @@
                                                         "fn": "onButtonClick",
                                                         "implHandler": [
                                                             "// Create a model instance",
-                                                            "        var rec = new VACR.model.vacrModel({",
-                                                            "            name: 'New aircraft name',",
-                                                            "            modelno: 'ZZZ'",
-                                                            "        });",
-                                                            "        var storeData = Ext.data.StoreManager.lookup('listVacrStore');",
-                                                            "        storeData.insert(0, rec);",
-                                                            "        this.cellEditing.startEditByPosition({",
-                                                            "            row: 0, ",
-                                                            "            column: 0",
-                                                            "        });"
+                                                            "var rec = new VACR.model.vacrModel({",
+                                                            "    name: 'New aircraft name',",
+                                                            "    modelno: 'ZZZ'",
+                                                            "});",
+                                                            "",
+                                                            "var storeData = Ext.data.StoreManager.lookup('listVacrStore');",
+                                                            "storeData.insert(0, rec);",
+                                                            "var grid = this.down(\"#editVacrGrid\");",
+                                                            "var rowEditing = grid.getPlugin(\"rowEditing\");",
+                                                            "rowEditing.cancelEdit();",
+                                                            "rowEditing.startEdit(0, 0);"
                                                         ],
                                                         "name": "click",
                                                         "scope": "me"
@@ -901,18 +947,6 @@
                                             ]
                                         }
                                     ]
-                                },
-                                {
-                                    "type": "Ext.panel.Tool",
-                                    "reference": {
-                                        "name": "tools",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "designer|userClassName": "MyTool"
-                                    },
-                                    "designerId": "2f1ef7cf-ae15-451f-8a40-5a2462e3cc32"
                                 }
                             ]
                         },
