@@ -287,7 +287,7 @@ Ext.define('VACR.view.VACR', {
                                                             },
                                                             failure: function(record, operation)
                                                             {
-                                                                Ext.Msg.alert("Fail", "Cannot delte record");
+                                                                Ext.Msg.alert("Fail", "Cannot delete record");
                                                             }
                                                         });
                                                     },
