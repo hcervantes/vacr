@@ -24,14 +24,12 @@ Ext.application({
         'VACR.view.VACR'
     ],
     models: [
-        'VacrData',
         'ImageData',
         'DescriptionData',
         'choiceModel',
         'vacrModel'
     ],
     stores: [
-        'VacrStore',
         'pictureStore',
         'descriptionStore',
         'quizDataStore',

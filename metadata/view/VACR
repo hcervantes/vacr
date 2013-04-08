@@ -62,7 +62,7 @@
                                 "designer|userClassName": "MyGridPanel",
                                 "designer|displayName": "AircraftGrid",
                                 "title": null,
-                                "store": "VacrStore"
+                                "store": "listVacrStore"
                             },
                             "designerId": "6c189729-99a5-4b27-8093-2f7f9a4f3255",
                             "cn": [
@@ -77,34 +77,6 @@
                                         "designer|userClassName": "MyGridView"
                                     },
                                     "designerId": "94b7a127-f2ed-4142-a8c1-645d315686bc"
-                                },
-                                {
-                                    "type": "Ext.grid.column.Column",
-                                    "reference": {
-                                        "name": "columns",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "designer|userClassName": "MyColumn2",
-                                        "dataIndex": "name",
-                                        "text": "Name"
-                                    },
-                                    "designerId": "6558eb38-0b04-4813-a647-0acaff8f3ea6"
-                                },
-                                {
-                                    "type": "Ext.grid.column.Column",
-                                    "reference": {
-                                        "name": "columns",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "designer|userClassName": "MyColumn3",
-                                        "dataIndex": "modelno",
-                                        "text": "Modelno"
-                                    },
-                                    "designerId": "2e0981af-3ab8-4d03-aa67-e3a9b06b430a"
                                 },
                                 {
                                     "type": "basiceventbinding",
@@ -128,10 +100,10 @@
                                             "// only retrieve direct children",
                                             "var picView = this.down('#pictureView');",
                                             "// get the pictures field out of this record",
-                                            "var picData = record.get('pictures');",
+                                            "var picData = record.get('PICTURES');",
                                             "picView.store.loadData(picData);",
                                             "// get the descriptions field",
-                                            "var descData = record.get('descriptions');",
+                                            "var descData = record.get('DESCRIPTIONS');",
                                             "var descView = this.down('#descriptionView');",
                                             "descView.store.loadData(descData);"
                                         ],
@@ -139,6 +111,34 @@
                                         "scope": "me"
                                     },
                                     "designerId": "55a7b65e-a282-4114-92cf-cc7523ea12b3"
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "MyColumn2",
+                                        "dataIndex": "NAME",
+                                        "text": "NAME"
+                                    },
+                                    "designerId": "b4bcc914-5955-42e2-9eb8-831fe70decc6"
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "MyColumn4",
+                                        "dataIndex": "MODELNO",
+                                        "text": "MODELNO"
+                                    },
+                                    "designerId": "134dc60b-e744-403d-9616-ab3a7c3c7421"
                                 }
                             ]
                         },
@@ -262,7 +262,7 @@
                                                                 "designer|userClassName": "itemTpl",
                                                                 "implHandler": [
                                                                     "<div style=\"margin-bottom: 10px;\" class=\"thumb-wrap\">",
-                                                                    "    <img src=\"images/{picture}\" width=\"200\" />",
+                                                                    "    <img src=\"images/{PICTURE}\" width=\"200\" />",
                                                                     "        </div>"
                                                                 ],
                                                                 "designer|displayName": "itemTpl"
@@ -315,7 +315,7 @@
                                                                 "designer|userClassName": "itemTpl",
                                                                 "implHandler": [
                                                                     "<div style=\"margin-bottom: 10px;\" class=\"thumb-wrap\">",
-                                                                    "    <li>{description}</li>",
+                                                                    "    <li>{DESCRIPTION}</li>",
                                                                     "</div>"
                                                                 ],
                                                                 "designer|displayName": "itemTpl"
@@ -650,68 +650,6 @@
                                     "designerId": "4d10066a-18da-4475-bfd0-98504bc77568"
                                 },
                                 {
-                                    "type": "Ext.grid.column.Column",
-                                    "reference": {
-                                        "name": "columns",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "designer|userClassName": "MyColumn2",
-                                        "dataIndex": "NAME",
-                                        "text": "Name"
-                                    },
-                                    "designerId": "6b9bc5ee-f1e8-4588-86bc-7a6279f42e6e",
-                                    "cn": [
-                                        {
-                                            "type": "Ext.form.field.Text",
-                                            "reference": {
-                                                "name": "editor",
-                                                "type": "object"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|userClassName": "MyTextField",
-                                                "name": "name",
-                                                "allowBlank": false,
-                                                "emptyText": "Aircraft name"
-                                            },
-                                            "designerId": "dc299c6a-c513-43ff-94aa-8254f92c0092"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.grid.column.Column",
-                                    "reference": {
-                                        "name": "columns",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "designer|userClassName": "MyColumn3",
-                                        "dataIndex": "MODELNO",
-                                        "text": "Modelno"
-                                    },
-                                    "designerId": "1ddf47ff-664b-4ab4-8c42-7f060970b0f1",
-                                    "cn": [
-                                        {
-                                            "type": "Ext.form.field.Text",
-                                            "reference": {
-                                                "name": "editor",
-                                                "type": "object"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|userClassName": "MyTextField1",
-                                                "name": "modelno",
-                                                "allowBlank": false,
-                                                "blankText": "Modle number is required"
-                                            },
-                                            "designerId": "a7e170f8-1205-4d7e-acb4-cdb0cffa2210"
-                                        }
-                                    ]
-                                },
-                                {
                                     "type": "basiceventbinding",
                                     "reference": {
                                         "name": "listeners",
@@ -722,85 +660,21 @@
                                         "designer|userClassName": "onGridpanelSelect1",
                                         "fn": "onGridpanelSelect1",
                                         "implHandler": [
+                                            "",
+                                            "",
+                                            "// get the descriptions field",
+                                            "var vacrID = record.data.ID;",
+                                            "var descData = record.get('DESCRIPTIONS');",
+                                            "var charcGrid = this.down('#editCharacteristicsGrid');",
+                                            "var charcStore = charcGrid.store;",
+                                            "charcStore.proxy.extraParams = { aircraft_id : vacrID};",
+                                            "charcStore.loadData(descData);",
                                             ""
                                         ],
                                         "name": "select",
                                         "scope": "me"
                                     },
                                     "designerId": "5c6ae709-82f8-4adf-9b6f-70947b9f41c4"
-                                },
-                                {
-                                    "type": "Ext.grid.column.Action",
-                                    "reference": {
-                                        "name": "columns",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "width": 30,
-                                        "designer|userClassName": "MyActionColumn",
-                                        "menuDisabled": true
-                                    },
-                                    "designerId": "3c9785a4-8c4e-4b57-ae2b-6b44927008a8",
-                                    "cn": [
-                                        {
-                                            "type": "actioncolumnitem",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|userClassName": "MyActionColumnItem",
-                                                "icon": "resources/images/delete.gif",
-                                                "tooltip": "Delete row"
-                                            },
-                                            "designerId": "5164f042-1904-4b24-9302-ba19bd175737",
-                                            "cn": [
-                                                {
-                                                    "type": "fixedfunction",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "designer|userClassName": "handler",
-                                                        "fn": "handler",
-                                                        "designer|params": [
-                                                            "view",
-                                                            "rowIndex",
-                                                            "colIndex",
-                                                            "item",
-                                                            "e",
-                                                            "record",
-                                                            "row"
-                                                        ],
-                                                        "implHandler": [
-                                                            "var storeData = Ext.data.StoreManager.lookup('listVacrStore');",
-                                                            "storeData.remove(record);",
-                                                            "storeData.commitChanges();",
-                                                            "record.destroy({ ",
-                                                            "    success: function(record, operation)",
-                                                            "    {",
-                                                            "        //record is the updated record, except for collections",
-                                                            "        //this collection will have the full records:",
-                                                            "        //operation.resultSet.records",
-                                                            "        //operation.resultSet.records[i] for each one if you are batching",
-                                                            "        Ext.Msg.alert(\"Success\", \"You have deleted record \" + record.data.NAME);",
-                                                            "    },",
-                                                            "    failure: function(record, operation)",
-                                                            "    {",
-                                                            "        Ext.Msg.alert(\"Fail\", \"Cannot delete record\");",
-                                                            "    }",
-                                                            "});"
-                                                        ]
-                                                    },
-                                                    "designerId": "aec127f4-aff0-4fcf-8a62-fb7e1e5b8d3e"
-                                                }
-                                            ]
-                                        }
-                                    ]
                                 },
                                 {
                                     "type": "Ext.selection.RowModel",
@@ -840,6 +714,7 @@
                                                 "fn": "onRowEditingEdit",
                                                 "implHandler": [
                                                     "// commit the changes right after editing finished",
+                                                    "/***",
                                                     "e.record.beginEdit();",
                                                     "e.record.save({",
                                                     "",
@@ -862,7 +737,8 @@
                                                     "    }",
                                                     "});",
                                                     "e.record.endEdit();",
-                                                    "e.record.commit();"
+                                                    "e.record.commit();",
+                                                    "***/"
                                                 ],
                                                 "name": "edit",
                                                 "scope": "me"
@@ -883,7 +759,7 @@
                                         "width": 360,
                                         "designer|userClassName": "MyPagingToolbar",
                                         "displayInfo": true,
-                                        "store": "VacrStore"
+                                        "store": null
                                     },
                                     "designerId": "870cc75d-71a0-43b6-b9a8-28a27fa8508a"
                                 },
@@ -928,8 +804,8 @@
                                                         "implHandler": [
                                                             "// Create a model instance",
                                                             "var rec = new VACR.model.vacrModel({",
-                                                            "    name: 'New aircraft name',",
-                                                            "    modelno: 'ZZZ'",
+                                                            "    NAME: 'New aircraft name',",
+                                                            "    MODELNO: 'ZZZ'",
                                                             "});",
                                                             "",
                                                             "var storeData = Ext.data.StoreManager.lookup('listVacrStore');",
@@ -943,6 +819,135 @@
                                                         "scope": "me"
                                                     },
                                                     "designerId": "df9b6c64-83c3-4a27-84d8-1b8f97f784a1"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "MyColumn1",
+                                        "dataIndex": "NAME",
+                                        "text": "NAME"
+                                    },
+                                    "designerId": "47635f88-61df-4bf8-a681-0c89ab271e84",
+                                    "cn": [
+                                        {
+                                            "type": "Ext.form.field.Text",
+                                            "reference": {
+                                                "name": "editor",
+                                                "type": "object"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|userClassName": "MyTextField"
+                                            },
+                                            "designerId": "f4320320-709a-43c2-b60d-e7b11ae2b28c"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "MyColumn3",
+                                        "dataIndex": "MODELNO",
+                                        "text": "MODELNO"
+                                    },
+                                    "designerId": "43c22101-2385-4677-8fdb-dcee2119f922",
+                                    "cn": [
+                                        {
+                                            "type": "Ext.form.field.Text",
+                                            "reference": {
+                                                "name": "editor",
+                                                "type": "object"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|userClassName": "MyTextField1"
+                                            },
+                                            "designerId": "7bb0a8d7-95c9-4dbe-a25c-6b7dd47fed48"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Action",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "MyActionColumn",
+                                        "tooltip": "Delete this row"
+                                    },
+                                    "designerId": "92f3b502-6070-4a0d-baba-fef83f69d25c",
+                                    "cn": [
+                                        {
+                                            "type": "actioncolumnitem",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|userClassName": "MyActionColumnItem",
+                                                "icon": "resources/images/delete.gif"
+                                            },
+                                            "designerId": "7525fd0c-4d9e-46b1-8b8e-7050fa9edd34",
+                                            "cn": [
+                                                {
+                                                    "type": "fixedfunction",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|userClassName": "handler",
+                                                        "fn": "handler",
+                                                        "designer|params": [
+                                                            "view",
+                                                            "rowIndex",
+                                                            "colIndex",
+                                                            "item",
+                                                            "e",
+                                                            "record",
+                                                            "row"
+                                                        ],
+                                                        "implHandler": [
+                                                            "var storeData = Ext.data.StoreManager.lookup('listVacrStore');",
+                                                            "storeData.remove(record);",
+                                                            "storeData.commitChanges();",
+                                                            "/*",
+                                                            "record.destroy({ ",
+                                                            "    success: function(record, operation)",
+                                                            "    {",
+                                                            "        //record is the updated record, except for collections",
+                                                            "        //this collection will have the full records:",
+                                                            "        //operation.resultSet.records",
+                                                            "        //operation.resultSet.records[i] for each one if you are batching",
+                                                            "        Ext.Msg.alert(\"Success\", \"You have deleted record \" + record.data.NAME);",
+                                                            "    },",
+                                                            "    failure: function(record, operation)",
+                                                            "    {",
+                                                            "        Ext.Msg.alert(\"Fail\", \"Cannot delete record\");",
+                                                            "    }",
+                                                            "});",
+                                                            "*/"
+                                                        ]
+                                                    },
+                                                    "designerId": "1f525d01-228f-4a3f-9329-4d41c94a0a1b"
                                                 }
                                             ]
                                         }
@@ -1055,6 +1060,7 @@
                                                 "itemId": "descriptionPanel",
                                                 "width": 300,
                                                 "designer|userClassName": "MyPanel10",
+                                                "layout": "vbox",
                                                 "title": "Characteristics"
                                             },
                                             "designerId": "56f9f1e0-167e-4d1d-8cdc-9c3235d0c237",
@@ -1069,7 +1075,7 @@
                                                     "userConfig": {
                                                         "itemId": "editCharacteristicsGrid",
                                                         "designer|userClassName": "MyGridPanel3",
-                                                        "title": "My Grid Panel",
+                                                        "title": "",
                                                         "store": "descriptionStore"
                                                     },
                                                     "designerId": "3fd7dc2c-d2ae-4c9b-a173-3f93d0223d33",
@@ -1096,7 +1102,7 @@
                                                             "userConfig": {
                                                                 "width": 299,
                                                                 "designer|userClassName": "MyColumn7",
-                                                                "dataIndex": "description",
+                                                                "dataIndex": "DESCRIPTION",
                                                                 "text": "Description"
                                                             },
                                                             "designerId": "cda0fb95-6928-43c9-a4ab-e3202043358f",
@@ -1113,6 +1119,122 @@
                                                                         "allowBlank": false
                                                                     },
                                                                     "designerId": "76f9d980-ac46-456e-89bb-16192169e22c"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "Ext.toolbar.Toolbar",
+                                                            "reference": {
+                                                                "name": "dockedItems",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "dock": "top",
+                                                                "designer|userClassName": "MyToolbar1"
+                                                            },
+                                                            "designerId": "e5093e66-37fb-46cd-9e6c-c77f7302c9af",
+                                                            "cn": [
+                                                                {
+                                                                    "type": "Ext.button.Button",
+                                                                    "reference": {
+                                                                        "name": "items",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "layout|flex": null,
+                                                                        "designer|userClassName": "MyButton3",
+                                                                        "text": "Add a Characteristic"
+                                                                    },
+                                                                    "designerId": "842dace7-1a34-45a0-b081-a26c91da597e",
+                                                                    "cn": [
+                                                                        {
+                                                                            "type": "basiceventbinding",
+                                                                            "reference": {
+                                                                                "name": "listeners",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "designer|userClassName": "onButtonClick1",
+                                                                                "fn": "onButtonClick1",
+                                                                                "implHandler": [
+                                                                                    "// Create a model instance",
+                                                                                    "var rec = new VACR.model.DescriptionData({",
+                                                                                    "    description: '',",
+                                                                                    "    id: null",
+                                                                                    "});",
+                                                                                    "",
+                                                                                    "var storeData = Ext.data.StoreManager.lookup('descriptionStore');",
+                                                                                    "storeData.insert(0, rec);",
+                                                                                    "var grid = this.down(\"#editCharacteristicsGrid\");",
+                                                                                    "var rowEditing = grid.getPlugin(\"rowEditing\");",
+                                                                                    "rowEditing.cancelEdit();",
+                                                                                    "rowEditing.startEdit(0, 0);"
+                                                                                ],
+                                                                                "name": "click",
+                                                                                "scope": "me"
+                                                                            },
+                                                                            "designerId": "70e6f281-caab-425b-b5e1-ca1868bd3c11"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "Ext.grid.plugin.RowEditing",
+                                                            "reference": {
+                                                                "name": "plugins",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": "Ext.grid.plugin.RowEditing",
+                                                            "userConfig": {
+                                                                "pluginId": "rowEditing",
+                                                                "designer|userClassName": "MyRowEditingPlugin1"
+                                                            },
+                                                            "designerId": "5ea2d421-27f1-401f-9e71-c43f26cd7119",
+                                                            "cn": [
+                                                                {
+                                                                    "type": "basiceventbinding",
+                                                                    "reference": {
+                                                                        "name": "listeners",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "designer|userClassName": "onRowEditingEdit1",
+                                                                        "fn": "onRowEditingEdit1",
+                                                                        "implHandler": [
+                                                                            "// commit the changes right after editing finished",
+                                                                            "e.record.beginEdit();",
+                                                                            "e.record.save({",
+                                                                            "",
+                                                                            "    params: { },",
+                                                                            "    success: function(record, operation) {",
+                                                                            "        if(operation.action === 'create'){",
+                                                                            "            Ext.Msg.alert(\"Success\", \"You have created a new record \" + record.data.description);",
+                                                                            "        }",
+                                                                            "        else if( operation.action === 'update'){",
+                                                                            "            Ext.Msg.alert(\"Success\", \"You have successfully updated record \" + record.data.description);",
+                                                                            "        }",
+                                                                            "        else{",
+                                                                            "            Ext.Msg.alert(\"Success\", \"You have successfully completed the operation. \" );",
+                                                                            "        }",
+                                                                            "",
+                                                                            "",
+                                                                            "    },",
+                                                                            "    failure: function(record, operation) {",
+                                                                            "        Ext.Msg.alert(\"Failed\", \"Failed to update record\");",
+                                                                            "    }",
+                                                                            "});",
+                                                                            "e.record.endEdit();",
+                                                                            "e.record.commit();"
+                                                                        ],
+                                                                        "name": "edit",
+                                                                        "scope": "me"
+                                                                    },
+                                                                    "designerId": "aed6dffc-c977-4ccc-8fdc-c77cb3bda00e"
                                                                 }
                                                             ]
                                                         }

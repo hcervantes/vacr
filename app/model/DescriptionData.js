@@ -16,9 +16,32 @@
 Ext.define('VACR.model.DescriptionData', {
     extend: 'Ext.data.Model',
 
+    idProperty: 'ID',
+
     fields: [
         {
-            name: 'description'
+            name: 'DESCRIPTION'
+        },
+        {
+            name: 'ID'
+        },
+        {
+            name: 'AIRCRAFT_ID'
         }
-    ]
+    ],
+
+    proxy: {
+        type: 'jsonp',
+        api: {
+            read: 'listCharacteristics.php',
+            create: 'saveCharacteristics.php',
+            update: 'saveCharacteristics.php',
+            destroy: 'deleteCharacteristics.php'
+        },
+        writer: {
+            type: 'json',
+            allowSingle: false,
+            root: 'data'
+        }
+    }
 });

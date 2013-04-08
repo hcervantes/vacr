@@ -25,6 +25,7 @@ Ext.define('VACR.store.listVacrStore', {
         cfg = cfg || {};
         me.callParent([Ext.apply({
             autoLoad: true,
+            autoSync: true,
             model: 'VACR.model.vacrModel',
             storeId: 'listVacrStore',
             sorters: {

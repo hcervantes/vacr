@@ -19,9 +19,9 @@ $table = 'aircraft';
 $connection = mysql_connect("localhost", $user, $pw) or die("Could not connect: " . mysql_error());
 mysql_select_db($db) or die("Could not select database");
 
-saveProduct();
+saveVacr();
 
-function saveProduct() {
+function saveVacr() {
 	$jsonData = getInputParms();
 
 	//print_r($jsonData);

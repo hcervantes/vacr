@@ -7,14 +7,12 @@
     "codeClass": null,
     "userConfig": {
         "models": [
-            "VacrData",
             "ImageData",
             "DescriptionData",
             "choiceModel",
             "vacrModel"
         ],
         "stores": [
-            "VacrStore",
             "pictureStore",
             "descriptionStore",
             "quizDataStore",

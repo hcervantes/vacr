@@ -18,6 +18,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "mapping": null,
                 "name": "ID",
                 "designer|userClassName": "MyField13"
             },
@@ -31,6 +32,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "mapping": null,
                 "name": "NAME",
                 "designer|userClassName": "MyField14"
             },
@@ -44,6 +46,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "mapping": null,
                 "name": "MODELNO",
                 "designer|userClassName": "MyField15"
             },
@@ -61,7 +64,7 @@
                 "designer|userClassName": "MyAjaxProxy1",
                 "api": [
                     "{",
-                    "    read: 'listVacr.php',",
+                    "    read: 'getVACR.php',",
                     "    create: 'saveVacr.php',",
                     "    update: 'saveVacr.php',",
                     "    destroy: 'deleteVacr.php'",
@@ -106,6 +109,34 @@
                     "designerId": "2b5ccaab-a052-4b8d-9881-05c48ed807a6"
                 }
             ]
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "mapping": null,
+                "name": "DESCRIPTIONS",
+                "designer|userClassName": "MyField18"
+            },
+            "designerId": "5ff4d98c-b7b1-43d6-8549-5255334c17be"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "mapping": null,
+                "name": "PICTURES",
+                "designer|userClassName": "MyField19"
+            },
+            "designerId": "28cb3061-fd89-4ddc-a309-2adfb5c890f0"
         }
     ]
 }

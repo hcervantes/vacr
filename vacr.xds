@@ -21,22 +21,6 @@
             ],
             "className": "Library"
         },
-        "462152bc-f5a4-470c-99c7-9f1c6f41068e": {
-            "paths": [
-                "metadata/store/VacrStore",
-                "app/store/override/VacrStore.js",
-                "app/store/VacrStore.js"
-            ],
-            "className": "VacrStore"
-        },
-        "311678fa-1327-41e5-86ad-78af58e5e23f": {
-            "paths": [
-                "metadata/model/VacrData",
-                "app/model/override/VacrData.js",
-                "app/model/VacrData.js"
-            ],
-            "className": "VacrData"
-        },
         "116a5aab-eef2-4dd7-ba6c-470d94ba7ab8": {
             "paths": [
                 "metadata/model/ImageData",
@@ -157,7 +141,6 @@
             "28556880-da9a-49ca-8f2e-e78c6d217225"
         ],
         "store": [
-            "462152bc-f5a4-470c-99c7-9f1c6f41068e",
             "f35dacd6-52af-4e7f-82b5-5fd4df904de8",
             "1cadd5b2-9de1-47a1-a73c-cdb7c480ff6b",
             "6ba7e818-b947-4a33-9e54-75c5e35465f6",
@@ -169,7 +152,6 @@
             "cf3dab49-b4e0-4872-ae68-4b53afc087f9"
         ],
         "model": [
-            "311678fa-1327-41e5-86ad-78af58e5e23f",
             "116a5aab-eef2-4dd7-ba6c-470d94ba7ab8",
             "26cfeaab-ab1b-4a0c-99ea-26ea4a6d1c6e",
             "672fda46-41f9-46f9-a5a0-95126354f7c1",

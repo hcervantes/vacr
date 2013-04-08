@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "idProperty": "ID",
         "designer|userClassName": "DescriptionData"
     },
     "designerId": "26cfeaab-ab1b-4a0c-99ea-26ea4a6d1c6e",
@@ -18,10 +19,72 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "description",
+                "name": "DESCRIPTION",
                 "designer|userClassName": "field2"
             },
             "designerId": "a8219456-9e35-4ae4-a853-44121f836cfe"
+        },
+        {
+            "type": "Ext.data.proxy.JsonP",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyJsonPProxy",
+                "api": [
+                    "{",
+                    "    read: 'listCharacteristics.php',",
+                    "    create: 'saveCharacteristics.php',",
+                    "    update: 'saveCharacteristics.php',",
+                    "    destroy: 'deleteCharacteristics.php'",
+                    "}"
+                ]
+            },
+            "designerId": "d4478f74-59af-443f-8b5e-48f16081a125",
+            "cn": [
+                {
+                    "type": "Ext.data.writer.Json",
+                    "reference": {
+                        "name": "writer",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyJsonWriter1",
+                        "allowSingle": false,
+                        "root": "data"
+                    },
+                    "designerId": "f89f7886-ece2-4789-9a08-fccc7b08454e"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "ID",
+                "designer|userClassName": "MyField16"
+            },
+            "designerId": "6b64a907-fad1-4bc3-92a8-ffe259fc7a4c"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "AIRCRAFT_ID",
+                "designer|userClassName": "MyField17"
+            },
+            "designerId": "f8e9e2d2-2478-4ab4-a108-42e25259387f"
         }
     ]
 }

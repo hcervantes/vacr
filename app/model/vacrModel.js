@@ -25,6 +25,12 @@ Ext.define('VACR.model.vacrModel', {
         },
         {
             name: 'MODELNO'
+        },
+        {
+            name: 'DESCRIPTIONS'
+        },
+        {
+            name: 'PICTURES'
         }
     ],
 
@@ -32,7 +38,7 @@ Ext.define('VACR.model.vacrModel', {
         type: 'ajax',
         actionMethods: 'POST',
         api: {
-            read: 'listVacr.php',
+            read: 'getVACR.php',
             create: 'saveVacr.php',
             update: 'saveVacr.php',
             destroy: 'deleteVacr.php'

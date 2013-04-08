@@ -4,19 +4,30 @@
 $user='hcervant_hmc'; 
 $pw='edwin1998';
 $db='hcervant_db';
-$table='aircraft';
+$table='characteristics';
    
 //make database connection
 $connection = mysql_connect("localhost", $user, $pw) or
    die("Could not connect: " . mysql_error());
 mysql_select_db($db) or die("Could not select database");
-
-listVacrs();
+$jsonData = getInputParms();
+if (isset($jsonData['ID'])) {
+		if ($jsonData['ID'] > 0 || $jsonData['ID'] != "") {
+			listCharacs($jsonData['ID']);
+		}
+		else{
+			listCharacs(null);
+		}
+}
+listCharacs();
     
-function listVacrs() 
+function listCharacs($ID) 
 {
-	$table='AIRCRAFT';
+	$table='characteristics';
     $sql = 'SELECT * FROM '. $table;
+	if($ID != null){
+		$sql .= ' WHERE ID = ' . $ID;
+	}
     $result = mysql_query($sql) or die (mysql_error());
     
     while($rec = mysql_fetch_array($result, MYSQL_ASSOC)){

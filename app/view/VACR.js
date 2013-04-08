@@ -47,25 +47,25 @@ Ext.define('VACR.view.VACR', {
                                     xtype: 'gridpanel',
                                     region: 'west',
                                     itemId: 'vacrGrid',
-                                    store: 'VacrStore',
-                                    columns: [
-                                        {
-                                            xtype: 'gridcolumn',
-                                            dataIndex: 'name',
-                                            text: 'Name'
-                                        },
-                                        {
-                                            xtype: 'gridcolumn',
-                                            dataIndex: 'modelno',
-                                            text: 'Modelno'
-                                        }
-                                    ],
+                                    store: 'listVacrStore',
                                     listeners: {
                                         select: {
                                             fn: me.onVacrGridSelect,
                                             scope: me
                                         }
-                                    }
+                                    },
+                                    columns: [
+                                        {
+                                            xtype: 'gridcolumn',
+                                            dataIndex: 'NAME',
+                                            text: 'NAME'
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            dataIndex: 'MODELNO',
+                                            text: 'MODELNO'
+                                        }
+                                    ]
                                 },
                                 {
                                     xtype: 'panel',
@@ -113,7 +113,7 @@ Ext.define('VACR.view.VACR', {
                                                             itemSelector: 'div.thumb-wrap',
                                                             itemTpl: [
                                                                 '<div style="margin-bottom: 10px;" class="thumb-wrap">',
-                                                                '    <img src="images/{picture}" width="200" />',
+                                                                '    <img src="images/{PICTURE}" width="200" />',
                                                                 '        </div>'
                                                             ],
                                                             store: 'pictureStore'
@@ -136,7 +136,7 @@ Ext.define('VACR.view.VACR', {
                                                             itemSelector: 'div.thumb-wrap',
                                                             itemTpl: [
                                                                 '<div style="margin-bottom: 10px;" class="thumb-wrap">',
-                                                                '    <li>{description}</li>',
+                                                                '    <li>{DESCRIPTION}</li>',
                                                                 '</div>'
                                                             ],
                                                             store: 'descriptionStore'
@@ -243,60 +243,6 @@ Ext.define('VACR.view.VACR', {
                                     region: 'west',
                                     itemId: 'editVacrGrid',
                                     store: 'listVacrStore',
-                                    columns: [
-                                        {
-                                            xtype: 'gridcolumn',
-                                            dataIndex: 'NAME',
-                                            text: 'Name',
-                                            editor: {
-                                                xtype: 'textfield',
-                                                name: 'name',
-                                                allowBlank: false,
-                                                emptyText: 'Aircraft name'
-                                            }
-                                        },
-                                        {
-                                            xtype: 'gridcolumn',
-                                            dataIndex: 'MODELNO',
-                                            text: 'Modelno',
-                                            editor: {
-                                                xtype: 'textfield',
-                                                name: 'modelno',
-                                                allowBlank: false,
-                                                blankText: 'Modle number is required'
-                                            }
-                                        },
-                                        {
-                                            xtype: 'actioncolumn',
-                                            width: 30,
-                                            menuDisabled: true,
-                                            items: [
-                                                {
-                                                    handler: function(view, rowIndex, colIndex, item, e, record, row) {
-                                                        var storeData = Ext.data.StoreManager.lookup('listVacrStore');
-                                                        storeData.remove(record);
-                                                        storeData.commitChanges();
-                                                        record.destroy({ 
-                                                            success: function(record, operation)
-                                                            {
-                                                                //record is the updated record, except for collections
-                                                                //this collection will have the full records:
-                                                                //operation.resultSet.records
-                                                                //operation.resultSet.records[i] for each one if you are batching
-                                                                Ext.Msg.alert("Success", "You have deleted record " + record.data.NAME);
-                                                            },
-                                                            failure: function(record, operation)
-                                                            {
-                                                                Ext.Msg.alert("Fail", "Cannot delete record");
-                                                            }
-                                                        });
-                                                    },
-                                                    icon: 'resources/images/delete.gif',
-                                                    tooltip: 'Delete row'
-                                                }
-                                            ]
-                                        }
-                                    ],
                                     listeners: {
                                         select: {
                                             fn: me.onGridpanelSelect1,
@@ -322,8 +268,7 @@ Ext.define('VACR.view.VACR', {
                                             xtype: 'pagingtoolbar',
                                             dock: 'bottom',
                                             width: 360,
-                                            displayInfo: true,
-                                            store: 'VacrStore'
+                                            displayInfo: true
                                         },
                                         {
                                             xtype: 'toolbar',
@@ -339,6 +284,54 @@ Ext.define('VACR.view.VACR', {
                                                             scope: me
                                                         }
                                                     }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    columns: [
+                                        {
+                                            xtype: 'gridcolumn',
+                                            dataIndex: 'NAME',
+                                            text: 'NAME',
+                                            editor: {
+                                                xtype: 'textfield'
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            dataIndex: 'MODELNO',
+                                            text: 'MODELNO',
+                                            editor: {
+                                                xtype: 'textfield'
+                                            }
+                                        },
+                                        {
+                                            xtype: 'actioncolumn',
+                                            tooltip: 'Delete this row',
+                                            items: [
+                                                {
+                                                    handler: function(view, rowIndex, colIndex, item, e, record, row) {
+                                                        var storeData = Ext.data.StoreManager.lookup('listVacrStore');
+                                                        storeData.remove(record);
+                                                        storeData.commitChanges();
+                                                        /*
+                                                        record.destroy({ 
+                                                        success: function(record, operation)
+                                                        {
+                                                        //record is the updated record, except for collections
+                                                        //this collection will have the full records:
+                                                        //operation.resultSet.records
+                                                        //operation.resultSet.records[i] for each one if you are batching
+                                                        Ext.Msg.alert("Success", "You have deleted record " + record.data.NAME);
+                                                    },
+                                                    failure: function(record, operation)
+                                                    {
+                                                        Ext.Msg.alert("Fail", "Cannot delete record");
+                                                    }
+                                                });
+                                                */
+                                                    },
+                                                    icon: 'resources/images/delete.gif'
                                                 }
                                             ]
                                         }
@@ -387,24 +380,56 @@ Ext.define('VACR.view.VACR', {
                                                     xtype: 'panel',
                                                     itemId: 'descriptionPanel',
                                                     width: 300,
+                                                    layout: {
+                                                        type: 'vbox'
+                                                    },
                                                     title: 'Characteristics',
                                                     items: [
                                                         {
                                                             xtype: 'gridpanel',
                                                             itemId: 'editCharacteristicsGrid',
-                                                            title: 'My Grid Panel',
+                                                            title: '',
                                                             store: 'descriptionStore',
                                                             columns: [
                                                                 {
                                                                     xtype: 'gridcolumn',
                                                                     width: 299,
-                                                                    dataIndex: 'description',
+                                                                    dataIndex: 'DESCRIPTION',
                                                                     text: 'Description',
                                                                     editor: {
                                                                         xtype: 'textfield',
                                                                         allowBlank: false
                                                                     }
                                                                 }
+                                                            ],
+                                                            dockedItems: [
+                                                                {
+                                                                    xtype: 'toolbar',
+                                                                    dock: 'top',
+                                                                    items: [
+                                                                        {
+                                                                            xtype: 'button',
+                                                                            text: 'Add a Characteristic',
+                                                                            listeners: {
+                                                                                click: {
+                                                                                    fn: me.onButtonClick1,
+                                                                                    scope: me
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ],
+                                                            plugins: [
+                                                                Ext.create('Ext.grid.plugin.RowEditing', {
+                                                                    pluginId: 'rowEditing',
+                                                                    listeners: {
+                                                                        edit: {
+                                                                            fn: me.onRowEditingEdit1,
+                                                                            scope: me
+                                                                        }
+                                                                    }
+                                                                })
                                                             ]
                                                         }
                                                     ]
@@ -435,10 +460,10 @@ Ext.define('VACR.view.VACR', {
         // only retrieve direct children
         var picView = this.down('#pictureView');
         // get the pictures field out of this record
-        var picData = record.get('pictures');
+        var picData = record.get('PICTURES');
         picView.store.loadData(picData);
         // get the descriptions field
-        var descData = record.get('descriptions');
+        var descData = record.get('DESCRIPTIONS');
         var descView = this.down('#descriptionView');
         descView.store.loadData(descData);
     },
@@ -509,9 +534,77 @@ Ext.define('VACR.view.VACR', {
 
     onGridpanelSelect1: function(rowmodel, record, index, eOpts) {
 
+
+        // get the descriptions field
+        var vacrID = record.data.ID;
+        var descData = record.get('DESCRIPTIONS');
+        var charcGrid = this.down('#editCharacteristicsGrid');
+        var charcStore = charcGrid.store;
+        charcStore.proxy.extraParams = { aircraft_id : vacrID};
+        charcStore.loadData(descData);
+
     },
 
     onRowEditingEdit: function(editor, e, eOpts) {
+        // commit the changes right after editing finished
+        /***
+        e.record.beginEdit();
+        e.record.save({
+
+        params: { },
+        success: function(record, operation) {
+        if(operation.action === 'create'){
+        Ext.Msg.alert("Success", "You have created a new record " + record.data.NAME);
+        }
+        else if( operation.action === 'update'){
+        Ext.Msg.alert("Success", "You have successfully updated record " + record.data.NAME);
+        }
+        else{
+        Ext.Msg.alert("Success", "You have successfully completed the operation. " + record.data.NAME);
+        }
+
+
+        },
+        failure: function(record, operation) {
+        Ext.Msg.alert("Failed", "Failed to update record");
+        }
+        });
+        e.record.endEdit();
+        e.record.commit();
+        ***/
+    },
+
+    onButtonClick: function(button, e, eOpts) {
+        // Create a model instance
+        var rec = new VACR.model.vacrModel({
+            NAME: 'New aircraft name',
+            MODELNO: 'ZZZ'
+        });
+
+        var storeData = Ext.data.StoreManager.lookup('listVacrStore');
+        storeData.insert(0, rec);
+        var grid = this.down("#editVacrGrid");
+        var rowEditing = grid.getPlugin("rowEditing");
+        rowEditing.cancelEdit();
+        rowEditing.startEdit(0, 0);
+    },
+
+    onButtonClick1: function(button, e, eOpts) {
+        // Create a model instance
+        var rec = new VACR.model.DescriptionData({
+            description: '',
+            id: null
+        });
+
+        var storeData = Ext.data.StoreManager.lookup('descriptionStore');
+        storeData.insert(0, rec);
+        var grid = this.down("#editCharacteristicsGrid");
+        var rowEditing = grid.getPlugin("rowEditing");
+        rowEditing.cancelEdit();
+        rowEditing.startEdit(0, 0);
+    },
+
+    onRowEditingEdit1: function(editor, e, eOpts) {
         // commit the changes right after editing finished
         e.record.beginEdit();
         e.record.save({
@@ -519,13 +612,13 @@ Ext.define('VACR.view.VACR', {
             params: { },
             success: function(record, operation) {
                 if(operation.action === 'create'){
-                    Ext.Msg.alert("Success", "You have created a new record " + record.data.NAME);
+                    Ext.Msg.alert("Success", "You have created a new record " + record.data.description);
                 }
                 else if( operation.action === 'update'){
-                    Ext.Msg.alert("Success", "You have successfully updated record " + record.data.NAME);
+                    Ext.Msg.alert("Success", "You have successfully updated record " + record.data.description);
                 }
                 else{
-                    Ext.Msg.alert("Success", "You have successfully completed the operation. " + record.data.NAME);
+                    Ext.Msg.alert("Success", "You have successfully completed the operation. " );
                 }
 
 
@@ -536,21 +629,6 @@ Ext.define('VACR.view.VACR', {
         });
         e.record.endEdit();
         e.record.commit();
-    },
-
-    onButtonClick: function(button, e, eOpts) {
-        // Create a model instance
-        var rec = new VACR.model.vacrModel({
-            name: 'New aircraft name',
-            modelno: 'ZZZ'
-        });
-
-        var storeData = Ext.data.StoreManager.lookup('listVacrStore');
-        storeData.insert(0, rec);
-        var grid = this.down("#editVacrGrid");
-        var rowEditing = grid.getPlugin("rowEditing");
-        rowEditing.cancelEdit();
-        rowEditing.startEdit(0, 0);
     }
 
 });

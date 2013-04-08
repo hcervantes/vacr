@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "autoSync": true,
         "model": "DescriptionData",
         "storeId": "MyStore1",
         "designer|userClassName": "descriptionStore"

@@ -23,7 +23,7 @@ if (mysql_num_rows($rows)) {
 		if(count($items) > 0)
 		{
 			for($i=0; $i< count($items); $i++) {
-		   if($items[$i]['id'] == $id) 
+		   if($items[$i]['ID'] == $id) 
 		   {
 		   	$item = $items[$i];
 			
@@ -36,22 +36,22 @@ if (mysql_num_rows($rows)) {
 		{
 			$index = count($items); // Increase the index counter
 			$item = array(
-				'id' => $id, 
-				'name' => $row['NAME'], 
-				'modelno' => $row['MODELNO'], 
-				'descriptions' => array(), 
-				'pictures' => array()
+				'ID' => $id, 
+				'NAME' => $row['NAME'], 
+				'MODELNO' => $row['MODELNO'], 
+				'DESCRIPTIONS' => array(), 
+				'PICTURES' => array()
 			);
 		}
 		// Check for setting of description array
-		$desc = array('description' =>$row['DESCRIPTION']);
-		if (!in_array($desc, $item['descriptions'])) {
-			$item['descriptions'][] = array('description' =>$row['DESCRIPTION']);
+		$desc = array('DESCRIPTION' =>$row['DESCRIPTION']);
+		if (!in_array($desc, $item['DESCRIPTIONS'])) {
+			$item['DESCRIPTIONS'][] = array('DESCRIPTION' =>$row['DESCRIPTION']);
 		}
-		$imgpath = array('picture' => $row['IMAGEPATH']);
+		$imgpath = array('PICTURE' => $row['IMAGEPATH']);
 
-		if (!in_array($imgpath, $item['pictures'])) {
-			$item['pictures'][] = array('picture' => $row['IMAGEPATH']);
+		if (!in_array($imgpath, $item['PICTURES'])) {
+			$item['PICTURES'][] = array('PICTURE' => $row['IMAGEPATH']);
 		}
 		
 		$items[$index] = $item;
@@ -59,4 +59,6 @@ if (mysql_num_rows($rows)) {
 }
 
 header('Content-type: application/json');
-echo json_encode(array('vacr' => $items), JSON_NUMERIC_CHECK);
+$data = json_encode($items, JSON_NUMERIC_CHECK);
+echo '({"total":"' . $rows . '","data":' . $data . '})';
+

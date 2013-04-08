@@ -24,6 +24,7 @@ Ext.define('VACR.store.descriptionStore', {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
+            autoSync: true,
             model: 'VACR.model.DescriptionData',
             storeId: 'MyStore1'
         }, cfg)]);
