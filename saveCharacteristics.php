@@ -24,17 +24,15 @@ saveProduct();
 function saveProduct() {
 	$jsonData = getInputParms();
 	$acID = -1;
-	if(isset($_GET['AIRCRAFT_ID'])){
-		$acID = $_GET['AIRCRAFT_ID'];
-	}
+	
 	//print_r($jsonData);
 
 	if (is_array($jsonData)) {
-		print_r($jsonData) ;
+		$acID = $jsonData['AIRCRAFT_ID'];
 		if (isset($jsonData['ID']) && $jsonData['ID'] > 0 && $jsonData['ID'] != "") {
 			$ID = $jsonData['ID'];
 			$sql = 'UPDATE CHARACTERISTICS SET DESCRIPTION = "' . $jsonData['DESCRIPTION'] ;
-			$sql .= ' WHERE ID = ' . $acID;
+			$sql .= ' WHERE ID = ' . $ID;
 			//echo $sql;
 			$result = mysql_query($sql);
 			// result set

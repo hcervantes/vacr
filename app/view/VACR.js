@@ -16,7 +16,8 @@
 Ext.define('VACR.view.VACR', {
     extend: 'Ext.panel.Panel',
 
-    width: 750,
+    height: 612,
+    width: 800,
     layout: {
         type: 'accordion'
     },
@@ -81,9 +82,8 @@ Ext.define('VACR.view.VACR', {
                                             id: 'detailPanel',
                                             itemId: 'detailPanel',
                                             tpl: [
-                                                '',
-                                                '<b>Name: {name}</b><br>',
-                                                '<b><i>Model: {modelno}</i></b><br>',
+                                                '<b>Name: {NAME}</b><br>',
+                                                '<b><i>Model: {MODELNO}</i></b><br>',
                                                 ''
                                             ],
                                             layout: {
@@ -114,7 +114,8 @@ Ext.define('VACR.view.VACR', {
                                                             itemTpl: [
                                                                 '<div style="margin-bottom: 10px;" class="thumb-wrap">',
                                                                 '    <img src="images/{PICTURE}" width="200" />',
-                                                                '        </div>'
+                                                                '</div>',
+                                                                '<b>Name: {PICTURE}</b><br>'
                                                             ],
                                                             store: 'pictureStore'
                                                         }
@@ -124,7 +125,7 @@ Ext.define('VACR.view.VACR', {
                                                     xtype: 'panel',
                                                     itemId: 'descriptionPanel',
                                                     width: 300,
-                                                    title: 'Characteristics',
+                                                    title: '',
                                                     items: [
                                                         {
                                                             xtype: 'dataview',
@@ -342,13 +343,12 @@ Ext.define('VACR.view.VACR', {
                                     region: 'center',
                                     itemId: 'bottomPanel',
                                     layout: {
-                                        type: 'vbox'
+                                        type: 'fit'
                                     },
                                     title: 'Aircraft Detail',
                                     items: [
                                         {
                                             xtype: 'panel',
-                                            flex: 1,
                                             layout: {
                                                 align: 'stretch',
                                                 type: 'hbox'
@@ -359,7 +359,7 @@ Ext.define('VACR.view.VACR', {
                                                     border: 1,
                                                     frame: true,
                                                     height: 450,
-                                                    width: 230,
+                                                    width: 200,
                                                     autoScroll: true,
                                                     items: [
                                                         {
@@ -369,10 +369,22 @@ Ext.define('VACR.view.VACR', {
                                                             itemSelector: 'div.thumb-wrap',
                                                             itemTpl: [
                                                                 '<div style="margin-bottom: 10px;" class="thumb-wrap">',
-                                                                '    <img src="images/{picture}" width="200" />',
+                                                                '    <img src="images/{PICTURE}" width="200" />',
                                                                 '        </div>'
                                                             ],
                                                             store: 'pictureStore'
+                                                        }
+                                                    ],
+                                                    dockedItems: [
+                                                        {
+                                                            xtype: 'toolbar',
+                                                            dock: 'top',
+                                                            items: [
+                                                                {
+                                                                    xtype: 'button',
+                                                                    text: 'Add Picture'
+                                                                }
+                                                            ]
                                                         }
                                                     ]
                                                 },
@@ -381,7 +393,7 @@ Ext.define('VACR.view.VACR', {
                                                     itemId: 'descriptionPanel',
                                                     width: 300,
                                                     layout: {
-                                                        type: 'vbox'
+                                                        type: 'fit'
                                                     },
                                                     title: 'Characteristics',
                                                     items: [
@@ -393,13 +405,27 @@ Ext.define('VACR.view.VACR', {
                                                             columns: [
                                                                 {
                                                                     xtype: 'gridcolumn',
-                                                                    width: 299,
+                                                                    width: 220,
                                                                     dataIndex: 'DESCRIPTION',
                                                                     text: 'Description',
                                                                     editor: {
                                                                         xtype: 'textfield',
                                                                         allowBlank: false
                                                                     }
+                                                                },
+                                                                {
+                                                                    xtype: 'actioncolumn',
+                                                                    items: [
+                                                                        {
+                                                                            handler: function(view, rowIndex, colIndex, item, e, record, row) {
+
+                                                                                var storeData = Ext.data.StoreManager.lookup('descriptionStore');
+                                                                                storeData.remove(record);
+                                                                                storeData.commitChanges();
+                                                                            },
+                                                                            icon: 'resources/images/delete.gif'
+                                                                        }
+                                                                    ]
                                                                 }
                                                             ],
                                                             dockedItems: [
@@ -538,15 +564,15 @@ Ext.define('VACR.view.VACR', {
         // get the descriptions field
         var vacrID = record.data.ID;
         var descData = record.get('DESCRIPTIONS');
-        // Add the PK, and FK
-        for (var i = descData.length - 1; i >= 0; i--){
-            descData[i].AIRCRAFT_ID = vacrID;
-        }
         var charcGrid = this.down('#editCharacteristicsGrid');
         var charcStore = charcGrid.store;
-        charcStore.proxy.extraParams = { AIRCRAFT_ID : vacrID};
         charcStore.loadData(descData);
 
+        // Picture View
+        var picView = this.down('#pictureView');
+        // get the pictures field out of this record
+        var picData = record.get('PICTURES');
+        picView.store.loadData(picData);
     },
 
     onRowEditingEdit: function(editor, e, eOpts) {
@@ -610,28 +636,29 @@ Ext.define('VACR.view.VACR', {
 
     onRowEditingEdit1: function(editor, e, eOpts) {
         // commit the changes right after editing finished
+        /****
         e.record.beginEdit();
         e.record.save({
 
-            params: { },
-            success: function(record, operation) {
-                if(operation.action === 'create'){
-                    Ext.Msg.alert("Success", "You have created a new record " + record.data.description);
-                }
-                else if( operation.action === 'update'){
-                    Ext.Msg.alert("Success", "You have successfully updated record " + record.data.description);
-                }
-                else{
-                    Ext.Msg.alert("Success", "You have successfully completed the operation. " );
-                }
+        params: { },
+        success: function(record, operation) {
+        if(operation.action === 'create'){
+        Ext.Msg.alert("Success", "You have created a new record " + record.data.description);
+        }
+        else if( operation.action === 'update'){
+        Ext.Msg.alert("Success", "You have successfully updated record " + record.data.description);
+        }
+        else{
+        Ext.Msg.alert("Success", "You have successfully completed the operation. " );
+        }
 
 
-            },
-            failure: function(record, operation) {
-                Ext.Msg.alert("Failed", "Failed to update record");
-            }
+        },
+        failure: function(record, operation) {
+        Ext.Msg.alert("Failed", "Failed to update record");
+        }
         });
-        e.record.endEdit();
+        e.record.endEdit();**/
         e.record.commit();
     }
 

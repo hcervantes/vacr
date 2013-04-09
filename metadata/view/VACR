@@ -6,8 +6,8 @@
     },
     "codeClass": null,
     "userConfig": {
-        "height": null,
-        "width": 750,
+        "height": 612,
+        "width": 800,
         "designer|userClassName": "VACR",
         "designer|initialView": true,
         "layout": "accordion",
@@ -187,9 +187,8 @@
                                             "userConfig": {
                                                 "designer|userClassName": "tpl",
                                                 "implHandler": [
-                                                    "",
-                                                    "<b>Name: {name}</b><br>",
-                                                    "<b><i>Model: {modelno}</i></b><br>",
+                                                    "<b>Name: {NAME}</b><br>",
+                                                    "<b><i>Model: {MODELNO}</i></b><br>",
                                                     ""
                                                 ],
                                                 "designer|displayName": "tpl"
@@ -263,7 +262,8 @@
                                                                 "implHandler": [
                                                                     "<div style=\"margin-bottom: 10px;\" class=\"thumb-wrap\">",
                                                                     "    <img src=\"images/{PICTURE}\" width=\"200\" />",
-                                                                    "        </div>"
+                                                                    "</div>",
+                                                                    "<b>Name: {PICTURE}</b><br>"
                                                                 ],
                                                                 "designer|displayName": "itemTpl"
                                                             },
@@ -285,7 +285,7 @@
                                                 "itemId": "descriptionPanel",
                                                 "width": 300,
                                                 "designer|userClassName": "MyPanel10",
-                                                "title": "Characteristics"
+                                                "title": ""
                                             },
                                             "designerId": "57d122b4-cfba-4253-9146-da8e83da3656",
                                             "cn": [
@@ -665,15 +665,15 @@
                                             "// get the descriptions field",
                                             "var vacrID = record.data.ID;",
                                             "var descData = record.get('DESCRIPTIONS');",
-                                            "// Add the PK, and FK",
-                                            "for (var i = descData.length - 1; i >= 0; i--){",
-                                            "    descData[i].AIRCRAFT_ID = vacrID;",
-                                            "}",
                                             "var charcGrid = this.down('#editCharacteristicsGrid');",
                                             "var charcStore = charcGrid.store;",
-                                            "charcStore.proxy.extraParams = { AIRCRAFT_ID : vacrID};",
                                             "charcStore.loadData(descData);",
-                                            ""
+                                            "",
+                                            "// Picture View",
+                                            "var picView = this.down('#pictureView');",
+                                            "// get the pictures field out of this record",
+                                            "var picData = record.get('PICTURES');",
+                                            "picView.store.loadData(picData);"
                                         ],
                                         "name": "select",
                                         "scope": "me"
@@ -969,10 +969,9 @@
                             "userConfig": {
                                 "layout|flex": null,
                                 "layout|region": "center",
-                                "container|align": null,
                                 "itemId": "bottomPanel",
                                 "designer|userClassName": "MyPanel6",
-                                "layout": "vbox",
+                                "layout": "fit",
                                 "title": "Aircraft Detail"
                             },
                             "designerId": "78d29087-1844-4e88-848e-09de48fcbba8",
@@ -985,7 +984,6 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "layout|flex": 1,
                                         "container|align": "stretch",
                                         "designer|userClassName": "MyPanel6",
                                         "layout": "hbox",
@@ -1004,7 +1002,7 @@
                                                 "border": 1,
                                                 "frame": true,
                                                 "height": 450,
-                                                "width": 230,
+                                                "width": 200,
                                                 "designer|userClassName": "MyPanel5",
                                                 "autoScroll": true,
                                                 "title": null
@@ -1041,12 +1039,41 @@
                                                                 "designer|userClassName": "itemTpl",
                                                                 "implHandler": [
                                                                     "<div style=\"margin-bottom: 10px;\" class=\"thumb-wrap\">",
-                                                                    "    <img src=\"images/{picture}\" width=\"200\" />",
+                                                                    "    <img src=\"images/{PICTURE}\" width=\"200\" />",
                                                                     "        </div>"
                                                                 ],
                                                                 "designer|displayName": "itemTpl"
                                                             },
                                                             "designerId": "8338a4eb-7571-4707-8d3d-d92cd64aa2dc"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "Ext.toolbar.Toolbar",
+                                                    "reference": {
+                                                        "name": "dockedItems",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "dock": "top",
+                                                        "designer|userClassName": "MyToolbar2"
+                                                    },
+                                                    "designerId": "40e2de68-30d2-4c2f-9178-3e1f59bae7eb",
+                                                    "cn": [
+                                                        {
+                                                            "type": "Ext.button.Button",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "layout|flex": null,
+                                                                "designer|userClassName": "MyButton4",
+                                                                "text": "Add Picture"
+                                                            },
+                                                            "designerId": "260d966f-6869-4a13-ac1a-87b66d7e0bc5"
                                                         }
                                                     ]
                                                 }
@@ -1062,9 +1089,10 @@
                                             "userConfig": {
                                                 "layout|flex": null,
                                                 "itemId": "descriptionPanel",
+                                                "minWidth": null,
                                                 "width": 300,
                                                 "designer|userClassName": "MyPanel10",
-                                                "layout": "vbox",
+                                                "layout": "fit",
                                                 "title": "Characteristics"
                                             },
                                             "designerId": "56f9f1e0-167e-4d1d-8cdc-9c3235d0c237",
@@ -1078,6 +1106,7 @@
                                                     "codeClass": null,
                                                     "userConfig": {
                                                         "itemId": "editCharacteristicsGrid",
+                                                        "width": null,
                                                         "designer|userClassName": "MyGridPanel3",
                                                         "title": "",
                                                         "store": "descriptionStore"
@@ -1104,7 +1133,7 @@
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "width": 299,
+                                                                "width": 220,
                                                                 "designer|userClassName": "MyColumn7",
                                                                 "dataIndex": "DESCRIPTION",
                                                                 "text": "Description"
@@ -1211,6 +1240,7 @@
                                                                         "fn": "onRowEditingEdit1",
                                                                         "implHandler": [
                                                                             "// commit the changes right after editing finished",
+                                                                            "/****",
                                                                             "e.record.beginEdit();",
                                                                             "e.record.save({",
                                                                             "",
@@ -1232,13 +1262,70 @@
                                                                             "        Ext.Msg.alert(\"Failed\", \"Failed to update record\");",
                                                                             "    }",
                                                                             "});",
-                                                                            "e.record.endEdit();",
+                                                                            "e.record.endEdit();**/",
                                                                             "e.record.commit();"
                                                                         ],
                                                                         "name": "edit",
                                                                         "scope": "me"
                                                                     },
                                                                     "designerId": "aed6dffc-c977-4ccc-8fdc-c77cb3bda00e"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "Ext.grid.column.Action",
+                                                            "reference": {
+                                                                "name": "columns",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "designer|userClassName": "MyActionColumn1"
+                                                            },
+                                                            "designerId": "090cc4a7-0c44-44f0-855b-9270e960959b",
+                                                            "cn": [
+                                                                {
+                                                                    "type": "actioncolumnitem",
+                                                                    "reference": {
+                                                                        "name": "items",
+                                                                        "type": "array"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "designer|userClassName": "MyActionColumnItem1",
+                                                                        "icon": "resources/images/delete.gif"
+                                                                    },
+                                                                    "designerId": "c522e8a5-5e5b-4394-8442-acef919307f5",
+                                                                    "cn": [
+                                                                        {
+                                                                            "type": "fixedfunction",
+                                                                            "reference": {
+                                                                                "name": "items",
+                                                                                "type": "array"
+                                                                            },
+                                                                            "codeClass": null,
+                                                                            "userConfig": {
+                                                                                "designer|userClassName": "handler",
+                                                                                "fn": "handler",
+                                                                                "designer|params": [
+                                                                                    "view",
+                                                                                    "rowIndex",
+                                                                                    "colIndex",
+                                                                                    "item",
+                                                                                    "e",
+                                                                                    "record",
+                                                                                    "row"
+                                                                                ],
+                                                                                "implHandler": [
+                                                                                    "",
+                                                                                    "var storeData = Ext.data.StoreManager.lookup('descriptionStore');",
+                                                                                    "storeData.remove(record);",
+                                                                                    "storeData.commitChanges();"
+                                                                                ]
+                                                                            },
+                                                                            "designerId": "c904a47e-4860-40f9-8931-ba1a76e886ce"
+                                                                        }
+                                                                    ]
                                                                 }
                                                             ]
                                                         }

@@ -18,7 +18,13 @@ Ext.define('VACR.model.ImageData', {
 
     fields: [
         {
-            name: 'picture'
+            name: 'PICTURE'
+        },
+        {
+            name: 'ID'
+        },
+        {
+            name: 'AIRCRAFT_ID'
         }
     ]
 });

@@ -44,14 +44,15 @@ if (mysql_num_rows($rows)) {
 			);
 		}
 		// Check for setting of description array
-		$desc = array('DESCRIPTION' =>$row['DESCRIPTION']);
+		$desc = array('DESCRIPTION' =>$row['DESCRIPTION'], 'ID' => $row['CID'], 'AIRCRAFT_ID' => $row['ID']);
+		$strDesc = $row['DESCRIPTION'];
 		if (!in_array($desc, $item['DESCRIPTIONS'])) {
-			$item['DESCRIPTIONS'][] = array('DESCRIPTION' =>$row['DESCRIPTION']);
+			$item['DESCRIPTIONS'][] = array('DESCRIPTION' =>$row['DESCRIPTION'], 'ID' => $row['CID'], 'AIRCRAFT_ID' => $row['ID']);
 		}
-		$imgpath = array('PICTURE' => $row['IMAGEPATH']);
+		$imgpath = array('PICTURE' => $row['IMAGEPATH'], 'ID' => $row['PID'], 'AIRCRAFT_ID' => $row['ID']);
 
 		if (!in_array($imgpath, $item['PICTURES'])) {
-			$item['PICTURES'][] = array('PICTURE' => $row['IMAGEPATH']);
+			$item['PICTURES'][] = array('PICTURE' => $row['IMAGEPATH'], 'ID' => $row['PID'], 'AIRCRAFT_ID' => $row['ID']);
 		}
 		
 		$items[$index] = $item;
