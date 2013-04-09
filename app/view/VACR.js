@@ -538,9 +538,13 @@ Ext.define('VACR.view.VACR', {
         // get the descriptions field
         var vacrID = record.data.ID;
         var descData = record.get('DESCRIPTIONS');
+        // Add the PK, and FK
+        for (var i = descData.length - 1; i >= 0; i--){
+            descData[i].AIRCRAFT_ID = vacrID;
+        }
         var charcGrid = this.down('#editCharacteristicsGrid');
         var charcStore = charcGrid.store;
-        charcStore.proxy.extraParams = { aircraft_id : vacrID};
+        charcStore.proxy.extraParams = { AIRCRAFT_ID : vacrID};
         charcStore.loadData(descData);
 
     },

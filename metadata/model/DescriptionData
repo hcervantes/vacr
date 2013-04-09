@@ -6,10 +6,18 @@
     },
     "codeClass": null,
     "userConfig": {
+        "actionMethods": null,
         "idProperty": "ID",
         "designer|userClassName": "DescriptionData"
     },
     "designerId": "26cfeaab-ab1b-4a0c-99ea-26ea4a6d1c6e",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "actionMethods",
+            "type": "string"
+        }
+    ],
     "cn": [
         {
             "type": "Ext.data.Field",
@@ -25,14 +33,15 @@
             "designerId": "a8219456-9e35-4ae4-a853-44121f836cfe"
         },
         {
-            "type": "Ext.data.proxy.JsonP",
+            "type": "Ext.data.proxy.Ajax",
             "reference": {
                 "name": "proxy",
                 "type": "object"
             },
             "codeClass": null,
             "userConfig": {
-                "designer|userClassName": "MyJsonPProxy",
+                "actionMethods": "POST",
+                "designer|userClassName": "MyAjaxProxy",
                 "api": [
                     "{",
                     "    read: 'listCharacteristics.php',",
@@ -43,6 +52,13 @@
                 ]
             },
             "designerId": "d4478f74-59af-443f-8b5e-48f16081a125",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "actionMethods",
+                    "type": "string"
+                }
+            ],
             "cn": [
                 {
                     "type": "Ext.data.writer.Json",

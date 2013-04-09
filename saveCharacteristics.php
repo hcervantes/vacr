@@ -23,20 +23,23 @@ saveProduct();
 
 function saveProduct() {
 	$jsonData = getInputParms();
-
+	$acID = -1;
+	if(isset($_GET['AIRCRAFT_ID'])){
+		$acID = $_GET['AIRCRAFT_ID'];
+	}
 	//print_r($jsonData);
 
 	if (is_array($jsonData)) {
-		echo $jsonData;
-		if ($jsonData['ID'] > 0 || $jsonData['ID'] != "") {
+		print_r($jsonData) ;
+		if (isset($jsonData['ID']) && $jsonData['ID'] > 0 && $jsonData['ID'] != "") {
 			$ID = $jsonData['ID'];
-			$sql = 'UPDATE CHARACTERISTICS SET DESCRIPTION = "' . $jsonData['description'] . '", AIRCRAFT_ID = "' . $jsonData['aircraft_id'] . '"';
-			$sql .= ' WHERE ID = ' . $jsonData['ID'];
+			$sql = 'UPDATE CHARACTERISTICS SET DESCRIPTION = "' . $jsonData['DESCRIPTION'] ;
+			$sql .= ' WHERE ID = ' . $acID;
 			//echo $sql;
 			$result = mysql_query($sql);
 			// result set
 		} else {
-			$sql = 'INSERT INTO CHARACTERISTICS (DESCRIPTION, AIRCRAFT_ID) VALUES ("' . $jsonData['description'] . '","' . $jsonData['aircraft_id'] . '")';
+			$sql = 'INSERT INTO CHARACTERISTICS (DESCRIPTION, AIRCRAFT_ID) VALUES ("' . $jsonData['DESCRIPTION'] . '", ' . $acID. ')';
 			//echo $sql;
 			$result = mysql_query($sql);
 			// result set
@@ -69,6 +72,7 @@ function getCharac($ID) {
 	if (!isset($result) || $result == null) {
 		return null;
 	}
+	$arr = null;
 	while ($rec = mysql_fetch_array($result, MYSQL_ASSOC)) {
 		$arr[] = $rec;
 	};

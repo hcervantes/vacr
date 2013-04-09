@@ -31,7 +31,8 @@ Ext.define('VACR.model.DescriptionData', {
     ],
 
     proxy: {
-        type: 'jsonp',
+        type: 'ajax',
+        actionMethods: 'POST',
         api: {
             read: 'listCharacteristics.php',
             create: 'saveCharacteristics.php',
