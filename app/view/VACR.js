@@ -355,24 +355,45 @@ Ext.define('VACR.view.VACR', {
                                             },
                                             items: [
                                                 {
-                                                    xtype: 'panel',
+                                                    xtype: 'form',
                                                     border: 1,
                                                     frame: true,
                                                     height: 450,
+                                                    itemId: 'uploadForm',
                                                     width: 200,
                                                     autoScroll: true,
+                                                    url: 'saveImage.php',
                                                     items: [
                                                         {
                                                             xtype: 'dataview',
+                                                            border: 1,
+                                                            frame: true,
                                                             itemId: 'pictureView',
                                                             autoScroll: true,
+                                                            emptyText: 'No Images',
                                                             itemSelector: 'div.thumb-wrap',
                                                             itemTpl: [
-                                                                '<div style="margin-bottom: 10px;" class="thumb-wrap">',
-                                                                '    <img src="images/{PICTURE}" width="200" />',
-                                                                '        </div>'
+                                                                '<div id="{ID}" class="thumb-wrap" >',
+                                                                '    <p><br><input type="button" id="delete-button{ID}" value="delete" />	',
+                                                                '	<div class="thumb"><img src="images/{PICTURE}" title="{PICTURE}" width=200></div>',
+                                                                '</div>'
                                                             ],
-                                                            store: 'pictureStore'
+                                                            overItemCls: 'x-item-over',
+                                                            store: 'pictureStore',
+                                                            trackOver: true,
+                                                            listeners: {
+                                                                select: {
+                                                                    fn: me.onPictureViewSelect,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'hiddenfield',
+                                                            anchor: '100%',
+                                                            itemId: 'aircraftID',
+                                                            fieldLabel: 'Label',
+                                                            name: 'aircraftID'
                                                         }
                                                     ],
                                                     dockedItems: [
@@ -381,8 +402,22 @@ Ext.define('VACR.view.VACR', {
                                                             dock: 'top',
                                                             items: [
                                                                 {
+                                                                    xtype: 'filefield',
+                                                                    hideLabel: true,
+                                                                    labelWidth: 70,
+                                                                    name: 'file',
+                                                                    buttonOnly: true,
+                                                                    buttonText: 'New...',
+                                                                    listeners: {
+                                                                        change: {
+                                                                            fn: me.onFilefieldChange,
+                                                                            scope: me
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
                                                                     xtype: 'button',
-                                                                    text: 'Add Picture'
+                                                                    text: 'Delete Selected'
                                                                 }
                                                             ]
                                                         }
@@ -617,6 +652,52 @@ Ext.define('VACR.view.VACR', {
         var rowEditing = grid.getPlugin("rowEditing");
         rowEditing.cancelEdit();
         rowEditing.startEdit(0, 0);
+    },
+
+    onPictureViewSelect: function(dataviewmodel, record, eOpts) {
+        Ext.Msg.alert('Status', 'Changes saved successfully.');
+    },
+
+    onFilefieldChange: function(filefield, value, eOpts) {
+
+
+
+        // Get the selected aircraft
+        var acGrid = this.down('#editVacrGrid');
+        var sm = acGrid.getSelectionModel();
+        var rec = sm.getSelection();
+        if(rec.length <= 0)
+        {
+            Ext.MessageBox.show({
+                title: 'Icon Support',
+                msg: 'You must firt selected an aircraft.',
+                buttons: Ext.MessageBox.OK,
+                icon: Ext.Msg.ERROR
+            });
+
+            return;
+        }
+        var form = this.down('#uploadForm').getForm();
+        var acID = this.down('#aircraftID');
+        acID.setValue(rec[0].data.ID);
+        if(form.isValid()){
+            form.submit({
+                url: 'saveImage.php',
+                waitMsg: 'Uploading your photo...',
+                success: function(form, action) {
+                    Ext.Msg.alert('Success', 'Successfully added a new Aircraft Picture.');
+                },
+                failure: function(form, action) {
+                    Ext.Msg.show({
+                        title:'Error',
+                        msg: action.result.errors.portOfLoading,
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.Msg.ERROR
+                    });
+
+                }
+            });
+        }
     },
 
     onButtonClick1: function(button, e, eOpts) {
