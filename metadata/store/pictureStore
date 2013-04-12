@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "autoSync": true,
         "model": "ImageData",
         "storeId": "MyStore",
         "designer|userClassName": "pictureStore"

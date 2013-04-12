@@ -24,6 +24,7 @@ Ext.define('VACR.store.pictureStore', {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
+            autoSync: true,
             model: 'VACR.model.ImageData',
             storeId: 'MyStore'
         }, cfg)]);

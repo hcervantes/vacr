@@ -48,6 +48,49 @@
                 "designer|userClassName": "MyField4"
             },
             "designerId": "217a01f2-1062-4aba-a2c7-31505be14dd8"
+        },
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "actionMethod": "POST",
+                "designer|userClassName": "MyAjaxProxy2",
+                "api": [
+                    "{",
+                    "    read: 'listPictures.php',",
+                    "    create: 'savePictures.php.php',",
+                    "    destroy: 'deleteCharacteristics.php'",
+                    "}"
+                ]
+            },
+            "designerId": "4c1462a6-7cd1-4273-9ba5-c5d21b2f5d05",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "actionMethod",
+                    "type": "string"
+                }
+            ],
+            "cn": [
+                {
+                    "type": "Ext.data.writer.Json",
+                    "reference": {
+                        "name": "writer",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyJsonWriter3",
+                        "allowSingle": false,
+                        "root": "data"
+                    },
+                    "designerId": "6fa0233b-2a54-4d9d-9186-58d5fbedbf09"
+                }
+            ]
         }
     ]
 }

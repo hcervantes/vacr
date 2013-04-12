@@ -10,20 +10,20 @@ $table = 'characteristics';
 $connection = mysql_connect("localhost", $user, $pw) or die("Could not connect: " . mysql_error());
 mysql_select_db($db) or die("Could not select database");
 $jsonData = getInputParms();
-if (isset($jsonData['ID'])) {
-	if ($jsonData['ID'] > 0 || $jsonData['ID'] != "") {
-		listCharacs($jsonData['ID']);
+if (isset($jsonData['aircraftID'])) {
+	if ($jsonData['aircraftID'] > 0 || $jsonData['aircraftID'] != "") {
+		listCharacs($jsonData['aircraftID']);
 	}
 
 } else {
 	listCharacs(null);
 }
 
-function listCharacs($ID) {
-	$table = 'CHARACTERISTICS';
+function listCharacs($acID) {
+	$table = 'PICTURES';
 	$sql = 'SELECT * FROM ' . $table;
-	if ($ID != null) {
-		$sql .= ' WHERE ID = ' . $ID;
+	if ($acID != null) {
+		$sql .= ' WHERE AIRCRAFT_ID = ' . $acID;
 	}
 	$result = mysql_query($sql) or die(mysql_error());
 

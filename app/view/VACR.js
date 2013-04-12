@@ -365,20 +365,71 @@ Ext.define('VACR.view.VACR', {
                                                     url: 'saveImage.php',
                                                     items: [
                                                         {
+                                                            xtype: 'gridpanel',
+                                                            itemId: 'pictureGrid',
+                                                            title: 'My Grid Panel',
+                                                            store: 'pictureStore',
+                                                            columns: [
+                                                                {
+                                                                    xtype: 'gridcolumn',
+                                                                    dataIndex: 'PICTURE',
+                                                                    text: 'PICTURE'
+                                                                },
+                                                                {
+                                                                    xtype: 'actioncolumn',
+                                                                    items: [
+                                                                        {
+                                                                            handler: function(view, rowIndex, colIndex, item, e, record, row) {
+
+                                                                                var storeData = Ext.data.StoreManager.lookup('pictureStore');
+                                                                                storeData.remove(record);
+                                                                                storeData.commitChanges();
+
+                                                                                record.destroy({ 
+                                                                                    success: function(record, operation)
+                                                                                    {
+                                                                                        //record is the updated record, except for collections
+                                                                                        //this collection will have the full records:
+                                                                                        //operation.resultSet.records
+                                                                                        //operation.resultSet.records[i] for each one if you are batching
+                                                                                        Ext.Msg.alert("Success", "You have deleted record " + record.data.NAME);
+                                                                                    },
+                                                                                    failure: function(record, operation)
+                                                                                    {
+                                                                                        Ext.Msg.alert("Fail", "Cannot delete record");
+                                                                                    }
+                                                                                });
+                                                                            },
+                                                                            icon: 'resources/images/delete.gif',
+                                                                            tooltip: 'Delete picture'
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    xtype: 'templatecolumn',
+                                                                    tpl: [
+                                                                        '<div id="{ID}" class="thumb-wrap" >	',
+                                                                        '	<div class="thumb"><img src="images/{PICTURE}" title="{PICTURE}" width=200></div>',
+                                                                        '</div>'
+                                                                    ],
+                                                                    text: 'MyTemplateColumn'
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
                                                             xtype: 'dataview',
-                                                            border: 1,
-                                                            frame: true,
+                                                            frame: false,
                                                             itemId: 'pictureView',
                                                             autoScroll: true,
                                                             emptyText: 'No Images',
                                                             itemSelector: 'div.thumb-wrap',
                                                             itemTpl: [
-                                                                '<div id="{ID}" class="thumb-wrap" >',
-                                                                '    <p><br><input type="button" id="delete-button{ID}" value="delete" />	',
+                                                                '<div id="{ID}" class="thumb-wrap" >	',
                                                                 '	<div class="thumb"><img src="images/{PICTURE}" title="{PICTURE}" width=200></div>',
                                                                 '</div>'
                                                             ],
-                                                            overItemCls: 'x-item-over',
+                                                            overItemCls: 'item-over',
+                                                            selectedItemCls: 'item-selected',
                                                             store: 'pictureStore',
                                                             trackOver: true,
                                                             listeners: {
@@ -417,7 +468,13 @@ Ext.define('VACR.view.VACR', {
                                                                 },
                                                                 {
                                                                     xtype: 'button',
-                                                                    text: 'Delete Selected'
+                                                                    text: 'Delete Selected',
+                                                                    listeners: {
+                                                                        click: {
+                                                                            fn: me.onButtonClick2,
+                                                                            scope: me
+                                                                        }
+                                                                    }
                                                                 }
                                                             ]
                                                         }
@@ -599,15 +656,20 @@ Ext.define('VACR.view.VACR', {
         // get the descriptions field
         var vacrID = record.data.ID;
         var descData = record.get('DESCRIPTIONS');
+        // Add the PK, and FK
+        for (var i = descData.length - 1; i >= 0; i--){
+            descData[i].AIRCRAFT_ID = vacrID;
+        }
         var charcGrid = this.down('#editCharacteristicsGrid');
         var charcStore = charcGrid.store;
+        charcStore.proxy.extraParams = { AIRCRAFT_ID : vacrID};
         charcStore.loadData(descData);
 
         // Picture View
         var picView = this.down('#pictureView');
         // get the pictures field out of this record
         var picData = record.get('PICTURES');
-        picView.store.loadData(picData);
+        picView.store.loadData(picData); 
     },
 
     onRowEditingEdit: function(editor, e, eOpts) {
@@ -698,6 +760,67 @@ Ext.define('VACR.view.VACR', {
                 }
             });
         }
+    },
+
+    onButtonClick2: function(button, e, eOpts) {
+        // Get the selected aircraft
+        var acGrid = this.down('#editVacrGrid');
+        var sm = acGrid.getSelectionModel();
+        var rec = sm.getSelection()[0];
+        /*
+        if(rec.length <= 0)
+        {
+        Ext.MessageBox.show({
+        title: 'Icon Support',
+        msg: 'You must firt selected an aircraft.',
+        buttons: Ext.MessageBox.OK,
+        icon: Ext.Msg.ERROR
+        });
+
+        return;
+        }
+        var form = this.down('#uploadForm').getForm();
+        var acID = this.down('#aircraftID');
+        acID.setValue(rec[0].ID);
+        if(form.isValid()){
+        form.submit({
+        url: 'saveImage.php',
+        waitMsg: 'Uploading your photo...',
+        success: function(form, action) {
+        Ext.Msg.alert('Success', 'Successfully added a new Aircraft Picture.');
+        },
+        failure: function(form, action) {
+        Ext.Msg.show({
+        title:'Error',
+        msg: action.result.errors.portOfLoading,
+        buttons: Ext.Msg.OK,
+        icon: Ext.Msg.ERROR
+        });
+
+        }
+        });
+        }
+        */
+        var storeData = Ext.data.StoreManager.lookup('pictureStore');
+        storeData.remove(rec);
+        storeData.commitChanges();
+
+
+        rec.destroy({ 
+            success: function(record, operation)
+            {
+                //record is the updated record, except for collections
+                //this collection will have the full records:
+                //operation.resultSet.records
+                //operation.resultSet.records[i] for each one if you are batching
+                Ext.Msg.alert("Success", "You have deleted record " + record.data.PICTURE);
+            },
+            failure: function(record, operation)
+            {
+                Ext.Msg.alert("Fail", "Cannot delete record");
+            }
+        });
+
     },
 
     onButtonClick1: function(button, e, eOpts) {

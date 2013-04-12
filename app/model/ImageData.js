@@ -26,5 +26,20 @@ Ext.define('VACR.model.ImageData', {
         {
             name: 'AIRCRAFT_ID'
         }
-    ]
+    ],
+
+    proxy: {
+        type: 'ajax',
+        actionMethod: 'POST',
+        api: {
+            read: 'listPictures.php',
+            create: 'savePictures.php.php',
+            destroy: 'deleteCharacteristics.php'
+        },
+        writer: {
+            type: 'json',
+            allowSingle: false,
+            root: 'data'
+        }
+    }
 });
