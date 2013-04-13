@@ -678,7 +678,13 @@
                                             "var picView = this.down('#pictureView');",
                                             "// get the pictures field out of this record",
                                             "var picData = record.get('PICTURES');",
-                                            "picView.store.loadData(picData); "
+                                            "picView.store.loadData(picData); ",
+                                            "",
+                                            "// Update the detail panel title",
+                                            "var detailPanel = this.down('#detailPanel');",
+                                            "var planeName = record.data.NAME + \"/\" + record.data.MODELNO;",
+                                            "detailPanel.setTitle(planeName);",
+                                            ""
                                         ],
                                         "name": "select",
                                         "scope": "me"
@@ -796,7 +802,7 @@
                                                 "layout|flex": null,
                                                 "width": 100,
                                                 "designer|userClassName": "MyButton2",
-                                                "text": "Add New"
+                                                "text": "New Aircraft"
                                             },
                                             "designerId": "ee9a8f96-64d7-4e91-86ab-fd35fd359627",
                                             "cn": [
@@ -974,7 +980,7 @@
                             "userConfig": {
                                 "layout|flex": null,
                                 "layout|region": "center",
-                                "itemId": "bottomPanel",
+                                "itemId": "detailPanel",
                                 "designer|userClassName": "MyPanel6",
                                 "layout": "fit",
                                 "title": "Aircraft Detail"
@@ -991,6 +997,7 @@
                                     "userConfig": {
                                         "container|align": "stretch",
                                         "designer|userClassName": "MyPanel6",
+                                        "autoScroll": true,
                                         "layout": "hbox",
                                         "title": null
                                     },
@@ -1026,7 +1033,7 @@
                                                     "userConfig": {
                                                         "itemId": "pictureGrid",
                                                         "designer|userClassName": "MyGridPanel3",
-                                                        "title": "My Grid Panel",
+                                                        "title": "",
                                                         "store": "pictureStore"
                                                     },
                                                     "designerId": "51d7e311-75d6-4651-b332-2c893efff20d",
@@ -1044,18 +1051,37 @@
                                                             "designerId": "c6a48a56-529f-4ec9-a4b2-5272bec4a282"
                                                         },
                                                         {
-                                                            "type": "Ext.grid.column.Column",
+                                                            "type": "Ext.grid.column.Template",
                                                             "reference": {
                                                                 "name": "columns",
                                                                 "type": "array"
                                                             },
                                                             "codeClass": null,
                                                             "userConfig": {
-                                                                "designer|userClassName": "MyColumn6",
-                                                                "dataIndex": "PICTURE",
-                                                                "text": "PICTURE"
+                                                                "designer|userClassName": "MyTemplateColumn",
+                                                                "text": "MyTemplateColumn"
                                                             },
-                                                            "designerId": "53dadeeb-389c-4f2a-9c5a-4606dcf6849e"
+                                                            "designerId": "ba09be91-034f-452f-b9da-87b0fa76d33a",
+                                                            "cn": [
+                                                                {
+                                                                    "type": "Ext.XTemplate",
+                                                                    "reference": {
+                                                                        "name": "tpl",
+                                                                        "type": "object"
+                                                                    },
+                                                                    "codeClass": null,
+                                                                    "userConfig": {
+                                                                        "designer|userClassName": "tpl",
+                                                                        "implHandler": [
+                                                                            "<div id=\"{ID}\" class=\"thumb-wrap\" >\t",
+                                                                            "\t<div class=\"thumb\"><img src=\"images/{PICTURE}\" title=\"{PICTURE}\" width=100></div>",
+                                                                            "</div>"
+                                                                        ],
+                                                                        "designer|displayName": "tpl"
+                                                                    },
+                                                                    "designerId": "ff0fd4e6-b6fe-43a0-af2d-71473d88fab9"
+                                                                }
+                                                            ]
                                                         },
                                                         {
                                                             "type": "Ext.grid.column.Action",
@@ -1107,21 +1133,9 @@
                                                                                     "var storeData = Ext.data.StoreManager.lookup('pictureStore');",
                                                                                     "storeData.remove(record);",
                                                                                     "storeData.commitChanges();",
-                                                                                    "",
-                                                                                    "record.destroy({ ",
-                                                                                    "success: function(record, operation)",
-                                                                                    "{",
-                                                                                    "//record is the updated record, except for collections",
-                                                                                    "//this collection will have the full records:",
-                                                                                    "//operation.resultSet.records",
-                                                                                    "//operation.resultSet.records[i] for each one if you are batching",
-                                                                                    "Ext.Msg.alert(\"Success\", \"You have deleted record \" + record.data.NAME);",
-                                                                                    "},",
-                                                                                    "failure: function(record, operation)",
-                                                                                    "{",
-                                                                                    "Ext.Msg.alert(\"Fail\", \"Cannot delete record\");",
-                                                                                    "}",
-                                                                                    "});"
+                                                                                    "var vacrData = Ext.data.StoreManager.lookup('listVacrStore');",
+                                                                                    "vacrData.reload();",
+                                                                                    ""
                                                                                 ]
                                                                             },
                                                                             "designerId": "5796d849-0b43-4217-99e0-b2ee603fae32"
@@ -1129,129 +1143,6 @@
                                                                     ]
                                                                 }
                                                             ]
-                                                        },
-                                                        {
-                                                            "type": "Ext.grid.column.Template",
-                                                            "reference": {
-                                                                "name": "columns",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "designer|userClassName": "MyTemplateColumn",
-                                                                "text": "MyTemplateColumn"
-                                                            },
-                                                            "designerId": "ba09be91-034f-452f-b9da-87b0fa76d33a",
-                                                            "cn": [
-                                                                {
-                                                                    "type": "Ext.XTemplate",
-                                                                    "reference": {
-                                                                        "name": "tpl",
-                                                                        "type": "object"
-                                                                    },
-                                                                    "codeClass": null,
-                                                                    "userConfig": {
-                                                                        "designer|userClassName": "tpl",
-                                                                        "implHandler": [
-                                                                            "<div id=\"{ID}\" class=\"thumb-wrap\" >\t",
-                                                                            "\t<div class=\"thumb\"><img src=\"images/{PICTURE}\" title=\"{PICTURE}\" width=200></div>",
-                                                                            "</div>"
-                                                                        ],
-                                                                        "designer|displayName": "tpl"
-                                                                    },
-                                                                    "designerId": "ff0fd4e6-b6fe-43a0-af2d-71473d88fab9"
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "Ext.view.View",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "multiSelect": null,
-                                                        "dock": null,
-                                                        "border": null,
-                                                        "frame": false,
-                                                        "height": null,
-                                                        "itemId": "pictureView",
-                                                        "width": null,
-                                                        "designer|userClassName": "MyView",
-                                                        "autoScroll": true,
-                                                        "emptyText": "No Images",
-                                                        "itemSelector": "div.thumb-wrap",
-                                                        "overItemCls": "item-over",
-                                                        "selectedItemCls": "item-selected",
-                                                        "store": "pictureStore",
-                                                        "trackOver": true
-                                                    },
-                                                    "configAlternates": {
-                                                        "multiSelect": "boolean"
-                                                    },
-                                                    "designerId": "40e723fe-34e8-44a8-a35d-0a9df23082cf",
-                                                    "customConfigs": [
-                                                        {
-                                                            "group": "(Custom Properties)",
-                                                            "name": "multiSelect",
-                                                            "type": "string"
-                                                        }
-                                                    ],
-                                                    "cn": [
-                                                        {
-                                                            "type": "Ext.XTemplate",
-                                                            "reference": {
-                                                                "name": "itemTpl",
-                                                                "type": "object"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "designer|userClassName": "itemTpl",
-                                                                "implHandler": [
-                                                                    "<div id=\"{ID}\" class=\"thumb-wrap\" >\t",
-                                                                    "\t<div class=\"thumb\"><img src=\"images/{PICTURE}\" title=\"{PICTURE}\" width=200></div>",
-                                                                    "</div>"
-                                                                ],
-                                                                "designer|displayName": "itemTpl"
-                                                            },
-                                                            "designerId": "8338a4eb-7571-4707-8d3d-d92cd64aa2dc"
-                                                        },
-                                                        {
-                                                            "type": "Ext.XTemplate",
-                                                            "reference": {
-                                                                "name": "tpl",
-                                                                "type": "object"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "designer|userClassName": "tpl",
-                                                                "implHandler": [
-                                                                    ""
-                                                                ],
-                                                                "designer|displayName": "tpl"
-                                                            },
-                                                            "designerId": "b69637e8-8772-4b9f-9cd4-5706357bbfb1"
-                                                        },
-                                                        {
-                                                            "type": "basiceventbinding",
-                                                            "reference": {
-                                                                "name": "listeners",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "designer|userClassName": "onPictureViewSelect",
-                                                                "fn": "onPictureViewSelect",
-                                                                "implHandler": [
-                                                                    "Ext.Msg.alert('Status', 'Changes saved successfully.');"
-                                                                ],
-                                                                "name": "select",
-                                                                "scope": "me"
-                                                            },
-                                                            "designerId": "06c884e2-3869-44a1-a176-b1e329052ead"
                                                         }
                                                     ]
                                                 },
@@ -1283,7 +1174,7 @@
                                                                 "labelWidth": 70,
                                                                 "name": "file",
                                                                 "buttonOnly": true,
-                                                                "buttonText": "New..."
+                                                                "buttonText": "Add a Picture"
                                                             },
                                                             "designerId": "1e19d831-3f4d-4ebc-b049-89b8ad3f2d8c",
                                                             "cn": [
@@ -1344,97 +1235,6 @@
                                                                     "designerId": "f50c1fac-f94f-463d-bb8b-9886620841f6"
                                                                 }
                                                             ]
-                                                        },
-                                                        {
-                                                            "type": "Ext.button.Button",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "layout|flex": null,
-                                                                "designer|userClassName": "MyButton4",
-                                                                "text": "Delete Selected"
-                                                            },
-                                                            "designerId": "d5a43fb1-390d-482c-a5f7-f2075dda0eb9",
-                                                            "cn": [
-                                                                {
-                                                                    "type": "basiceventbinding",
-                                                                    "reference": {
-                                                                        "name": "listeners",
-                                                                        "type": "array"
-                                                                    },
-                                                                    "codeClass": null,
-                                                                    "userConfig": {
-                                                                        "designer|userClassName": "onButtonClick2",
-                                                                        "fn": "onButtonClick2",
-                                                                        "implHandler": [
-                                                                            "// Get the selected aircraft",
-                                                                            "var acGrid = this.down('#editVacrGrid');",
-                                                                            "var sm = acGrid.getSelectionModel();",
-                                                                            "var rec = sm.getSelection()[0];",
-                                                                            "/*",
-                                                                            "if(rec.length <= 0)",
-                                                                            "{",
-                                                                            "    Ext.MessageBox.show({",
-                                                                            "        title: 'Icon Support',",
-                                                                            "        msg: 'You must firt selected an aircraft.',",
-                                                                            "        buttons: Ext.MessageBox.OK,",
-                                                                            "        icon: Ext.Msg.ERROR",
-                                                                            "    });",
-                                                                            "",
-                                                                            "    return;",
-                                                                            "}",
-                                                                            "var form = this.down('#uploadForm').getForm();",
-                                                                            "var acID = this.down('#aircraftID');",
-                                                                            "acID.setValue(rec[0].ID);",
-                                                                            "if(form.isValid()){",
-                                                                            "    form.submit({",
-                                                                            "        url: 'saveImage.php',",
-                                                                            "        waitMsg: 'Uploading your photo...',",
-                                                                            "        success: function(form, action) {",
-                                                                            "            Ext.Msg.alert('Success', 'Successfully added a new Aircraft Picture.');",
-                                                                            "        },",
-                                                                            "        failure: function(form, action) {",
-                                                                            "            Ext.Msg.show({",
-                                                                            "                title:'Error',",
-                                                                            "                msg: action.result.errors.portOfLoading,",
-                                                                            "                buttons: Ext.Msg.OK,",
-                                                                            "                icon: Ext.Msg.ERROR",
-                                                                            "            });",
-                                                                            "",
-                                                                            "        }",
-                                                                            "    });",
-                                                                            "}",
-                                                                            "*/",
-                                                                            "var storeData = Ext.data.StoreManager.lookup('pictureStore');",
-                                                                            "storeData.remove(rec);",
-                                                                            "storeData.commitChanges();",
-                                                                            "",
-                                                                            "",
-                                                                            "rec.destroy({ ",
-                                                                            "success: function(record, operation)",
-                                                                            "{",
-                                                                            "//record is the updated record, except for collections",
-                                                                            "//this collection will have the full records:",
-                                                                            "//operation.resultSet.records",
-                                                                            "//operation.resultSet.records[i] for each one if you are batching",
-                                                                            "Ext.Msg.alert(\"Success\", \"You have deleted record \" + record.data.PICTURE);",
-                                                                            "},",
-                                                                            "failure: function(record, operation)",
-                                                                            "{",
-                                                                            "Ext.Msg.alert(\"Fail\", \"Cannot delete record\");",
-                                                                            "}",
-                                                                            "});",
-                                                                            ""
-                                                                        ],
-                                                                        "name": "click",
-                                                                        "scope": "me"
-                                                                    },
-                                                                    "designerId": "443fa686-2ffc-49b0-8f18-0fde8210171d"
-                                                                }
-                                                            ]
                                                         }
                                                     ]
                                                 },
@@ -1470,7 +1270,7 @@
                                                 "width": 300,
                                                 "designer|userClassName": "MyPanel10",
                                                 "layout": "fit",
-                                                "title": "Characteristics"
+                                                "title": ""
                                             },
                                             "designerId": "56f9f1e0-167e-4d1d-8cdc-9c3235d0c237",
                                             "cn": [
@@ -1570,10 +1370,28 @@
                                                                                 "designer|userClassName": "onButtonClick1",
                                                                                 "fn": "onButtonClick1",
                                                                                 "implHandler": [
+                                                                                    "// Get the selected aircraft",
+                                                                                    "var acGrid = this.down('#editVacrGrid');",
+                                                                                    "var sm = acGrid.getSelectionModel();",
+                                                                                    "var vacrrec = sm.getSelection();",
+                                                                                    "if(vacrrec.length <= 0)",
+                                                                                    "{",
+                                                                                    "    Ext.MessageBox.show({",
+                                                                                    "        title: 'Icon Support',",
+                                                                                    "        msg: 'You must firt selected an aircraft.',",
+                                                                                    "        buttons: Ext.MessageBox.OK,",
+                                                                                    "        icon: Ext.Msg.ERROR",
+                                                                                    "    });",
+                                                                                    "",
+                                                                                    "    return;",
+                                                                                    "}",
+                                                                                    "var acID = vacrrec[0].data.ID;",
                                                                                     "// Create a model instance",
                                                                                     "var rec = new VACR.model.DescriptionData({",
-                                                                                    "    description: '',",
-                                                                                    "    id: null",
+                                                                                    "    DESCRIPTION: '',",
+                                                                                    "    ID: null,",
+                                                                                    "    AIRCRAFT_ID: acID",
+                                                                                    "    ",
                                                                                     "});",
                                                                                     "",
                                                                                     "var storeData = Ext.data.StoreManager.lookup('descriptionStore');",
@@ -1581,7 +1399,9 @@
                                                                                     "var grid = this.down(\"#editCharacteristicsGrid\");",
                                                                                     "var rowEditing = grid.getPlugin(\"rowEditing\");",
                                                                                     "rowEditing.cancelEdit();",
-                                                                                    "rowEditing.startEdit(0, 0);"
+                                                                                    "rowEditing.startEdit(0, 0);",
+                                                                                    "var vacrData = Ext.data.StoreManager.lookup('listVacrStore');",
+                                                                                    "vacrData.load();"
                                                                                 ],
                                                                                 "name": "click",
                                                                                 "scope": "me"
@@ -1697,7 +1517,9 @@
                                                                                     "",
                                                                                     "var storeData = Ext.data.StoreManager.lookup('descriptionStore');",
                                                                                     "storeData.remove(record);",
-                                                                                    "storeData.commitChanges();"
+                                                                                    "storeData.commitChanges();",
+                                                                                    "var vacrData = Ext.data.StoreManager.lookup('listVacrStore');",
+                                                                                    "vacrData.reload();"
                                                                                 ]
                                                                             },
                                                                             "designerId": "c904a47e-4860-40f9-8931-ba1a76e886ce"

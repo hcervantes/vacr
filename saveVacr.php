@@ -31,7 +31,7 @@ function saveProduct() {
 			$ID = $jsonData['ID'];
 			$sql = 'UPDATE AIRCRAFT SET NAME = "' . $jsonData['NAME'] . '",MODELNO = "' . $jsonData['MODELNO'] . '"';
 			$sql .= ' WHERE ID = ' . $jsonData['ID'];
-			//echo $sql;
+			echo $sql;
 			$result = mysql_query($sql);
 			// result set
 		} else {

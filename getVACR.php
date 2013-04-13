@@ -19,47 +19,43 @@ if (mysql_num_rows($rows)) {
 	while ($row = mysql_fetch_assoc($rows)) {
 		$item = null;
 		$id = $row['ID'];
-		
-		if(count($items) > 0)
-		{
-			for($i=0; $i< count($items); $i++) {
-		   if($items[$i]['ID'] == $id) 
-		   {
-		   	$item = $items[$i];
-			
-			$index = $i;
-			break;
-		   }
+
+		if (count($items) > 0) {
+			for ($i = 0; $i < count($items); $i++) {
+				if ($items[$i]['ID'] == $id) {
+					$item = $items[$i];
+
+					$index = $i;
+					break;
+				}
+			}
 		}
-		}
-		if ($item == null)
-		{
-			$index = count($items); // Increase the index counter
-			$item = array(
-				'ID' => $id, 
-				'NAME' => $row['NAME'], 
-				'MODELNO' => $row['MODELNO'], 
-				'DESCRIPTIONS' => array(), 
-				'PICTURES' => array()
-			);
+		if ($item == null) {
+			$index = count($items);
+			// Increase the index counter
+			$item = array('ID' => $id, 'NAME' => $row['NAME'], 'MODELNO' => $row['MODELNO'], 'DESCRIPTIONS' => array(), 'PICTURES' => array());
 		}
 		// Check for setting of description array
-		$desc = array('DESCRIPTION' =>$row['DESCRIPTION'], 'ID' => $row['CID'], 'AIRCRAFT_ID' => $row['ID']);
+		$desc = array('DESCRIPTION' => $row['DESCRIPTION'], 'ID' => $row['CID'], 'AIRCRAFT_ID' => $row['ID']);
 		$strDesc = $row['DESCRIPTION'];
 		if (!in_array($desc, $item['DESCRIPTIONS'])) {
-			$item['DESCRIPTIONS'][] = array('DESCRIPTION' =>$row['DESCRIPTION'], 'ID' => $row['CID'], 'AIRCRAFT_ID' => $row['ID']);
+			if ($row['DESCRIPTION'] != NULL) {
+				$item['DESCRIPTIONS'][] = array('DESCRIPTION' => $row['DESCRIPTION'], 'ID' => $row['CID'], 'AIRCRAFT_ID' => $row['ID']);
+			} 
 		}
-		$imgpath = array('PICTURE' => $row['IMAGEPATH'], 'ID' => $row['PID'], 'AIRCRAFT_ID' => $row['ID']);
+	
+	$imgpath = array('PICTURE' => $row['IMAGEPATH'], 'ID' => $row['PID'], 'AIRCRAFT_ID' => $row['ID']);
 
-		if (!in_array($imgpath, $item['PICTURES'])) {
+	if (!in_array($imgpath, $item['PICTURES'])) {
+		if ($row['IMAGEPATH'] != NULL) {
 			$item['PICTURES'][] = array('PICTURE' => $row['IMAGEPATH'], 'ID' => $row['PID'], 'AIRCRAFT_ID' => $row['ID']);
-		}
-		
-		$items[$index] = $item;
+		} 
 	}
+
+	$items[$index] = $item;
+}
 }
 
 header('Content-type: application/json');
 $data = json_encode($items, JSON_NUMERIC_CHECK);
 echo '({"total":"' . ($index + 1) . '","data":' . $data . '})';
-

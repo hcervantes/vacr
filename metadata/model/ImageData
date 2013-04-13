@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "idProperty": "ID",
         "designer|userClassName": "ImageData"
     },
     "designerId": "116a5aab-eef2-4dd7-ba6c-470d94ba7ab8",
@@ -57,13 +58,14 @@
             },
             "codeClass": null,
             "userConfig": {
-                "actionMethod": "POST",
+                "actionMethod": null,
+                "actionMethods": "POST",
                 "designer|userClassName": "MyAjaxProxy2",
                 "api": [
                     "{",
                     "    read: 'listPictures.php',",
                     "    create: 'savePictures.php.php',",
-                    "    destroy: 'deleteCharacteristics.php'",
+                    "    destroy: 'deletePicture.php'",
                     "}"
                 ]
             },
@@ -72,6 +74,11 @@
                 {
                     "group": "(Custom Properties)",
                     "name": "actionMethod",
+                    "type": "string"
+                },
+                {
+                    "group": "(Custom Properties)",
+                    "name": "actionMethods",
                     "type": "string"
                 }
             ],

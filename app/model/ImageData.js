@@ -16,6 +16,8 @@
 Ext.define('VACR.model.ImageData', {
     extend: 'Ext.data.Model',
 
+    idProperty: 'ID',
+
     fields: [
         {
             name: 'PICTURE'
@@ -30,11 +32,11 @@ Ext.define('VACR.model.ImageData', {
 
     proxy: {
         type: 'ajax',
-        actionMethod: 'POST',
+        actionMethods: 'POST',
         api: {
             read: 'listPictures.php',
             create: 'savePictures.php.php',
-            destroy: 'deleteCharacteristics.php'
+            destroy: 'deletePicture.php'
         },
         writer: {
             type: 'json',

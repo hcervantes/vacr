@@ -47,7 +47,7 @@ if ((($_FILES["file"]["type"] == "image/gif") || ($_FILES["file"]["type"] == "im
 			$ID = mysql_insert_ID();
 			if ($result) {
 				$msg = "Uploaded successfully " . $_FILES["file"]["name"] . " (" . $uniqName . ") (" . ($_FILES["file"]["size"] / 1024) . " kB";
-				$return = array('success' => true, 'message' => $sql);
+				$return = array('success' => true, 'message' => $msg, 'newID' => $ID, 'fileName' => $uniqName);
 			} else {
 				$msg = "Upload unsuccessfull " . $ID;
 				$return = array('success' => false, 'errors' => array('portOfLoading' => $msg));
