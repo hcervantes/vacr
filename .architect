@@ -365,6 +365,7 @@
         },
         "116a5aab-eef2-4dd7-ba6c-470d94ba7ab8": {
             "id": "116a5aab-eef2-4dd7-ba6c-470d94ba7ab8",
+            "expanded": false,
             "cn": [
                 {
                     "id": "74873a7f-4f8c-4ddc-90eb-d57e3bc7399d"
@@ -387,6 +388,7 @@
         },
         "26cfeaab-ab1b-4a0c-99ea-26ea4a6d1c6e": {
             "id": "26cfeaab-ab1b-4a0c-99ea-26ea4a6d1c6e",
+            "expanded": false,
             "cn": [
                 {
                     "id": "a8219456-9e35-4ae4-a853-44121f836cfe"

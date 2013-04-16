@@ -1391,7 +1391,7 @@
                                                                                     "    DESCRIPTION: '',",
                                                                                     "    ID: null,",
                                                                                     "    AIRCRAFT_ID: acID",
-                                                                                    "    ",
+                                                                                    "",
                                                                                     "});",
                                                                                     "",
                                                                                     "var storeData = Ext.data.StoreManager.lookup('descriptionStore');",
