@@ -587,958 +587,119 @@
             ]
         },
         {
-            "type": "Ext.form.Panel",
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onPanelAfterRender",
+                "fn": "onPanelAfterRender",
+                "implHandler": [
+                    "    Ext.QuickTips.init();",
+                    " ",
+                    "\t// Create a variable to hold our EXT Form Panel. ",
+                    "\t// Assign various config options as seen.\t ",
+                    "    var login = new Ext.FormPanel({ ",
+                    "        labelWidth:80,",
+                    "        url:'auth/process.php', ",
+                    "        frame:true, ",
+                    "        title:'Please Login', ",
+                    "        defaultType:'textfield',",
+                    "\tmonitorValid:true,",
+                    "\t// Specific attributes for the text fields for username / password. ",
+                    "\t// The \"name\" attribute defines the name of variables sent to the server.",
+                    "        items:[{ ",
+                    "                fieldLabel:'Username', ",
+                    "                name:'user', ",
+                    "                allowBlank:false ",
+                    "            },{ ",
+                    "                fieldLabel:'Password', ",
+                    "                name:'pass', ",
+                    "                inputType:'password', ",
+                    "                allowBlank:false ",
+                    "            }],",
+                    " ",
+                    "\t// All the magic happens after the user clicks the button     ",
+                    "        buttons:[{ ",
+                    "                text:'Login',",
+                    "                formBind: true,\t ",
+                    "                // Function that fires when user clicks the button ",
+                    "                handler:function(){ ",
+                    "                    login.getForm().submit({ ",
+                    "                        method:'POST', ",
+                    "                        waitTitle:'Connecting', ",
+                    "                        waitMsg:'Sending data...',",
+                    " ",
+                    "\t\t\t// Functions that fire (success or failure) when the server responds. ",
+                    "\t\t\t// The one that executes is determined by the ",
+                    "\t\t\t// response that comes from login.asp as seen below. The server would ",
+                    "\t\t\t// actually respond with valid JSON, ",
+                    "\t\t\t// something like: response.write \"{ success: true}\" or ",
+                    "\t\t\t// response.write \"{ success: false, errors: { reason: 'Login failed. Try again.' }}\" ",
+                    "\t\t\t// depending on the logic contained within your server script.",
+                    "\t\t\t// If a success occurs, the user is notified with an alert messagebox, ",
+                    "\t\t\t// and when they click \"OK\", they are redirected to whatever page",
+                    "\t\t\t// you define as redirect. ",
+                    " ",
+                    "                        success:function(){ ",
+                    "                                Ext.Msg.alert('Status', 'Login Successful!', function(btn, text){",
+                    "                       if (btn == 'ok'){",
+                    "                                    var redirect = 'test.asp'; ",
+                    "                                    window.location = redirect;",
+                    "                                   }",
+                    "                        });",
+                    "                        },",
+                    " ",
+                    "\t\t\t// Failure function, see comment above re: success and failure. ",
+                    "\t\t\t// You can see here, if login fails, it throws a messagebox",
+                    "\t\t\t// at the user telling him / her as much.  ",
+                    " ",
+                    "                        failure:function(form, action){ ",
+                    "                            if(action.failureType == 'server'){ ",
+                    "                                obj = Ext.util.JSON.decode(action.response.responseText); ",
+                    "                                Ext.Msg.alert('Login Failed!', obj.errors.reason); ",
+                    "                            }else{ ",
+                    "                                Ext.Msg.alert('Warning!', 'Authentication server is unreachable : ' + action.response.responseText); ",
+                    "                            } ",
+                    "                            login.getForm().reset(); ",
+                    "                        } ",
+                    "                    }); ",
+                    "                } ",
+                    "            }] ",
+                    "    });",
+                    " ",
+                    " ",
+                    "\t// This just creates a window to wrap the login form. ",
+                    "\t// The login object is passed to the items collection.       ",
+                    "    var win = new Ext.Window({",
+                    "        layout:'fit',",
+                    "        modal: true,",
+                    "        width:300,",
+                    "        height:150,",
+                    "        closable: false,",
+                    "        resizable: false,",
+                    "        plain: true,",
+                    "        border: false,",
+                    "        items: [login]",
+                    "\t});",
+                    "\twin.show();"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "designerId": "b95b8de5-3038-4731-858d-97c3ca77ca51"
+        },
+        {
+            "type": "linkedinstance",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
-            "userConfig": {
-                "itemId": "adminPanel",
-                "designer|userClassName": "MyForm3",
-                "collapsed": false,
-                "title": "Administration"
-            },
-            "designerId": "ba342455-e16b-415a-af7c-1b2eb120414f",
-            "cn": [
-                {
-                    "type": "Ext.form.Panel",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "height": 500,
-                        "itemId": "mainPanel",
-                        "designer|userClassName": "MyForm",
-                        "layout": "border",
-                        "collapsed": false,
-                        "title": ""
-                    },
-                    "designerId": "70512141-36a6-47a7-910f-f791fe21c063",
-                    "cn": [
-                        {
-                            "type": "Ext.grid.Panel",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "layout|flex": null,
-                                "layout|region": "west",
-                                "itemId": "editVacrGrid",
-                                "width": null,
-                                "designer|userClassName": "MyGridPanel",
-                                "designer|displayName": "AircraftGrid",
-                                "title": null,
-                                "store": "listVacrStore"
-                            },
-                            "designerId": "98a3307b-6df0-4ff3-99ad-ef10479b0927",
-                            "cn": [
-                                {
-                                    "type": "Ext.grid.View",
-                                    "reference": {
-                                        "name": "viewConfig",
-                                        "type": "object"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "designer|userClassName": "MyGridView"
-                                    },
-                                    "designerId": "4d10066a-18da-4475-bfd0-98504bc77568"
-                                },
-                                {
-                                    "type": "basiceventbinding",
-                                    "reference": {
-                                        "name": "listeners",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "designer|userClassName": "onGridpanelSelect1",
-                                        "fn": "onGridpanelSelect1",
-                                        "implHandler": [
-                                            "",
-                                            "",
-                                            "// get the descriptions field",
-                                            "var vacrID = record.data.ID;",
-                                            "var descData = record.get('DESCRIPTIONS');",
-                                            "// Add the PK, and FK",
-                                            "for (var i = descData.length - 1; i >= 0; i--){",
-                                            "    descData[i].AIRCRAFT_ID = vacrID;",
-                                            "}",
-                                            "var charcGrid = this.down('#editCharacteristicsGrid');",
-                                            "var charcStore = charcGrid.store;",
-                                            "charcStore.proxy.extraParams = { AIRCRAFT_ID : vacrID};",
-                                            "charcStore.loadData(descData);",
-                                            "",
-                                            "// Picture View",
-                                            "var picView = this.down('#pictureView');",
-                                            "// get the pictures field out of this record",
-                                            "var picData = record.get('PICTURES');",
-                                            "picView.store.loadData(picData); ",
-                                            "",
-                                            "// Update the detail panel title",
-                                            "var detailPanel = this.down('#detailPanel');",
-                                            "var planeName = record.data.NAME + \"/\" + record.data.MODELNO;",
-                                            "detailPanel.setTitle(planeName);",
-                                            ""
-                                        ],
-                                        "name": "select",
-                                        "scope": "me"
-                                    },
-                                    "designerId": "5c6ae709-82f8-4adf-9b6f-70947b9f41c4"
-                                },
-                                {
-                                    "type": "Ext.selection.RowModel",
-                                    "reference": {
-                                        "name": "selModel",
-                                        "type": "object"
-                                    },
-                                    "codeClass": "Ext.selection.RowModel",
-                                    "userConfig": {
-                                        "designer|userClassName": "MyRowSelectionModel"
-                                    },
-                                    "designerId": "54b6be08-1f18-4a80-a056-9c0e8fd707b0"
-                                },
-                                {
-                                    "type": "Ext.grid.plugin.RowEditing",
-                                    "reference": {
-                                        "name": "plugins",
-                                        "type": "array"
-                                    },
-                                    "codeClass": "Ext.grid.plugin.RowEditing",
-                                    "userConfig": {
-                                        "pluginId": "rowEditing",
-                                        "designer|userClassName": "MyRowEditingPlugin",
-                                        "designer|createClass": null
-                                    },
-                                    "designerId": "5b5ca9d4-3223-4a9b-a53b-97d8d1139005",
-                                    "cn": [
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|userClassName": "onRowEditingEdit",
-                                                "fn": "onRowEditingEdit",
-                                                "implHandler": [
-                                                    "// commit the changes right after editing finished",
-                                                    "/***",
-                                                    "e.record.beginEdit();",
-                                                    "e.record.save({",
-                                                    "",
-                                                    "    params: { },",
-                                                    "    success: function(record, operation) {",
-                                                    "        if(operation.action === 'create'){",
-                                                    "            Ext.Msg.alert(\"Success\", \"You have created a new record \" + record.data.NAME);",
-                                                    "        }",
-                                                    "        else if( operation.action === 'update'){",
-                                                    "            Ext.Msg.alert(\"Success\", \"You have successfully updated record \" + record.data.NAME);",
-                                                    "        }",
-                                                    "        else{",
-                                                    "            Ext.Msg.alert(\"Success\", \"You have successfully completed the operation. \" + record.data.NAME);",
-                                                    "        }",
-                                                    "",
-                                                    "",
-                                                    "    },",
-                                                    "    failure: function(record, operation) {",
-                                                    "        Ext.Msg.alert(\"Failed\", \"Failed to update record\");",
-                                                    "    }",
-                                                    "});",
-                                                    "e.record.endEdit();",
-                                                    "e.record.commit();",
-                                                    "***/"
-                                                ],
-                                                "name": "edit",
-                                                "scope": "me"
-                                            },
-                                            "designerId": "c6cc8814-ef67-47ff-884e-84fa84cfa417"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.toolbar.Paging",
-                                    "reference": {
-                                        "name": "dockedItems",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "dock": "bottom",
-                                        "width": 360,
-                                        "designer|userClassName": "MyPagingToolbar",
-                                        "displayInfo": true,
-                                        "store": null
-                                    },
-                                    "designerId": "870cc75d-71a0-43b6-b9a8-28a27fa8508a"
-                                },
-                                {
-                                    "type": "Ext.toolbar.Toolbar",
-                                    "reference": {
-                                        "name": "dockedItems",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "dock": "top",
-                                        "designer|userClassName": "MyToolbar"
-                                    },
-                                    "designerId": "549f7fea-309b-4d46-91c3-a05fd28eb019",
-                                    "cn": [
-                                        {
-                                            "type": "Ext.button.Button",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "layout|flex": null,
-                                                "width": 100,
-                                                "designer|userClassName": "MyButton2",
-                                                "text": "New Aircraft"
-                                            },
-                                            "designerId": "ee9a8f96-64d7-4e91-86ab-fd35fd359627",
-                                            "cn": [
-                                                {
-                                                    "type": "basiceventbinding",
-                                                    "reference": {
-                                                        "name": "listeners",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "designer|userClassName": "onButtonClick",
-                                                        "fn": "onButtonClick",
-                                                        "implHandler": [
-                                                            "// Create a model instance",
-                                                            "var rec = new VACR.model.vacrModel({",
-                                                            "    NAME: 'New aircraft name',",
-                                                            "    MODELNO: 'ZZZ'",
-                                                            "});",
-                                                            "",
-                                                            "var storeData = Ext.data.StoreManager.lookup('listVacrStore');",
-                                                            "storeData.insert(0, rec);",
-                                                            "var grid = this.down(\"#editVacrGrid\");",
-                                                            "var rowEditing = grid.getPlugin(\"rowEditing\");",
-                                                            "rowEditing.cancelEdit();",
-                                                            "rowEditing.startEdit(0, 0);"
-                                                        ],
-                                                        "name": "click",
-                                                        "scope": "me"
-                                                    },
-                                                    "designerId": "df9b6c64-83c3-4a27-84d8-1b8f97f784a1"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.grid.column.Column",
-                                    "reference": {
-                                        "name": "columns",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "designer|userClassName": "MyColumn1",
-                                        "dataIndex": "NAME",
-                                        "text": "NAME"
-                                    },
-                                    "designerId": "47635f88-61df-4bf8-a681-0c89ab271e84",
-                                    "cn": [
-                                        {
-                                            "type": "Ext.form.field.Text",
-                                            "reference": {
-                                                "name": "editor",
-                                                "type": "object"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|userClassName": "MyTextField"
-                                            },
-                                            "designerId": "f4320320-709a-43c2-b60d-e7b11ae2b28c"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.grid.column.Column",
-                                    "reference": {
-                                        "name": "columns",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "designer|userClassName": "MyColumn3",
-                                        "dataIndex": "MODELNO",
-                                        "text": "MODELNO"
-                                    },
-                                    "designerId": "43c22101-2385-4677-8fdb-dcee2119f922",
-                                    "cn": [
-                                        {
-                                            "type": "Ext.form.field.Text",
-                                            "reference": {
-                                                "name": "editor",
-                                                "type": "object"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|userClassName": "MyTextField1"
-                                            },
-                                            "designerId": "7bb0a8d7-95c9-4dbe-a25c-6b7dd47fed48"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.grid.column.Action",
-                                    "reference": {
-                                        "name": "columns",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "designer|userClassName": "MyActionColumn",
-                                        "tooltip": "Delete this row"
-                                    },
-                                    "designerId": "92f3b502-6070-4a0d-baba-fef83f69d25c",
-                                    "cn": [
-                                        {
-                                            "type": "actioncolumnitem",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|userClassName": "MyActionColumnItem",
-                                                "icon": "resources/images/delete.gif"
-                                            },
-                                            "designerId": "7525fd0c-4d9e-46b1-8b8e-7050fa9edd34",
-                                            "cn": [
-                                                {
-                                                    "type": "fixedfunction",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "designer|userClassName": "handler",
-                                                        "fn": "handler",
-                                                        "designer|params": [
-                                                            "view",
-                                                            "rowIndex",
-                                                            "colIndex",
-                                                            "item",
-                                                            "e",
-                                                            "record",
-                                                            "row"
-                                                        ],
-                                                        "implHandler": [
-                                                            "var storeData = Ext.data.StoreManager.lookup('listVacrStore');",
-                                                            "storeData.remove(record);",
-                                                            "storeData.commitChanges();",
-                                                            "/*",
-                                                            "record.destroy({ ",
-                                                            "success: function(record, operation)",
-                                                            "{",
-                                                            "//record is the updated record, except for collections",
-                                                            "//this collection will have the full records:",
-                                                            "//operation.resultSet.records",
-                                                            "//operation.resultSet.records[i] for each one if you are batching",
-                                                            "Ext.Msg.alert(\"Success\", \"You have deleted record \" + record.data.NAME);",
-                                                            "},",
-                                                            "failure: function(record, operation)",
-                                                            "{",
-                                                            "Ext.Msg.alert(\"Fail\", \"Cannot delete record\");",
-                                                            "}",
-                                                            "});",
-                                                            "*/"
-                                                        ]
-                                                    },
-                                                    "designerId": "1f525d01-228f-4a3f-9329-4d41c94a0a1b"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Ext.panel.Panel",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "layout|flex": null,
-                                "layout|region": "center",
-                                "itemId": "detailPanel",
-                                "designer|userClassName": "MyPanel6",
-                                "layout": "fit",
-                                "title": "Aircraft Detail"
-                            },
-                            "designerId": "78d29087-1844-4e88-848e-09de48fcbba8",
-                            "cn": [
-                                {
-                                    "type": "Ext.panel.Panel",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "container|align": "stretch",
-                                        "designer|userClassName": "MyPanel6",
-                                        "autoScroll": true,
-                                        "layout": "hbox",
-                                        "title": null
-                                    },
-                                    "designerId": "aaca678c-5450-4d48-8f19-01bbe0597b2b",
-                                    "cn": [
-                                        {
-                                            "type": "Ext.form.Panel",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "border": 1,
-                                                "frame": true,
-                                                "height": 450,
-                                                "itemId": "uploadForm",
-                                                "width": 200,
-                                                "designer|userClassName": "MyForm4",
-                                                "autoScroll": true,
-                                                "title": null,
-                                                "url": "saveImage.php"
-                                            },
-                                            "designerId": "a43ed3e4-8db9-406f-99fb-b596d903eb30",
-                                            "cn": [
-                                                {
-                                                    "type": "Ext.grid.Panel",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "itemId": "pictureGrid",
-                                                        "designer|userClassName": "MyGridPanel3",
-                                                        "title": "",
-                                                        "store": "pictureStore"
-                                                    },
-                                                    "designerId": "51d7e311-75d6-4651-b332-2c893efff20d",
-                                                    "cn": [
-                                                        {
-                                                            "type": "Ext.grid.View",
-                                                            "reference": {
-                                                                "name": "viewConfig",
-                                                                "type": "object"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "designer|userClassName": "MyGridView3"
-                                                            },
-                                                            "designerId": "c6a48a56-529f-4ec9-a4b2-5272bec4a282"
-                                                        },
-                                                        {
-                                                            "type": "Ext.grid.column.Template",
-                                                            "reference": {
-                                                                "name": "columns",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "designer|userClassName": "MyTemplateColumn",
-                                                                "text": "MyTemplateColumn"
-                                                            },
-                                                            "designerId": "ba09be91-034f-452f-b9da-87b0fa76d33a",
-                                                            "cn": [
-                                                                {
-                                                                    "type": "Ext.XTemplate",
-                                                                    "reference": {
-                                                                        "name": "tpl",
-                                                                        "type": "object"
-                                                                    },
-                                                                    "codeClass": null,
-                                                                    "userConfig": {
-                                                                        "designer|userClassName": "tpl",
-                                                                        "implHandler": [
-                                                                            "<div id=\"{ID}\" class=\"thumb-wrap\" >\t",
-                                                                            "\t<div class=\"thumb\"><img src=\"images/{PICTURE}\" title=\"{PICTURE}\" width=100></div>",
-                                                                            "</div>"
-                                                                        ],
-                                                                        "designer|displayName": "tpl"
-                                                                    },
-                                                                    "designerId": "ff0fd4e6-b6fe-43a0-af2d-71473d88fab9"
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "Ext.grid.column.Action",
-                                                            "reference": {
-                                                                "name": "columns",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "designer|userClassName": "MyActionColumn2"
-                                                            },
-                                                            "designerId": "42e73557-17ec-4f72-9113-04c40f721379",
-                                                            "cn": [
-                                                                {
-                                                                    "type": "actioncolumnitem",
-                                                                    "reference": {
-                                                                        "name": "items",
-                                                                        "type": "array"
-                                                                    },
-                                                                    "codeClass": null,
-                                                                    "userConfig": {
-                                                                        "designer|userClassName": "MyActionColumnItem2",
-                                                                        "icon": "resources/images/delete.gif",
-                                                                        "tooltip": "Delete picture"
-                                                                    },
-                                                                    "designerId": "e219be95-1381-43fd-b5a1-d9f19aa3252e",
-                                                                    "cn": [
-                                                                        {
-                                                                            "type": "fixedfunction",
-                                                                            "reference": {
-                                                                                "name": "items",
-                                                                                "type": "array"
-                                                                            },
-                                                                            "codeClass": null,
-                                                                            "userConfig": {
-                                                                                "designer|userClassName": "handler",
-                                                                                "fn": "handler",
-                                                                                "designer|params": [
-                                                                                    "view",
-                                                                                    "rowIndex",
-                                                                                    "colIndex",
-                                                                                    "item",
-                                                                                    "e",
-                                                                                    "record",
-                                                                                    "row"
-                                                                                ],
-                                                                                "implHandler": [
-                                                                                    "",
-                                                                                    "var storeData = Ext.data.StoreManager.lookup('pictureStore');",
-                                                                                    "storeData.remove(record);",
-                                                                                    "storeData.commitChanges();",
-                                                                                    "var vacrData = Ext.data.StoreManager.lookup('listVacrStore');",
-                                                                                    "vacrData.reload();",
-                                                                                    ""
-                                                                                ]
-                                                                            },
-                                                                            "designerId": "5796d849-0b43-4217-99e0-b2ee603fae32"
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "Ext.toolbar.Toolbar",
-                                                    "reference": {
-                                                        "name": "dockedItems",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "dock": "top",
-                                                        "designer|userClassName": "MyToolbar2"
-                                                    },
-                                                    "designerId": "40e2de68-30d2-4c2f-9178-3e1f59bae7eb",
-                                                    "cn": [
-                                                        {
-                                                            "type": "Ext.form.field.File",
-                                                            "reference": {
-                                                                "name": "items",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "layout|flex": null,
-                                                                "designer|userClassName": "MyFileUpload",
-                                                                "fieldLabel": null,
-                                                                "hideLabel": true,
-                                                                "labelWidth": 70,
-                                                                "name": "file",
-                                                                "buttonOnly": true,
-                                                                "buttonText": "Add a Picture"
-                                                            },
-                                                            "designerId": "1e19d831-3f4d-4ebc-b049-89b8ad3f2d8c",
-                                                            "cn": [
-                                                                {
-                                                                    "type": "basiceventbinding",
-                                                                    "reference": {
-                                                                        "name": "listeners",
-                                                                        "type": "array"
-                                                                    },
-                                                                    "codeClass": null,
-                                                                    "userConfig": {
-                                                                        "designer|userClassName": "onFilefieldChange",
-                                                                        "fn": "onFilefieldChange",
-                                                                        "implHandler": [
-                                                                            "",
-                                                                            "",
-                                                                            "",
-                                                                            "// Get the selected aircraft",
-                                                                            "var acGrid = this.down('#editVacrGrid');",
-                                                                            "var sm = acGrid.getSelectionModel();",
-                                                                            "var rec = sm.getSelection();",
-                                                                            "if(rec.length <= 0)",
-                                                                            "{",
-                                                                            "    Ext.MessageBox.show({",
-                                                                            "           title: 'Icon Support',",
-                                                                            "           msg: 'You must firt selected an aircraft.',",
-                                                                            "           buttons: Ext.MessageBox.OK,",
-                                                                            "           icon: Ext.Msg.ERROR",
-                                                                            "       });",
-                                                                            "    ",
-                                                                            "    return;",
-                                                                            "}",
-                                                                            "var form = this.down('#uploadForm').getForm();",
-                                                                            "var acID = this.down('#aircraftID');",
-                                                                            "acID.setValue(rec[0].data.ID);",
-                                                                            "if(form.isValid()){",
-                                                                            "    form.submit({",
-                                                                            "        url: 'saveImage.php',",
-                                                                            "        waitMsg: 'Uploading your photo...',",
-                                                                            "        success: function(form, action) {",
-                                                                            "            Ext.Msg.alert('Success', 'Successfully added a new Aircraft Picture.');",
-                                                                            "        },",
-                                                                            "        failure: function(form, action) {",
-                                                                            "            Ext.Msg.show({",
-                                                                            "                 title:'Error',",
-                                                                            "                 msg: action.result.errors.portOfLoading,",
-                                                                            "                 buttons: Ext.Msg.OK,",
-                                                                            "                 icon: Ext.Msg.ERROR",
-                                                                            "            });",
-                                                                            "            ",
-                                                                            "        }",
-                                                                            "    });",
-                                                                            "}"
-                                                                        ],
-                                                                        "name": "change",
-                                                                        "scope": "me"
-                                                                    },
-                                                                    "designerId": "f50c1fac-f94f-463d-bb8b-9886620841f6"
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "Ext.form.field.Hidden",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "layout|anchor": "100%",
-                                                        "itemId": "aircraftID",
-                                                        "designer|userClassName": "MyHiddenField",
-                                                        "fieldLabel": "Label",
-                                                        "name": "aircraftID"
-                                                    },
-                                                    "designerId": "33c82748-c366-4c24-be96-156c54750f75"
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "Ext.panel.Panel",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "layout|flex": null,
-                                                "itemId": "descriptionPanel",
-                                                "minWidth": null,
-                                                "width": 300,
-                                                "designer|userClassName": "MyPanel10",
-                                                "layout": "fit",
-                                                "title": ""
-                                            },
-                                            "designerId": "56f9f1e0-167e-4d1d-8cdc-9c3235d0c237",
-                                            "cn": [
-                                                {
-                                                    "type": "Ext.grid.Panel",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "itemId": "editCharacteristicsGrid",
-                                                        "width": null,
-                                                        "designer|userClassName": "MyGridPanel3",
-                                                        "title": "",
-                                                        "store": "descriptionStore"
-                                                    },
-                                                    "designerId": "3fd7dc2c-d2ae-4c9b-a173-3f93d0223d33",
-                                                    "cn": [
-                                                        {
-                                                            "type": "Ext.grid.View",
-                                                            "reference": {
-                                                                "name": "viewConfig",
-                                                                "type": "object"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "designer|userClassName": "MyGridView3"
-                                                            },
-                                                            "designerId": "fcbaaf43-9807-4a7c-95e2-0e1e4294a075"
-                                                        },
-                                                        {
-                                                            "type": "Ext.grid.column.Column",
-                                                            "reference": {
-                                                                "name": "columns",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "width": 220,
-                                                                "designer|userClassName": "MyColumn7",
-                                                                "dataIndex": "DESCRIPTION",
-                                                                "text": "Description"
-                                                            },
-                                                            "designerId": "cda0fb95-6928-43c9-a4ab-e3202043358f",
-                                                            "cn": [
-                                                                {
-                                                                    "type": "Ext.form.field.Text",
-                                                                    "reference": {
-                                                                        "name": "editor",
-                                                                        "type": "object"
-                                                                    },
-                                                                    "codeClass": null,
-                                                                    "userConfig": {
-                                                                        "designer|userClassName": "MyTextField2",
-                                                                        "allowBlank": false
-                                                                    },
-                                                                    "designerId": "76f9d980-ac46-456e-89bb-16192169e22c"
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "Ext.toolbar.Toolbar",
-                                                            "reference": {
-                                                                "name": "dockedItems",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "dock": "top",
-                                                                "designer|userClassName": "MyToolbar1"
-                                                            },
-                                                            "designerId": "e5093e66-37fb-46cd-9e6c-c77f7302c9af",
-                                                            "cn": [
-                                                                {
-                                                                    "type": "Ext.button.Button",
-                                                                    "reference": {
-                                                                        "name": "items",
-                                                                        "type": "array"
-                                                                    },
-                                                                    "codeClass": null,
-                                                                    "userConfig": {
-                                                                        "layout|flex": null,
-                                                                        "designer|userClassName": "MyButton3",
-                                                                        "text": "Add a Characteristic"
-                                                                    },
-                                                                    "designerId": "842dace7-1a34-45a0-b081-a26c91da597e",
-                                                                    "cn": [
-                                                                        {
-                                                                            "type": "basiceventbinding",
-                                                                            "reference": {
-                                                                                "name": "listeners",
-                                                                                "type": "array"
-                                                                            },
-                                                                            "codeClass": null,
-                                                                            "userConfig": {
-                                                                                "designer|userClassName": "onButtonClick1",
-                                                                                "fn": "onButtonClick1",
-                                                                                "implHandler": [
-                                                                                    "// Get the selected aircraft",
-                                                                                    "var acGrid = this.down('#editVacrGrid');",
-                                                                                    "var sm = acGrid.getSelectionModel();",
-                                                                                    "var vacrrec = sm.getSelection();",
-                                                                                    "if(vacrrec.length <= 0)",
-                                                                                    "{",
-                                                                                    "    Ext.MessageBox.show({",
-                                                                                    "        title: 'Icon Support',",
-                                                                                    "        msg: 'You must firt selected an aircraft.',",
-                                                                                    "        buttons: Ext.MessageBox.OK,",
-                                                                                    "        icon: Ext.Msg.ERROR",
-                                                                                    "    });",
-                                                                                    "",
-                                                                                    "    return;",
-                                                                                    "}",
-                                                                                    "var acID = vacrrec[0].data.ID;",
-                                                                                    "// Create a model instance",
-                                                                                    "var rec = new VACR.model.DescriptionData({",
-                                                                                    "    DESCRIPTION: '',",
-                                                                                    "    ID: null,",
-                                                                                    "    AIRCRAFT_ID: acID",
-                                                                                    "",
-                                                                                    "});",
-                                                                                    "",
-                                                                                    "var storeData = Ext.data.StoreManager.lookup('descriptionStore');",
-                                                                                    "storeData.insert(0, rec);",
-                                                                                    "var grid = this.down(\"#editCharacteristicsGrid\");",
-                                                                                    "var rowEditing = grid.getPlugin(\"rowEditing\");",
-                                                                                    "rowEditing.cancelEdit();",
-                                                                                    "rowEditing.startEdit(0, 0);",
-                                                                                    "var vacrData = Ext.data.StoreManager.lookup('listVacrStore');",
-                                                                                    "vacrData.load();"
-                                                                                ],
-                                                                                "name": "click",
-                                                                                "scope": "me"
-                                                                            },
-                                                                            "designerId": "70e6f281-caab-425b-b5e1-ca1868bd3c11"
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "Ext.grid.plugin.RowEditing",
-                                                            "reference": {
-                                                                "name": "plugins",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": "Ext.grid.plugin.RowEditing",
-                                                            "userConfig": {
-                                                                "pluginId": "rowEditing",
-                                                                "designer|userClassName": "MyRowEditingPlugin1"
-                                                            },
-                                                            "designerId": "5ea2d421-27f1-401f-9e71-c43f26cd7119",
-                                                            "cn": [
-                                                                {
-                                                                    "type": "basiceventbinding",
-                                                                    "reference": {
-                                                                        "name": "listeners",
-                                                                        "type": "array"
-                                                                    },
-                                                                    "codeClass": null,
-                                                                    "userConfig": {
-                                                                        "designer|userClassName": "onRowEditingEdit1",
-                                                                        "fn": "onRowEditingEdit1",
-                                                                        "implHandler": [
-                                                                            "// commit the changes right after editing finished",
-                                                                            "/****",
-                                                                            "e.record.beginEdit();",
-                                                                            "e.record.save({",
-                                                                            "",
-                                                                            "    params: { },",
-                                                                            "    success: function(record, operation) {",
-                                                                            "        if(operation.action === 'create'){",
-                                                                            "            Ext.Msg.alert(\"Success\", \"You have created a new record \" + record.data.description);",
-                                                                            "        }",
-                                                                            "        else if( operation.action === 'update'){",
-                                                                            "            Ext.Msg.alert(\"Success\", \"You have successfully updated record \" + record.data.description);",
-                                                                            "        }",
-                                                                            "        else{",
-                                                                            "            Ext.Msg.alert(\"Success\", \"You have successfully completed the operation. \" );",
-                                                                            "        }",
-                                                                            "",
-                                                                            "",
-                                                                            "    },",
-                                                                            "    failure: function(record, operation) {",
-                                                                            "        Ext.Msg.alert(\"Failed\", \"Failed to update record\");",
-                                                                            "    }",
-                                                                            "});",
-                                                                            "e.record.endEdit();**/",
-                                                                            "e.record.commit();"
-                                                                        ],
-                                                                        "name": "edit",
-                                                                        "scope": "me"
-                                                                    },
-                                                                    "designerId": "aed6dffc-c977-4ccc-8fdc-c77cb3bda00e"
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "type": "Ext.grid.column.Action",
-                                                            "reference": {
-                                                                "name": "columns",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "designer|userClassName": "MyActionColumn1"
-                                                            },
-                                                            "designerId": "090cc4a7-0c44-44f0-855b-9270e960959b",
-                                                            "cn": [
-                                                                {
-                                                                    "type": "actioncolumnitem",
-                                                                    "reference": {
-                                                                        "name": "items",
-                                                                        "type": "array"
-                                                                    },
-                                                                    "codeClass": null,
-                                                                    "userConfig": {
-                                                                        "designer|userClassName": "MyActionColumnItem1",
-                                                                        "icon": "resources/images/delete.gif"
-                                                                    },
-                                                                    "designerId": "c522e8a5-5e5b-4394-8442-acef919307f5",
-                                                                    "cn": [
-                                                                        {
-                                                                            "type": "fixedfunction",
-                                                                            "reference": {
-                                                                                "name": "items",
-                                                                                "type": "array"
-                                                                            },
-                                                                            "codeClass": null,
-                                                                            "userConfig": {
-                                                                                "designer|userClassName": "handler",
-                                                                                "fn": "handler",
-                                                                                "designer|params": [
-                                                                                    "view",
-                                                                                    "rowIndex",
-                                                                                    "colIndex",
-                                                                                    "item",
-                                                                                    "e",
-                                                                                    "record",
-                                                                                    "row"
-                                                                                ],
-                                                                                "implHandler": [
-                                                                                    "",
-                                                                                    "var storeData = Ext.data.StoreManager.lookup('descriptionStore');",
-                                                                                    "storeData.remove(record);",
-                                                                                    "storeData.commitChanges();",
-                                                                                    "var vacrData = Ext.data.StoreManager.lookup('listVacrStore');",
-                                                                                    "vacrData.reload();"
-                                                                                ]
-                                                                            },
-                                                                            "designerId": "c904a47e-4860-40f9-8931-ba1a76e886ce"
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+            "designerId": "f2765d56-dc0b-4fec-a979-2918de0c4f3d",
+            "masterInstanceId": "bdfae880-4d65-49d6-abe1-42dbcb7baff2"
         }
     ]
 }

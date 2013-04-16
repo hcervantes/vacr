@@ -16,6 +16,10 @@
 Ext.define('VACR.view.VACR', {
     extend: 'Ext.panel.Panel',
 
+    requires: [
+        'VACR.view.MyForm3'
+    ],
+
     height: 612,
     width: 800,
     layout: {
@@ -224,296 +228,15 @@ Ext.define('VACR.view.VACR', {
                     }
                 },
                 {
-                    xtype: 'form',
-                    itemId: 'adminPanel',
-                    collapsed: false,
-                    title: 'Administration',
-                    items: [
-                        {
-                            xtype: 'form',
-                            height: 500,
-                            itemId: 'mainPanel',
-                            layout: {
-                                type: 'border'
-                            },
-                            collapsed: false,
-                            title: '',
-                            items: [
-                                {
-                                    xtype: 'gridpanel',
-                                    region: 'west',
-                                    itemId: 'editVacrGrid',
-                                    store: 'listVacrStore',
-                                    listeners: {
-                                        select: {
-                                            fn: me.onGridpanelSelect1,
-                                            scope: me
-                                        }
-                                    },
-                                    selModel: Ext.create('Ext.selection.RowModel', {
-
-                                    }),
-                                    plugins: [
-                                        Ext.create('Ext.grid.plugin.RowEditing', {
-                                            pluginId: 'rowEditing',
-                                            listeners: {
-                                                edit: {
-                                                    fn: me.onRowEditingEdit,
-                                                    scope: me
-                                                }
-                                            }
-                                        })
-                                    ],
-                                    dockedItems: [
-                                        {
-                                            xtype: 'pagingtoolbar',
-                                            dock: 'bottom',
-                                            width: 360,
-                                            displayInfo: true
-                                        },
-                                        {
-                                            xtype: 'toolbar',
-                                            dock: 'top',
-                                            items: [
-                                                {
-                                                    xtype: 'button',
-                                                    width: 100,
-                                                    text: 'New Aircraft',
-                                                    listeners: {
-                                                        click: {
-                                                            fn: me.onButtonClick,
-                                                            scope: me
-                                                        }
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    columns: [
-                                        {
-                                            xtype: 'gridcolumn',
-                                            dataIndex: 'NAME',
-                                            text: 'NAME',
-                                            editor: {
-                                                xtype: 'textfield'
-                                            }
-                                        },
-                                        {
-                                            xtype: 'gridcolumn',
-                                            dataIndex: 'MODELNO',
-                                            text: 'MODELNO',
-                                            editor: {
-                                                xtype: 'textfield'
-                                            }
-                                        },
-                                        {
-                                            xtype: 'actioncolumn',
-                                            tooltip: 'Delete this row',
-                                            items: [
-                                                {
-                                                    handler: function(view, rowIndex, colIndex, item, e, record, row) {
-                                                        var storeData = Ext.data.StoreManager.lookup('listVacrStore');
-                                                        storeData.remove(record);
-                                                        storeData.commitChanges();
-                                                        /*
-                                                        record.destroy({ 
-                                                        success: function(record, operation)
-                                                        {
-                                                        //record is the updated record, except for collections
-                                                        //this collection will have the full records:
-                                                        //operation.resultSet.records
-                                                        //operation.resultSet.records[i] for each one if you are batching
-                                                        Ext.Msg.alert("Success", "You have deleted record " + record.data.NAME);
-                                                    },
-                                                    failure: function(record, operation)
-                                                    {
-                                                        Ext.Msg.alert("Fail", "Cannot delete record");
-                                                    }
-                                                });
-                                                */
-                                                    },
-                                                    icon: 'resources/images/delete.gif'
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    xtype: 'panel',
-                                    region: 'center',
-                                    itemId: 'detailPanel',
-                                    layout: {
-                                        type: 'fit'
-                                    },
-                                    title: 'Aircraft Detail',
-                                    items: [
-                                        {
-                                            xtype: 'panel',
-                                            autoScroll: true,
-                                            layout: {
-                                                align: 'stretch',
-                                                type: 'hbox'
-                                            },
-                                            items: [
-                                                {
-                                                    xtype: 'form',
-                                                    border: 1,
-                                                    frame: true,
-                                                    height: 450,
-                                                    itemId: 'uploadForm',
-                                                    width: 200,
-                                                    autoScroll: true,
-                                                    url: 'saveImage.php',
-                                                    items: [
-                                                        {
-                                                            xtype: 'gridpanel',
-                                                            itemId: 'pictureGrid',
-                                                            title: '',
-                                                            store: 'pictureStore',
-                                                            columns: [
-                                                                {
-                                                                    xtype: 'templatecolumn',
-                                                                    tpl: [
-                                                                        '<div id="{ID}" class="thumb-wrap" >	',
-                                                                        '	<div class="thumb"><img src="images/{PICTURE}" title="{PICTURE}" width=100></div>',
-                                                                        '</div>'
-                                                                    ],
-                                                                    text: 'MyTemplateColumn'
-                                                                },
-                                                                {
-                                                                    xtype: 'actioncolumn',
-                                                                    items: [
-                                                                        {
-                                                                            handler: function(view, rowIndex, colIndex, item, e, record, row) {
-
-                                                                                var storeData = Ext.data.StoreManager.lookup('pictureStore');
-                                                                                storeData.remove(record);
-                                                                                storeData.commitChanges();
-                                                                                var vacrData = Ext.data.StoreManager.lookup('listVacrStore');
-                                                                                vacrData.reload();
-
-                                                                            },
-                                                                            icon: 'resources/images/delete.gif',
-                                                                            tooltip: 'Delete picture'
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            xtype: 'hiddenfield',
-                                                            anchor: '100%',
-                                                            itemId: 'aircraftID',
-                                                            fieldLabel: 'Label',
-                                                            name: 'aircraftID'
-                                                        }
-                                                    ],
-                                                    dockedItems: [
-                                                        {
-                                                            xtype: 'toolbar',
-                                                            dock: 'top',
-                                                            items: [
-                                                                {
-                                                                    xtype: 'filefield',
-                                                                    hideLabel: true,
-                                                                    labelWidth: 70,
-                                                                    name: 'file',
-                                                                    buttonOnly: true,
-                                                                    buttonText: 'Add a Picture',
-                                                                    listeners: {
-                                                                        change: {
-                                                                            fn: me.onFilefieldChange,
-                                                                            scope: me
-                                                                        }
-                                                                    }
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    xtype: 'panel',
-                                                    itemId: 'descriptionPanel',
-                                                    width: 300,
-                                                    layout: {
-                                                        type: 'fit'
-                                                    },
-                                                    title: '',
-                                                    items: [
-                                                        {
-                                                            xtype: 'gridpanel',
-                                                            itemId: 'editCharacteristicsGrid',
-                                                            title: '',
-                                                            store: 'descriptionStore',
-                                                            columns: [
-                                                                {
-                                                                    xtype: 'gridcolumn',
-                                                                    width: 220,
-                                                                    dataIndex: 'DESCRIPTION',
-                                                                    text: 'Description',
-                                                                    editor: {
-                                                                        xtype: 'textfield',
-                                                                        allowBlank: false
-                                                                    }
-                                                                },
-                                                                {
-                                                                    xtype: 'actioncolumn',
-                                                                    items: [
-                                                                        {
-                                                                            handler: function(view, rowIndex, colIndex, item, e, record, row) {
-
-                                                                                var storeData = Ext.data.StoreManager.lookup('descriptionStore');
-                                                                                storeData.remove(record);
-                                                                                storeData.commitChanges();
-                                                                                var vacrData = Ext.data.StoreManager.lookup('listVacrStore');
-                                                                                vacrData.reload();
-                                                                            },
-                                                                            icon: 'resources/images/delete.gif'
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            ],
-                                                            dockedItems: [
-                                                                {
-                                                                    xtype: 'toolbar',
-                                                                    dock: 'top',
-                                                                    items: [
-                                                                        {
-                                                                            xtype: 'button',
-                                                                            text: 'Add a Characteristic',
-                                                                            listeners: {
-                                                                                click: {
-                                                                                    fn: me.onButtonClick1,
-                                                                                    scope: me
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            ],
-                                                            plugins: [
-                                                                Ext.create('Ext.grid.plugin.RowEditing', {
-                                                                    pluginId: 'rowEditing',
-                                                                    listeners: {
-                                                                        edit: {
-                                                                            fn: me.onRowEditingEdit1,
-                                                                            scope: me
-                                                                        }
-                                                                    }
-                                                                })
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
+                    xtype: 'myform3'
                 }
-            ]
+            ],
+            listeners: {
+                afterrender: {
+                    fn: me.onPanelAfterRender,
+                    scope: me
+                }
+            }
         });
 
         me.callParent(arguments);
@@ -603,181 +326,95 @@ Ext.define('VACR.view.VACR', {
 
     },
 
-    onGridpanelSelect1: function(rowmodel, record, index, eOpts) {
+    onPanelAfterRender: function(component, eOpts) {
+        Ext.QuickTips.init();
 
+        // Create a variable to hold our EXT Form Panel. 
+        // Assign various config options as seen.	 
+        var login = new Ext.FormPanel({ 
+            labelWidth:80,
+            url:'auth/process.php', 
+            frame:true, 
+            title:'Please Login', 
+            defaultType:'textfield',
+            monitorValid:true,
+            // Specific attributes for the text fields for username / password. 
+            // The "name" attribute defines the name of variables sent to the server.
+            items:[{ 
+                fieldLabel:'Username', 
+                name:'user', 
+                allowBlank:false 
+            },{ 
+                fieldLabel:'Password', 
+                name:'pass', 
+                inputType:'password', 
+                allowBlank:false 
+            }],
 
-        // get the descriptions field
-        var vacrID = record.data.ID;
-        var descData = record.get('DESCRIPTIONS');
-        // Add the PK, and FK
-        for (var i = descData.length - 1; i >= 0; i--){
-            descData[i].AIRCRAFT_ID = vacrID;
-        }
-        var charcGrid = this.down('#editCharacteristicsGrid');
-        var charcStore = charcGrid.store;
-        charcStore.proxy.extraParams = { AIRCRAFT_ID : vacrID};
-        charcStore.loadData(descData);
+            // All the magic happens after the user clicks the button     
+            buttons:[{ 
+                text:'Login',
+                formBind: true,	 
+                // Function that fires when user clicks the button 
+                handler:function(){ 
+                    login.getForm().submit({ 
+                        method:'POST', 
+                        waitTitle:'Connecting', 
+                        waitMsg:'Sending data...',
 
-        // Picture View
-        var picView = this.down('#pictureView');
-        // get the pictures field out of this record
-        var picData = record.get('PICTURES');
-        picView.store.loadData(picData); 
+                        // Functions that fire (success or failure) when the server responds. 
+                        // The one that executes is determined by the 
+                        // response that comes from login.asp as seen below. The server would 
+                        // actually respond with valid JSON, 
+                        // something like: response.write "{ success: true}" or 
+                        // response.write "{ success: false, errors: { reason: 'Login failed. Try again.' }}" 
+                        // depending on the logic contained within your server script.
+                        // If a success occurs, the user is notified with an alert messagebox, 
+                        // and when they click "OK", they are redirected to whatever page
+                        // you define as redirect. 
 
-        // Update the detail panel title
-        var detailPanel = this.down('#detailPanel');
-        var planeName = record.data.NAME + "/" + record.data.MODELNO;
-        detailPanel.setTitle(planeName);
+                        success:function(){ 
+                            Ext.Msg.alert('Status', 'Login Successful!', function(btn, text){
+                                if (btn == 'ok'){
+                                    var redirect = 'test.asp'; 
+                                    window.location = redirect;
+                                }
+                            });
+                        },
 
-    },
+                        // Failure function, see comment above re: success and failure. 
+                        // You can see here, if login fails, it throws a messagebox
+                        // at the user telling him / her as much.  
 
-    onRowEditingEdit: function(editor, e, eOpts) {
-        // commit the changes right after editing finished
-        /***
-        e.record.beginEdit();
-        e.record.save({
-
-        params: { },
-        success: function(record, operation) {
-        if(operation.action === 'create'){
-        Ext.Msg.alert("Success", "You have created a new record " + record.data.NAME);
-        }
-        else if( operation.action === 'update'){
-        Ext.Msg.alert("Success", "You have successfully updated record " + record.data.NAME);
-        }
-        else{
-        Ext.Msg.alert("Success", "You have successfully completed the operation. " + record.data.NAME);
-        }
-
-
-        },
-        failure: function(record, operation) {
-        Ext.Msg.alert("Failed", "Failed to update record");
-        }
-        });
-        e.record.endEdit();
-        e.record.commit();
-        ***/
-    },
-
-    onButtonClick: function(button, e, eOpts) {
-        // Create a model instance
-        var rec = new VACR.model.vacrModel({
-            NAME: 'New aircraft name',
-            MODELNO: 'ZZZ'
-        });
-
-        var storeData = Ext.data.StoreManager.lookup('listVacrStore');
-        storeData.insert(0, rec);
-        var grid = this.down("#editVacrGrid");
-        var rowEditing = grid.getPlugin("rowEditing");
-        rowEditing.cancelEdit();
-        rowEditing.startEdit(0, 0);
-    },
-
-    onFilefieldChange: function(filefield, value, eOpts) {
-
-
-
-        // Get the selected aircraft
-        var acGrid = this.down('#editVacrGrid');
-        var sm = acGrid.getSelectionModel();
-        var rec = sm.getSelection();
-        if(rec.length <= 0)
-        {
-            Ext.MessageBox.show({
-                title: 'Icon Support',
-                msg: 'You must firt selected an aircraft.',
-                buttons: Ext.MessageBox.OK,
-                icon: Ext.Msg.ERROR
-            });
-
-            return;
-        }
-        var form = this.down('#uploadForm').getForm();
-        var acID = this.down('#aircraftID');
-        acID.setValue(rec[0].data.ID);
-        if(form.isValid()){
-            form.submit({
-                url: 'saveImage.php',
-                waitMsg: 'Uploading your photo...',
-                success: function(form, action) {
-                    Ext.Msg.alert('Success', 'Successfully added a new Aircraft Picture.');
-                },
-                failure: function(form, action) {
-                    Ext.Msg.show({
-                        title:'Error',
-                        msg: action.result.errors.portOfLoading,
-                        buttons: Ext.Msg.OK,
-                        icon: Ext.Msg.ERROR
-                    });
-
-                }
-            });
-        }
-    },
-
-    onButtonClick1: function(button, e, eOpts) {
-        // Get the selected aircraft
-        var acGrid = this.down('#editVacrGrid');
-        var sm = acGrid.getSelectionModel();
-        var vacrrec = sm.getSelection();
-        if(vacrrec.length <= 0)
-        {
-            Ext.MessageBox.show({
-                title: 'Icon Support',
-                msg: 'You must firt selected an aircraft.',
-                buttons: Ext.MessageBox.OK,
-                icon: Ext.Msg.ERROR
-            });
-
-            return;
-        }
-        var acID = vacrrec[0].data.ID;
-        // Create a model instance
-        var rec = new VACR.model.DescriptionData({
-            DESCRIPTION: '',
-            ID: null,
-            AIRCRAFT_ID: acID
-
+                        failure:function(form, action){ 
+                            if(action.failureType == 'server'){ 
+                                obj = Ext.util.JSON.decode(action.response.responseText); 
+                                Ext.Msg.alert('Login Failed!', obj.errors.reason); 
+                            }else{ 
+                                Ext.Msg.alert('Warning!', 'Authentication server is unreachable : ' + action.response.responseText); 
+                            } 
+                            login.getForm().reset(); 
+                        } 
+                    }); 
+                } 
+            }] 
         });
 
-        var storeData = Ext.data.StoreManager.lookup('descriptionStore');
-        storeData.insert(0, rec);
-        var grid = this.down("#editCharacteristicsGrid");
-        var rowEditing = grid.getPlugin("rowEditing");
-        rowEditing.cancelEdit();
-        rowEditing.startEdit(0, 0);
-        var vacrData = Ext.data.StoreManager.lookup('listVacrStore');
-        vacrData.load();
-    },
 
-    onRowEditingEdit1: function(editor, e, eOpts) {
-        // commit the changes right after editing finished
-        /****
-        e.record.beginEdit();
-        e.record.save({
-
-        params: { },
-        success: function(record, operation) {
-        if(operation.action === 'create'){
-        Ext.Msg.alert("Success", "You have created a new record " + record.data.description);
-        }
-        else if( operation.action === 'update'){
-        Ext.Msg.alert("Success", "You have successfully updated record " + record.data.description);
-        }
-        else{
-        Ext.Msg.alert("Success", "You have successfully completed the operation. " );
-        }
-
-
-        },
-        failure: function(record, operation) {
-        Ext.Msg.alert("Failed", "Failed to update record");
-        }
+        // This just creates a window to wrap the login form. 
+        // The login object is passed to the items collection.       
+        var win = new Ext.Window({
+            layout:'fit',
+            modal: true,
+            width:300,
+            height:150,
+            closable: false,
+            resizable: false,
+            plain: true,
+            border: false,
+            items: [login]
         });
-        e.record.endEdit();**/
-        e.record.commit();
+        win.show();
     }
 
 });

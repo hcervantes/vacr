@@ -21,7 +21,8 @@ Ext.Loader.setConfig({
 Ext.application({
 
     requires: [
-        'VACR.view.VACR'
+        'VACR.view.VACR',
+        'VACR.view.MyForm3'
     ],
     models: [
         'ImageData',
@@ -38,7 +39,8 @@ Ext.application({
         'listVacrStore'
     ],
     views: [
-        'VACR'
+        'VACR',
+        'MyForm3'
     ],
     autoCreateViewport: true,
     name: 'VACR'

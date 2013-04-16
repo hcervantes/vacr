@@ -21,7 +21,8 @@
             "listVacrStore"
         ],
         "views": [
-            "VACR"
+            "VACR",
+            "MyForm3"
         ],
         "autoCreateViewport": true,
         "name": "VACR"

@@ -139,12 +139,21 @@
                 "metadata/resource/css"
             ],
             "className": "css"
+        },
+        "bdfae880-4d65-49d6-abe1-42dbcb7baff2": {
+            "paths": [
+                "metadata/view/MyForm3",
+                "app/view/override/MyForm3.js",
+                "app/view/MyForm3.js"
+            ],
+            "className": "MyForm3"
         }
     },
     "viewOrderMap": {
         "view": [
             "1e643051-8498-45cb-a441-6fb48a322733",
-            "28556880-da9a-49ca-8f2e-e78c6d217225"
+            "28556880-da9a-49ca-8f2e-e78c6d217225",
+            "bdfae880-4d65-49d6-abe1-42dbcb7baff2"
         ],
         "store": [
             "f35dacd6-52af-4e7f-82b5-5fd4df904de8",
