@@ -1,0 +1,106 @@
+{
+    "type": "class",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "BTN_OK": "ok",
+        "BTN_YES": "yes",
+        "SESSION_ABOUT_TO_TIMEOUT_PROMT_INTERVAL_IN_MIN": ".25",
+        "GRACE_PERIOD_BEFORE_EXPIRING_SESSION_IN_MIN": "1",
+        "SESSION_KILL_URL": "auth/process.php",
+        "designer|userClassName": "SessionManager",
+        "singleton": true
+    },
+    "designerId": "36734d98-da47-4326-89fe-2ddf34011f8a",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "BTN_OK",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "BTN_YES",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "SESSION_ABOUT_TO_TIMEOUT_PROMT_INTERVAL_IN_MIN",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "GRACE_PERIOD_BEFORE_EXPIRING_SESSION_IN_MIN",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "SESSION_KILL_URL",
+            "type": "string"
+        }
+    ],
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "toMilliseconds",
+                "fn": "toMilliseconds",
+                "designer|params": [
+                    "minutes"
+                ],
+                "implHandler": [
+                    "\treturn minutes * 60 * 1000;"
+                ]
+            },
+            "designerId": "2c953e5e-b33b-42c5-b330-526f5690a953"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "simulateAjaxRequest",
+                "fn": "simulateAjaxRequest",
+                "implHandler": [
+                    "Ext.Ajax.request({",
+                    "            url: SESSION_KILL_URL,",
+                    "            success: Ext.emptyFn,",
+                    "            failure: Ext.emptyFn",
+                    "        });"
+                ]
+            },
+            "designerId": "4c90e120-8d23-493b-ad40-b7c1ad2236f6"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "simulateAjaxRequestToKillServerSession",
+                "fn": "simulateAjaxRequestToKillServerSession",
+                "implHandler": [
+                    "Ext.Ajax.request({",
+                    "            url: App.SESSION_KILL_URL,",
+                    "            success: Ext.emptyFn,",
+                    "            failure: Ext.emptyFn",
+                    "        });"
+                ]
+            },
+            "designerId": "9f95a5de-56c3-452b-936f-80f7424f42f7"
+        }
+    ]
+}

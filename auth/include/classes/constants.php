@@ -21,7 +21,7 @@
 define("DB_SERVER", "localhost");
 define("DB_USER", "hcervant_hmc");
 define("DB_PASS", "edwin1998");
-define("DB_NAME", "3g");
+define("DB_NAME", "hcervant_db");
 
 /**
  * Database Table Constants - these constants

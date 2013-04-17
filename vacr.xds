@@ -147,13 +147,36 @@
                 "app/view/MyForm3.js"
             ],
             "className": "MyForm3"
+        },
+        "08dd52ab-fc72-456b-8e3e-8cd14173563b": {
+            "paths": [
+                "metadata/view/MyClass2",
+                "app/view/override/MyClass2.js",
+                "app/view/MyClass2.js"
+            ],
+            "className": "MyClass2"
+        },
+        "36734d98-da47-4326-89fe-2ddf34011f8a": {
+            "paths": [
+                "metadata/controller/SessionManager",
+                "app/controller/override/SessionManager.js",
+                "app/controller/SessionManager.js"
+            ],
+            "className": "SessionManager"
+        },
+        "1cd19263-ff2a-46d4-b035-514144b8518d": {
+            "paths": [
+                "metadata/resource/js"
+            ],
+            "className": "js"
         }
     },
     "viewOrderMap": {
         "view": [
             "1e643051-8498-45cb-a441-6fb48a322733",
             "28556880-da9a-49ca-8f2e-e78c6d217225",
-            "bdfae880-4d65-49d6-abe1-42dbcb7baff2"
+            "bdfae880-4d65-49d6-abe1-42dbcb7baff2",
+            "08dd52ab-fc72-456b-8e3e-8cd14173563b"
         ],
         "store": [
             "f35dacd6-52af-4e7f-82b5-5fd4df904de8",
@@ -164,7 +187,8 @@
             "fd5c841e-b442-4124-93b4-7b061ef8dca0"
         ],
         "controller": [
-            "cf3dab49-b4e0-4872-ae68-4b53afc087f9"
+            "cf3dab49-b4e0-4872-ae68-4b53afc087f9",
+            "36734d98-da47-4326-89fe-2ddf34011f8a"
         ],
         "model": [
             "116a5aab-eef2-4dd7-ba6c-470d94ba7ab8",
@@ -175,7 +199,8 @@
         ],
         "resource": [
             "269a30ea-09ba-46eb-9b07-736b87315292",
-            "542ee118-282e-470e-b7b4-065409d4d010"
+            "542ee118-282e-470e-b7b4-065409d4d010",
+            "1cd19263-ff2a-46d4-b035-514144b8518d"
         ],
         "app": [
             "application"

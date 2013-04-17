@@ -349,6 +349,18 @@ Ext.define('VACR.view.VACR', {
                 name:'pass', 
                 inputType:'password', 
                 allowBlank:false 
+            },{
+                xtype: 'checkboxfield',
+                width: 150,
+                fieldLabel: 'Remember me',
+                name: 'remember'
+            },{
+                xtype: 'hiddenfield',
+                anchor: '100%',
+                itemId: 'aircraftID',
+                fieldLabel: 'Label',
+                name: 'sublogin',
+                value: 1
             }],
 
             // All the magic happens after the user clicks the button     
@@ -374,12 +386,7 @@ Ext.define('VACR.view.VACR', {
                         // you define as redirect. 
 
                         success:function(){ 
-                            Ext.Msg.alert('Status', 'Login Successful!', function(btn, text){
-                                if (btn == 'ok'){
-                                    var redirect = 'test.asp'; 
-                                    window.location = redirect;
-                                }
-                            });
+                            win.close();
                         },
 
                         // Failure function, see comment above re: success and failure. 
@@ -388,8 +395,8 @@ Ext.define('VACR.view.VACR', {
 
                         failure:function(form, action){ 
                             if(action.failureType == 'server'){ 
-                                obj = Ext.util.JSON.decode(action.response.responseText); 
-                                Ext.Msg.alert('Login Failed!', obj.errors.reason); 
+                                var msg = action.result.errors.user;                       
+                                Ext.Msg.alert('Login Failed!', msg); 
                             }else{ 
                                 Ext.Msg.alert('Warning!', 'Authentication server is unreachable : ' + action.response.responseText); 
                             } 
@@ -407,14 +414,16 @@ Ext.define('VACR.view.VACR', {
             layout:'fit',
             modal: true,
             width:300,
-            height:150,
+            height:250,
             closable: false,
             resizable: false,
             plain: true,
             border: false,
             items: [login]
         });
-        win.show();
+        if(!App.isUserLoggedIn()){
+            win.show();
+        }
     }
 
 });

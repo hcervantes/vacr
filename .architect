@@ -10,7 +10,6 @@
             "cn": [
                 {
                     "id": "333f0078-90d9-4394-96d7-f41152a9686c",
-                    "expanded": false,
                     "cn": [
                         {
                             "id": "bb877074-f2ce-4e72-b516-409091fa061c",
@@ -142,7 +141,6 @@
         },
         "bdfae880-4d65-49d6-abe1-42dbcb7baff2": {
             "id": "bdfae880-4d65-49d6-abe1-42dbcb7baff2",
-            "expanded": false,
             "cn": [
                 {
                     "id": "70512141-36a6-47a7-910f-f791fe21c063",
@@ -333,6 +331,9 @@
                 }
             ]
         },
+        "08dd52ab-fc72-456b-8e3e-8cd14173563b": {
+            "id": "08dd52ab-fc72-456b-8e3e-8cd14173563b"
+        },
         "f35dacd6-52af-4e7f-82b5-5fd4df904de8": {
             "id": "f35dacd6-52af-4e7f-82b5-5fd4df904de8",
             "expanded": false
@@ -483,12 +484,29 @@
             "id": "cf3dab49-b4e0-4872-ae68-4b53afc087f9",
             "expanded": false
         },
+        "36734d98-da47-4326-89fe-2ddf34011f8a": {
+            "id": "36734d98-da47-4326-89fe-2ddf34011f8a",
+            "cn": [
+                {
+                    "id": "2c953e5e-b33b-42c5-b330-526f5690a953"
+                },
+                {
+                    "id": "4c90e120-8d23-493b-ad40-b7c1ad2236f6"
+                },
+                {
+                    "id": "9f95a5de-56c3-452b-936f-80f7424f42f7"
+                }
+            ]
+        },
         "269a30ea-09ba-46eb-9b07-736b87315292": {
             "id": "269a30ea-09ba-46eb-9b07-736b87315292"
         },
         "542ee118-282e-470e-b7b4-065409d4d010": {
             "id": "542ee118-282e-470e-b7b4-065409d4d010",
             "expanded": false
+        },
+        "1cd19263-ff2a-46d4-b035-514144b8518d": {
+            "id": "1cd19263-ff2a-46d4-b035-514144b8518d"
         }
     },
     "tabState": {
@@ -500,7 +518,9 @@
             "542ee118-282e-470e-b7b4-065409d4d010",
             "116a5aab-eef2-4dd7-ba6c-470d94ba7ab8",
             "f35dacd6-52af-4e7f-82b5-5fd4df904de8",
-            "bdfae880-4d65-49d6-abe1-42dbcb7baff2"
+            "bdfae880-4d65-49d6-abe1-42dbcb7baff2",
+            "36734d98-da47-4326-89fe-2ddf34011f8a",
+            "1cd19263-ff2a-46d4-b035-514144b8518d"
         ]
     },
     "canvasState": {
