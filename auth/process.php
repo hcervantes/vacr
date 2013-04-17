@@ -25,7 +25,8 @@ class Process {
 				'isMember' => $session->isMember(), 
 				'isAgent' => $session->isAgent(), 
 				'isMaster' => $session->isMaster(), 
-				'isAdmin' => $session->isAdmin()
+				'isAdmin' => $session->isAdmin(),
+				'userName' => $_SESSION['username']
 			);
 			echo json_encode(array('success' => true, 'userAccount' => $loggedIn));
 		}
