@@ -21,14 +21,7 @@ class Process {
 		/* Check if user is logged in */
 		/* User submitted login form */
 		if (isset($_POST['userAccess'])) {
-			$loggedIn = array('isLoggedIn' => $session->logged_in, 
-				'isMember' => $session->isMember(), 
-				'isAgent' => $session->isAgent(), 
-				'isMaster' => $session->isMaster(), 
-				'isAdmin' => $session->isAdmin(),
-				'userName' => $_SESSION['username']
-			);
-			echo json_encode(array('success' => true, 'userAccount' => $loggedIn));
+			$this->procAccess();
 		}
 		/* User submitted login form */
 		if (isset($_POST['sublogin'])) {
@@ -80,6 +73,21 @@ class Process {
 	}
 
 	/**
+	 * procAccess - Check user access
+	 */
+	 function procAccess(){
+	 	global $session, $form;
+	 	$loggedIn = array('isLoggedIn' => $session->logged_in, 
+				'isMember' => $session->isMember(), 
+				'isAgent' => $session->isAgent(), 
+				'isMaster' => $session->isMaster(), 
+				'isAdmin' => $session->isAdmin(),
+				'userName' => $_SESSION['username'], 
+				'session' => $_SESSION
+			);
+			echo json_encode(array('success' => true, 'userAccount' => $loggedIn));
+	 }
+	/**
 	 * procLogin - Processes the user submitted login form, if errors
 	 * are found, the user is redirected to correct the information,
 	 * if not, the user is effectively logged in to the system.
@@ -91,13 +99,15 @@ class Process {
 
 		/* Login successful */
 		if ($retval) {
-			echo json_encode(array('success' => true));
+			//session_write_close();
+			echo json_encode(array('success' => true, 'session' => $_SESSION));
 			// header("Location: ".$session->referrer);
 		}
 		/* Login failed */
 		else {
 			$_SESSION['value_array'] = $_POST;
 			$_SESSION['error_array'] = $form->getErrorArray();
+			//session_write_close();
 			echo json_encode(array('success' => false, 'errors' => $_SESSION['error_array']));
 			//header("Location: ".$session->referrer);
 		}

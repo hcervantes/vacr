@@ -71,7 +71,7 @@ echo "user:master1-2 password:master1-2 <br>";
 echo "user:master1agen1 - 2 password:agent1 - 2<br> ";
 echo "user:master1agent1member1 password:member1 <br>";
 echo "user:master2agent1member1 password:member1 <br>";
-
+date_default_timezone_set('America/New_York');
 $objDateTime = new DateTime('NOW');
 echo $objDateTime->format('c'); // ISO8601 formated datetime
 echo $session->logged_in;

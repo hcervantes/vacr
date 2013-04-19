@@ -598,7 +598,7 @@
                 "fn": "onPanelAfterRender",
                 "implHandler": [
                     "// check if logged in.",
-                    "App.checkUserLoggedIn();",
+                    "//App.checkUserLoggedIn();",
                     ""
                 ],
                 "name": "afterrender",

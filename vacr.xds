@@ -1,13 +1,14 @@
 {
     "name": "vacr",
     "settings": {
-        "urlPrefix": "http://localhost/vacr",
+        "urlPrefix": "http://localhost:8010/vacr",
         "spacesToIndent": 4,
         "exportPath": "/opt/lampp/htdocs/vacr",
         "sdkPath": "",
         "lineEnding": "LF",
         "genTimestamps": false,
-        "cacheBust": false
+        "cacheBust": false,
+        "buildShouldOverwriteIndex": true
     },
     "xdsVersion": "2.2.1",
     "xdsBuild": 951,

@@ -328,7 +328,7 @@ Ext.define('VACR.view.VACR', {
 
     onPanelAfterRender: function(component, eOpts) {
         // check if logged in.
-        App.checkUserLoggedIn();
+        //App.checkUserLoggedIn();
 
     }
 
