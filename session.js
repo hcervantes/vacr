@@ -45,7 +45,7 @@ Ext.onReady(function() {
 		}, {
 			xtype : 'hiddenfield',
 			anchor : '100%',
-			itemId : 'aircraftID',
+			itemId : 'loginField',
 			fieldLabel : 'Label',
 			name : 'sublogin',
 			value : 1
@@ -74,6 +74,8 @@ Ext.onReady(function() {
 					// you define as redirect.
 
 					success : function() {
+						if(isAdmin)
+							Ext.getCmp("adminPanel").show();
 						App.loginWin.hide();
 					},
 

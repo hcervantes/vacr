@@ -1,7 +1,7 @@
 {
     "name": "vacr",
     "settings": {
-        "urlPrefix": "http://localhost:8010/vacr",
+        "urlPrefix": "http://localhost/vacr",
         "spacesToIndent": 4,
         "exportPath": "/opt/lampp/htdocs/vacr",
         "sdkPath": "",

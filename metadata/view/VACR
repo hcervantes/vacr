@@ -344,6 +344,93 @@
                                             ]
                                         }
                                     ]
+                                },
+                                {
+                                    "type": "Ext.form.Panel",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|flex": 1,
+                                        "itemId": "testForm",
+                                        "designer|userClassName": "MyForm5",
+                                        "bodyPadding": 10,
+                                        "title": "My Form",
+                                        "url": "auth/process.php"
+                                    },
+                                    "designerId": "fd7e4c4a-80d2-45be-939b-d6600b34fe39",
+                                    "cn": [
+                                        {
+                                            "type": "Ext.button.Button",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|userClassName": "MyButton4",
+                                                "text": "MyButton"
+                                            },
+                                            "designerId": "5dbf2c9b-ea2a-48f5-9ee9-44ebe6f935e4",
+                                            "cn": [
+                                                {
+                                                    "type": "basiceventbinding",
+                                                    "reference": {
+                                                        "name": "listeners",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|userClassName": "onButtonClick",
+                                                        "fn": "onButtonClick",
+                                                        "implHandler": [
+                                                            "this.down('#testForm').getForm().submit({",
+                                                            "\t\t\t\t\tmethod : 'POST',",
+                                                            "\t\t\t\t\twaitTitle : 'Connecting',",
+                                                            "\t\t\t\t\twaitMsg : 'Sending data...',",
+                                                            "",
+                                                            "\t\t\t\t\t// Functions that fire (success or failure) when the server responds.",
+                                                            "\t\t\t\t\t// The one that executes is determined by the",
+                                                            "\t\t\t\t\t// response that comes from login.asp as seen below. The server would",
+                                                            "\t\t\t\t\t// actually respond with valid JSON,",
+                                                            "\t\t\t\t\t// something like: response.write \"{ success: true}\" or",
+                                                            "\t\t\t\t\t// response.write \"{ success: false, errors: { reason: 'Login failed. Try again.' }}\"",
+                                                            "\t\t\t\t\t// depending on the logic contained within your server script.",
+                                                            "\t\t\t\t\t// If a success occurs, the user is notified with an alert messagebox,",
+                                                            "\t\t\t\t\t// and when they click \"OK\", they are redirected to whatever page",
+                                                            "\t\t\t\t\t// you define as redirect.",
+                                                            "",
+                                                            "\t\t\t\t\tsuccess : function() {",
+                                                            "\t\t\t\t\t\tif(isAdmin)",
+                                                            "\t\t\t\t\t\t\tExt.getCmp(\"adminPanel\").show();",
+                                                            "\t\t\t\t\t\tApp.loginWin.hide();",
+                                                            "\t\t\t\t\t},",
+                                                            "",
+                                                            "\t\t\t\t\t// Failure function, see comment above re: success and failure.",
+                                                            "\t\t\t\t\t// You can see here, if login fails, it throws a messagebox",
+                                                            "\t\t\t\t\t// at the user telling him / her as much.",
+                                                            "",
+                                                            "\t\t\t\t\tfailure : function(form, action) {",
+                                                            "\t\t\t\t\t\tif (action.failureType == 'server') {",
+                                                            "\t\t\t\t\t\t\tvar msg = action.result.errors.user;",
+                                                            "\t\t\t\t\t\t\tExt.Msg.alert('Login Failed!', msg);",
+                                                            "\t\t\t\t\t\t} else {",
+                                                            "\t\t\t\t\t\t\tExt.Msg.alert('Warning!', 'Authentication server is unreachable : ' + action.response.responseText);",
+                                                            "\t\t\t\t\t\t}",
+                                                            "\t\t\t\t\t\tApp.login.getForm().reset();",
+                                                            "\t\t\t\t\t}",
+                                                            "\t\t\t\t});"
+                                                        ],
+                                                        "name": "click",
+                                                        "scope": "me"
+                                                    },
+                                                    "designerId": "1b774f44-9d75-479a-a222-3c0a920c950e"
+                                                }
+                                            ]
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -613,6 +700,10 @@
                 "type": "array"
             },
             "codeClass": null,
+            "userConfig": {
+                "hidden": true,
+                "id": "adminPanel"
+            },
             "designerId": "f2765d56-dc0b-4fec-a979-2918de0c4f3d",
             "masterInstanceId": "bdfae880-4d65-49d6-abe1-42dbcb7baff2"
         }

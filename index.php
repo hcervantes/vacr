@@ -33,6 +33,10 @@ include ("auth/include/classes/session.php");
 		} elseif (($session -> logged_in) && ($session -> isAdmin())) {
 			echo 'isAdmin = true;';
 			echo 'loggedIn = true;';
+			// Make admin tab visible
+			echo 'Ext.onReady(function() {';
+			
+			echo '});';
 		} else {
 			
 			

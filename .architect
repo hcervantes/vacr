@@ -75,6 +75,19 @@
                                                     ]
                                                 }
                                             ]
+                                        },
+                                        {
+                                            "id": "fd7e4c4a-80d2-45be-939b-d6600b34fe39",
+                                            "cn": [
+                                                {
+                                                    "id": "5dbf2c9b-ea2a-48f5-9ee9-44ebe6f935e4",
+                                                    "cn": [
+                                                        {
+                                                            "id": "1b774f44-9d75-479a-a222-3c0a920c950e"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
                                         }
                                     ]
                                 }
@@ -84,7 +97,6 @@
                 },
                 {
                     "id": "5cd4461a-ee99-4d26-9c51-d4b591cece36",
-                    "expanded": false,
                     "cn": [
                         {
                             "id": "0336894b-689e-4109-976b-ca57519cb523",
@@ -366,6 +378,7 @@
         },
         "fd5c841e-b442-4124-93b4-7b061ef8dca0": {
             "id": "fd5c841e-b442-4124-93b4-7b061ef8dca0",
+            "expanded": false,
             "cn": [
                 {
                     "id": "fc5a5c71-49bd-4fb6-a0b1-3df0818413fc"
@@ -450,6 +463,7 @@
         },
         "8640975b-711d-4ad5-8d30-6cce8997ab4a": {
             "id": "8640975b-711d-4ad5-8d30-6cce8997ab4a",
+            "expanded": false,
             "cn": [
                 {
                     "id": "88b1d5ca-6127-404d-bc6e-a1a73244bec0"
@@ -527,7 +541,7 @@
     },
     "inspectorState": {
         "topInstance": "1e643051-8498-45cb-a441-6fb48a322733",
-        "selectedInstance": "b95b8de5-3038-4731-858d-97c3ca77ca51"
+        "selectedInstance": "1b774f44-9d75-479a-a222-3c0a920c950e"
     },
     "codeState": {
         "topInstance": "1e643051-8498-45cb-a441-6fb48a322733"

@@ -149,6 +149,26 @@ Ext.define('VACR.view.VACR', {
                                                     ]
                                                 }
                                             ]
+                                        },
+                                        {
+                                            xtype: 'form',
+                                            flex: 1,
+                                            itemId: 'testForm',
+                                            bodyPadding: 10,
+                                            title: 'My Form',
+                                            url: 'auth/process.php',
+                                            items: [
+                                                {
+                                                    xtype: 'button',
+                                                    text: 'MyButton',
+                                                    listeners: {
+                                                        click: {
+                                                            fn: me.onButtonClick,
+                                                            scope: me
+                                                        }
+                                                    }
+                                                }
+                                            ]
                                         }
                                     ]
                                 }
@@ -228,7 +248,9 @@ Ext.define('VACR.view.VACR', {
                     }
                 },
                 {
-                    xtype: 'myform3'
+                    xtype: 'myform3',
+                    hidden: true,
+                    id: 'adminPanel'
                 }
             ],
             listeners: {
@@ -260,6 +282,45 @@ Ext.define('VACR.view.VACR', {
         var descData = record.get('DESCRIPTIONS');
         var descView = this.down('#descriptionView');
         descView.store.loadData(descData);
+    },
+
+    onButtonClick: function(button, e, eOpts) {
+        this.down('#testForm').getForm().submit({
+            method : 'POST',
+            waitTitle : 'Connecting',
+            waitMsg : 'Sending data...',
+
+            // Functions that fire (success or failure) when the server responds.
+            // The one that executes is determined by the
+            // response that comes from login.asp as seen below. The server would
+            // actually respond with valid JSON,
+            // something like: response.write "{ success: true}" or
+            // response.write "{ success: false, errors: { reason: 'Login failed. Try again.' }}"
+            // depending on the logic contained within your server script.
+            // If a success occurs, the user is notified with an alert messagebox,
+            // and when they click "OK", they are redirected to whatever page
+            // you define as redirect.
+
+            success : function() {
+                if(isAdmin)
+                Ext.getCmp("adminPanel").show();
+                App.loginWin.hide();
+            },
+
+            // Failure function, see comment above re: success and failure.
+            // You can see here, if login fails, it throws a messagebox
+            // at the user telling him / her as much.
+
+            failure : function(form, action) {
+                if (action.failureType == 'server') {
+                    var msg = action.result.errors.user;
+                    Ext.Msg.alert('Login Failed!', msg);
+                } else {
+                    Ext.Msg.alert('Warning!', 'Authentication server is unreachable : ' + action.response.responseText);
+                }
+                App.login.getForm().reset();
+            }
+        });
     },
 
     onBtnNextClick: function(button, e, eOpts) {
