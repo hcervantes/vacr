@@ -5,7 +5,7 @@ Ext.onReady(function() {
 	App.BTN_OK = 'ok';
 	App.BTN_YES = 'yes';
 	// 1 min. before notifying the user her session will expire. Change this to a reasonable interval.
-	App.SESSION_ABOUT_TO_TIMEOUT_PROMT_INTERVAL_IN_MIN = 2;
+	App.SESSION_ABOUT_TO_TIMEOUT_PROMT_INTERVAL_IN_MIN = .25;
 	// 1 min. to kill the session after the user is notified.
 	App.GRACE_PERIOD_BEFORE_EXPIRING_SESSION_IN_MIN = 1;
 	// The page that kills the server-side session variables.
@@ -73,8 +73,10 @@ Ext.onReady(function() {
 					// and when they click "OK", they are redirected to whatever page
 					// you define as redirect.
 
-					success : function() {
-						if(isAdmin)
+					success : function(form, result) {
+						var response = Ext.decode(result.response.responseText);
+						userAccount = response.msg.userAccount;
+						if(userAccount.isAdmin)
 							Ext.getCmp("adminPanel").show();
 						App.loginWin.hide();
 					},
@@ -130,10 +132,37 @@ Ext.onReady(function() {
 	}
 	// Get whether user is logged in or not
 	App.checkUserLoggedIn = function() {
+		App.login.getForm().submit({
+					method : 'POST',
+					waitTitle : 'Connecting',
+					waitMsg : 'Sending data...',
+					params : {
+						'chkUserAccess' : '1'
+					},
+					
+					success : function(form, result) {
+						var response = Ext.decode(result.response.responseText);
+						userAccount = response.userAccount;
+						if(userAccount.isAdmin)
+							Ext.getCmp("adminPanel").show();
+						App.loginWin.hide();
+					},
+					
+					failure : function(form, action) {
+						if (action.failureType == 'server') {
+							var msg = action.result.errors.user;
+							Ext.Msg.alert('Login Failed!', msg);
+						} else {
+							Ext.Msg.alert('Warning!', 'Authentication server is unreachable');
+						}
+						App.login.getForm().reset();
+					}
+				});
+				
 		Ext.Ajax.request({
 			url : App.SESSION_PROCESS_URL,
 			params : {
-				'userAccess' : '1'
+				'chkUserAccess' : '1'
 			},
 			method : 'POST',
 			success : function(response) {
@@ -141,6 +170,10 @@ Ext.onReady(function() {
 				if (!obj.userAccount.isLoggedIn) {
 					App.loginWin.show();
 
+				}
+				else
+				{
+					Ext.getCmp("adminPanel").hide();
 				}
 			},
 			failure : function(response) {
@@ -192,14 +225,10 @@ Ext.onReady(function() {
 			App.sessionAboutToTimeoutPromptTask.delay(App.toMilliseconds(App.SESSION_ABOUT_TO_TIMEOUT_PROMT_INTERVAL_IN_MIN));
 			App.killSessionTask.cancel();
 		} else {
-			// Notify user her session timed out.
-			Ext.Msg.alert('Session Expired', 'Your session expired. Please login to start a new session.', function(btn, text) {
-
-				if (btn == App.BTN_OK) {
-					App.loginWin.show();
-					// TODO: Show logon form here.
-				}
-			});
+			//  session timed out.
+			Ext.getCmp("adminPanel").hide();
+			App.loginWin.show();
+		
 		}
 	});
 

@@ -20,11 +20,13 @@ class Process {
 		global $session;
 		/* Check if user is logged in */
 		/* User submitted login form */
-		if (isset($_POST['userAccess'])) {
+		
+		if (isset($_POST['chkUserAccess'])) {
+
 			$this->procAccess();
 		}
 		/* User submitted login form */
-		if (isset($_POST['sublogin'])) {
+		else if (isset($_POST['sublogin'])) {
 			$this->procLogin();
 		}
 		/* User submitted registration form */
@@ -83,7 +85,8 @@ class Process {
 				'isMaster' => $session->isMaster(), 
 				'isAdmin' => $session->isAdmin(),
 				'userName' => $_SESSION['username'], 
-				'session' => $_SESSION
+				'session' => $_SESSION,
+				'sessionID' => session_id()
 			);
 			echo json_encode(array('success' => true, 'userAccount' => $loggedIn));
 	 }
@@ -99,8 +102,15 @@ class Process {
 
 		/* Login successful */
 		if ($retval) {
-			//session_write_close();
-			echo json_encode(array('success' => true, 'session' => $_SESSION));
+			$loggedIn = array('isLoggedIn' => $session->logged_in, 
+				'isMember' => $session->isMember(), 
+				'isAgent' => $session->isAgent(), 
+				'isMaster' => $session->isMaster(), 
+				'isAdmin' => $session->isAdmin(),
+				'userName' => $_SESSION['username'], 
+				'session' => $_SESSION
+			);
+			echo json_encode(array('success' => true, 'msg' => array('userAccount' => $loggedIn)));
 			// header("Location: ".$session->referrer);
 		}
 		/* Login failed */
@@ -120,7 +130,7 @@ class Process {
 	function procLogout() {
 		global $session;
 		$retval = $session->logout();
-		header("Location: ../index.php");
+		//header("Location: ../index.php");
 	}
 
 	/**

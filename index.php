@@ -16,39 +16,24 @@ include ("auth/include/classes/session.php");
 		<script src="session.js"></script>
 		<script type="text/javascript" src="app.js"></script>
 		<script type="text/javascript"><?php
-		// Check if logged in already
-		echo 'var loggedIn, isMember, isAgent, isMater, isAdmin;';
 		
-		if (($session -> logged_in) && ($session -> isMember())) {
-			
-			echo 'isMember = true;';
-			echo 'loggedIn = true;';
-		
-		} elseif (($session -> logged_in) && ($session -> isAgent())) {
-			echo 'isAgent = true;';
-			echo 'loggedIn = true;';
-		} elseif (($session -> logged_in) && ($session -> isMaster())) {
-			echo 'isMaster = true;';
-			echo 'loggedIn = true;';
-		} elseif (($session -> logged_in) && ($session -> isAdmin())) {
-			echo 'isAdmin = true;';
-			echo 'loggedIn = true;';
-			// Make admin tab visible
-			echo 'Ext.onReady(function() {';
-			
-			echo '});';
-		} else {
-			
-			
-			echo 'loggedIn=false;';
-			echo 'isMember=false;';
-			echo 'isAgent=false;';
-			echo 'isMater=false;';
-			echo 'isAdmin=false;';
-			echo 'Ext.onReady(function() {';
-				echo 'App.loginWin.show();';
-			echo '});';
-		}
+		// On read
+		echo 'Ext.onReady(function() {';
+		// Get User Account 
+		echo 'var userAccount';
+		$loggedIn = array('isLoggedIn' => $session->logged_in,
+		'isMember' => $session->isMember(),
+		'isAgent' => $session->isAgent(),
+		'isMaster' => $session->isMaster(),
+		'isAdmin' => $session->isAdmin(),
+		'userName' => $_SESSION['username'],
+		'session' => $_SESSION,
+		'sessionID' => session_id()
+		);
+		echo 'userAccount = ' . json_encode(array('userAccount' => $loggedIn)) . ';';
+		echo 'App.checkUserLoggedIn();';
+		// Close out the onReady
+		echo '});';
 ?></script>
 
 	</head>
