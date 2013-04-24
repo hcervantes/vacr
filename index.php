@@ -31,7 +31,13 @@ include ("auth/include/classes/session.php");
 		'sessionID' => session_id()
 		);
 		echo 'userAccount = ' . json_encode(array('userAccount' => $loggedIn)) . ';';
-		echo 'App.checkUserLoggedIn();';
+		if(!$session->logged_in){
+			
+			App.loginWin.show();
+		} elseif ($session->isAdmin()) {
+			Ext.getCmp("adminPanel").show();
+		}
+		//echo 'App.checkUserLoggedIn();';
 		// Close out the onReady
 		echo '});';
 ?></script>

@@ -5,7 +5,7 @@ Ext.onReady(function() {
 	App.BTN_OK = 'ok';
 	App.BTN_YES = 'yes';
 	// 1 min. before notifying the user her session will expire. Change this to a reasonable interval.
-	App.SESSION_ABOUT_TO_TIMEOUT_PROMT_INTERVAL_IN_MIN = .25;
+	App.SESSION_ABOUT_TO_TIMEOUT_PROMT_INTERVAL_IN_MIN = 2;
 	// 1 min. to kill the session after the user is notified.
 	App.GRACE_PERIOD_BEFORE_EXPIRING_SESSION_IN_MIN = 1;
 	// The page that kills the server-side session variables.
