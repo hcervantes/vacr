@@ -1,5 +1,5 @@
 Ext.onReady(function() {
-
+	
 	Ext.ns('App');
 
 	App.BTN_OK = 'ok';
@@ -76,6 +76,7 @@ Ext.onReady(function() {
 					success : function(form, result) {
 						var response = Ext.decode(result.response.responseText);
 						userAccount = response.msg.userAccount;
+						Ext.getCmp("welcomeLabel").setText("Welcome <a href='#'>" + userAccount.userName + "</a>", false);
 						if(userAccount.isAdmin)
 							Ext.getCmp("adminPanel").show();
 						App.loginWin.hide();
@@ -130,57 +131,22 @@ Ext.onReady(function() {
 			failure : Ext.emptyFn
 		});
 	}
-	// Get whether user is logged in or not
+	// Get whether user is logged in or not	
 	App.checkUserLoggedIn = function() {
-		App.login.getForm().submit({
-					method : 'POST',
-					waitTitle : 'Connecting',
-					waitMsg : 'Sending data...',
-					params : {
-						'chkUserAccess' : '1'
-					},
-					
-					success : function(form, result) {
-						var response = Ext.decode(result.response.responseText);
-						userAccount = response.userAccount;
-						if(userAccount.isAdmin)
-							Ext.getCmp("adminPanel").show();
-						App.loginWin.hide();
-					},
-					
-					failure : function(form, action) {
-						if (action.failureType == 'server') {
-							var msg = action.result.errors.user;
-							Ext.Msg.alert('Login Failed!', msg);
-						} else {
-							Ext.Msg.alert('Warning!', 'Authentication server is unreachable');
-						}
-						App.login.getForm().reset();
-					}
-				});
-				
-		Ext.Ajax.request({
-			url : App.SESSION_PROCESS_URL,
-			params : {
-				'chkUserAccess' : '1'
-			},
-			method : 'POST',
-			success : function(response) {
-				var obj = Ext.decode(response.responseText);
-				if (!obj.userAccount.isLoggedIn) {
-					App.loginWin.show();
+		if (!userAccount.isLoggedIn) {
+			App.loginWin.show();
 
-				}
-				else
-				{
-					Ext.getCmp("adminPanel").hide();
-				}
-			},
-			failure : function(response) {
-				return false;
+		} else {
+			Ext.getCmp("welcomeLabel").setText("Welcome <a href='#'>" + userAccount.userName + "</a>", false);
+			
+			if (userAccount.isAdmin) {
+				Ext.getCmp("adminPanel").show();
+			} else {
+				Ext.getCmp("adminPanel").hide();
 			}
-		});
+		}
 	}
+
 	// Notifies user that her session is about to time out.
 	App.sessionAboutToTimeoutPromptTask = new Ext.util.DelayedTask(function() {
 		// If login window is showing, exit

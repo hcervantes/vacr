@@ -17,10 +17,10 @@ include ("auth/include/classes/session.php");
 		<script type="text/javascript" src="app.js"></script>
 		<script type="text/javascript"><?php
 		
-		// On read
-		echo 'Ext.onReady(function() {';
+		echo 'var userAccount;
+		';
 		// Get User Account 
-		echo 'var userAccount';
+		
 		$loggedIn = array('isLoggedIn' => $session->logged_in,
 		'isMember' => $session->isMember(),
 		'isAgent' => $session->isAgent(),
@@ -30,16 +30,30 @@ include ("auth/include/classes/session.php");
 		'session' => $_SESSION,
 		'sessionID' => session_id()
 		);
-		echo 'userAccount = ' . json_encode(array('userAccount' => $loggedIn)) . ';';
-		if(!$session->logged_in){
-			
-			App.loginWin.show();
-		} elseif ($session->isAdmin()) {
-			Ext.getCmp("adminPanel").show();
+		echo 'userAccount = ' . json_encode($loggedIn) . '
+		;';
+		// On read
+		echo 'Ext.onReady(function() {
+			 ';
+		
+		/*
+		if(!$session->logged_in){			
+			echo 'App.loginWin.show();';
+		} else{}
+		if ($session->isAdmin()) {
+			echo 'Ext.getCmp("adminPanel").show();
+			';
+		
+			//echo 'Ext.getCmp("headerContainer").setHTML("Welcome ' . $_SESSION['username'] . '!")';
+			echo 'alert("Welcome ' . $_SESSION['username'] . '!");
+			';
 		}
+		 *
+		 */
 		//echo 'App.checkUserLoggedIn();';
 		// Close out the onReady
-		echo '});';
+		echo '});
+		';
 ?></script>
 
 	</head>

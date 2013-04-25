@@ -14,6 +14,6 @@
  */
 
 Ext.define('VACR.view.Viewport', {
-    extend: 'VACR.view.VACR',
+    extend: 'VACR.view.MyContainer',
     renderTo: Ext.getBody()
 });
