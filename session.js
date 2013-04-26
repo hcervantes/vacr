@@ -49,6 +49,14 @@ Ext.onReady(function() {
 			fieldLabel : 'Label',
 			name : 'sublogin',
 			value : 1
+		},{
+			xtype : 'label',
+			html : '<br><font size="2">[<a href="auth/forgotpass.php">Forgot Password?</a>]',
+			
+		},{
+			xtype : 'label',
+			html : '<br><font size="2">[<a href="auth/register.php">Register</a>]',
+			
 		}],
 
 		// All the magic happens after the user clicks the button
@@ -76,10 +84,16 @@ Ext.onReady(function() {
 					success : function(form, result) {
 						var response = Ext.decode(result.response.responseText);
 						userAccount = response.msg.userAccount;
+						// check if successful login
+						if (userAccount.isLoggedIn) {
+							document.location = 'index.php';
+						}
+						/*
 						Ext.getCmp("welcomeLabel").setText("Welcome <a href='#'>" + userAccount.userName + "</a>", false);
 						if(userAccount.isAdmin)
 							Ext.getCmp("adminPanel").show();
 						App.loginWin.hide();
+						*/
 					},
 
 					// Failure function, see comment above re: success and failure.

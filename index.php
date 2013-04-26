@@ -19,8 +19,10 @@ include ("auth/include/classes/session.php");
 		
 		echo 'var userAccount;
 		';
-		// Get User Account 
 		
+		// Remember check
+		$remem = $form->value("remember") != "" ? true: false;
+		// Get User Account 
 		$loggedIn = array('isLoggedIn' => $session->logged_in,
 		'isMember' => $session->isMember(),
 		'isAgent' => $session->isAgent(),
@@ -28,20 +30,20 @@ include ("auth/include/classes/session.php");
 		'isAdmin' => $session->isAdmin(),
 		'userName' => $_SESSION['username'],
 		'session' => $_SESSION,
-		'sessionID' => session_id()
+		'sessionID' => session_id(),
+		'remember' => $remem
 		);
 		echo 'userAccount = ' . json_encode($loggedIn) . '
 		;';
 		// On read
-		echo 'Ext.onReady(function() {
-			 ';
+		echo 'Ext.onReady(function() {';
 		
 		/*
 		if(!$session->logged_in){			
 			echo 'App.loginWin.show();';
 		} else{}
 		if ($session->isAdmin()) {
-			echo 'Ext.getCmp("adminPanel").show();
+			echo 'Ext.getCmp("adminPanel").show();'
 			';
 		
 			//echo 'Ext.getCmp("headerContainer").setHTML("Welcome ' . $_SESSION['username'] . '!")';

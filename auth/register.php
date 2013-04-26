@@ -30,14 +30,16 @@ if($session->logged_in){
  * results have been processed.
  */
 else if(isset($_SESSION['regsuccess'])){
+	
    /* Registration was successful */
    if($_SESSION['regsuccess']){
       echo "<h1>Registered!</h1>";
       echo "<p>Thank you <b>".$_SESSION['reguname']."</b>, your information has been added to the database, "
-          ."you may now <a href=\"main.php\">log in</a>.</p>";
+          ."you may now <a href=\"../index.php\">log in</a>.</p>";
    }
    /* Registration failed */
    else{
+   	  echo 'isset? ' . strval(isset($_SESSION['regsuccess']));
       echo "<h1>Registration Failed</h1>";
       echo "<p>We're sorry, but an error has occurred and your registration for the username <b>".$_SESSION['reguname']."</b>, "
           ."could not be completed.<br>Please try again at a later time.</p>";
@@ -54,7 +56,7 @@ else if(isset($_SESSION['regsuccess'])){
 else{
 ?>
 
-<h1>Register to Sprintville</h1>
+<h1>Register for VACR</h1>
 <?php
 if($form->num_errors > 0){
    echo "<td><font size=\"2\" color=\"#ff0000\">".$form->num_errors." error(s) found</font></td>";

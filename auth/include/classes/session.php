@@ -89,9 +89,13 @@ class Session
    function checkLogin(){
       global $database;  //The database connection
       /* Check if user has been remembered */
+      //print_r($_COOKIE);
       if(isset($_COOKIE['cookname']) && isset($_COOKIE['cookid'])){
          $this->username = $_SESSION['username'] = $_COOKIE['cookname'];
          $this->userid   = $_SESSION['userid']   = $_COOKIE['cookid'];
+		 // Set cookie again
+		 setcookie("cookname", $this->username, time()+COOKIE_EXPIRE, COOKIE_PATH);
+         setcookie("cookid",   $this->userid,   time()+COOKIE_EXPIRE, COOKIE_PATH);
       }
 
       /* Username and userid have been set and not guest */
@@ -174,7 +178,7 @@ class Session
       $this->username  = $_SESSION['username'] = $this->userinfo['username'];
       $this->userid    = $_SESSION['userid']   = $this->generateRandID();
       $this->userlevel = $this->userinfo['userlevel'];
-      
+      $this->logged_in = true;
       /* Insert userid into database and update active users table */
       $database->updateUserField($this->username, "userid", $this->userid);
       $database->addActiveUser($this->username, $this->time);
@@ -258,7 +262,7 @@ class Session
             $form->setError($field, "* Username above 30 characters");
          }
          /* Check if username is not alphanumeric */
-         else if(!eregi("^([0-9a-z_])+$", $subuser)){
+         else if(!ctype_alnum($subuser)){
             $form->setError($field, "* Username not alphanumeric");
          }
          /* Check if username is reserved */
@@ -287,7 +291,7 @@ class Session
             $form->setError($field, "* Password too short");
          }
          /* Check if password is not alphanumeric */
-         else if(!eregi("^([0-9a-z])+$", ($subpass = trim($subpass)))){
+         else if(!ctype_alnum($subpass = trim($subpass))){
             $form->setError($field, "* Password not alphanumeric");
          }
          /**
@@ -308,7 +312,7 @@ class Session
          $regex = "^[_+a-z0-9-]+(\.[_+a-z0-9-]+)*"
                  ."@[a-z0-9-]+(\.[a-z0-9-]{1,})*"
                  ."\.([a-z]{2,}){1}$";
-         if(!eregi($regex,$subemail)){
+         if(!filter_var($subemail, FILTER_VALIDATE_EMAIL)){
             $form->setError($field, "* Email invalid");
          }
          $subemail = stripslashes($subemail);
@@ -316,6 +320,7 @@ class Session
 
       /* Errors exist, have user correct them */
       if($form->num_errors > 0){
+      	echo 'errors exists';
          return 1;  //Errors with form
       }
       /* No errors, add the new account to the */
@@ -326,6 +331,7 @@ class Session
             }
             return 0;  //New user added succesfully
          }else{
+         	echo 'bad stuff';
             return 2;  //Registration attempt failed
          }
       }
@@ -350,7 +356,7 @@ class Session
             $form->setError($field, "* Username above 30 characters");
          }
          /* Check if username is not alphanumeric */
-         else if(!eregi("^([0-9a-z])+$", $subuser)){
+         else if(!ctype_alnum($subuser)){
             $form->setError($field, "* Username not alphanumeric");
          }
          /* Check if username is reserved */
@@ -379,7 +385,7 @@ class Session
             $form->setError($field, "* Password too short");
          }
          /* Check if password is not alphanumeric */
-         else if(!eregi("^([0-9a-z])+$", ($subpass = trim($subpass)))){
+         else if(!ctype_alnum($subpass = trim($subpass))){
             $form->setError($field, "* Password not alphanumeric");
          }
          /**
@@ -400,7 +406,7 @@ class Session
          $regex = "^[_+a-z0-9-]+(\.[_+a-z0-9-]+)*"
                  ."@[a-z0-9-]+(\.[a-z0-9-]{1,})*"
                  ."\.([a-z]{2,}){1}$";
-         if(!eregi($regex,$subemail)){
+         if(!filter_var($subemail, FILTER_VALIDATE_EMAIL)){
             $form->setError($field, "* Email invalid");
          }
          $subemail = stripslashes($subemail);
@@ -445,7 +451,7 @@ class Session
             $form->setError($field, "* Username above 30 characters");
          }
          /* Check if username is not alphanumeric */
-         else if(!eregi("^([0-9a-z])+$", $subuser)){
+         else if(!ctype_alnum( $subuser)){
             $form->setError($field, "* Username not alphanumeric");
          }
          /* Check if username is reserved */
@@ -474,7 +480,7 @@ class Session
             $form->setError($field, "* Password too short");
          }
          /* Check if password is not alphanumeric */
-         else if(!eregi("^([0-9a-z])+$", ($subpass = trim($subpass)))){
+         else if(!ctype_alnum($subpass = trim($subpass))){
             $form->setError($field, "* Password not alphanumeric");
          }
          /**
@@ -495,8 +501,8 @@ class Session
          $regex = "^[_+a-z0-9-]+(\.[_+a-z0-9-]+)*"
                  ."@[a-z0-9-]+(\.[a-z0-9-]{1,})*"
                  ."\.([a-z]{2,}){1}$";
-         if(!eregi($regex,$subemail)){
-            $form->setError($field, "* Email invalid");
+         if(!filter_var($subemail, FILTER_VALIDATE_EMAIL)){
+            $form->setError($field, "* Email invalid: " . $subemail);
          }
          $subemail = stripslashes($subemail);
       }
@@ -540,7 +546,7 @@ class Session
             $form->setError($field, "* Username above 30 characters");
          }
          /* Check if username is not alphanumeric */
-         else if(!eregi("^([0-9a-z])+$", $subuser)){
+         else if(!ctype_alnum( $subuser)){
             $form->setError($field, "* Username not alphanumeric");
          }
          /* Check if username is reserved */
@@ -569,7 +575,7 @@ class Session
             $form->setError($field, "* Password too short");
          }
          /* Check if password is not alphanumeric */
-         else if(!eregi("^([0-9a-z])+$", ($subpass = trim($subpass)))){
+         else if(!ctype_alnum($subpass = trim($subpass))){
             $form->setError($field, "* Password not alphanumeric");
          }
          /**
@@ -590,7 +596,7 @@ class Session
          $regex = "^[_+a-z0-9-]+(\.[_+a-z0-9-]+)*"
                  ."@[a-z0-9-]+(\.[a-z0-9-]{1,})*"
                  ."\.([a-z]{2,}){1}$";
-         if(!eregi($regex,$subemail)){
+        if(!filter_var($subemail, FILTER_VALIDATE_EMAIL)){
             $form->setError($field, "* Email invalid");
          }
          $subemail = stripslashes($subemail);
@@ -634,7 +640,7 @@ class Session
             /* Check if password too short or is not alphanumeric */
             $subcurpass = stripslashes($subcurpass);
             if(strlen($subcurpass) < 4 ||
-               !eregi("^([0-9a-z])+$", ($subcurpass = trim($subcurpass)))){
+               !ctype_alnum($subcurpass = trim($subcurpass))){
                $form->setError($field, "* Current Password incorrect");
             }
             /* Password entered is incorrect */
@@ -651,7 +657,7 @@ class Session
             $form->setError($field, "* New Password too short");
          }
          /* Check if password is not alphanumeric */
-         else if(!eregi("^([0-9a-z])+$", ($subnewpass = trim($subnewpass)))){
+         else if(!ctype_alnum($subnewpass = trim($subnewpass))){
             $form->setError($field, "* New Password not alphanumeric");
          }
       }
@@ -669,7 +675,7 @@ class Session
          $regex = "^[_+a-z0-9-]+(\.[_+a-z0-9-]+)*"
                  ."@[a-z0-9-]+(\.[a-z0-9-]{1,})*"
                  ."\.([a-z]{2,}){1}$";
-         if(!eregi($regex,$subemail)){
+         if(!filter_var($subemail, FILTER_VALIDATE_EMAIL)){
             $form->setError($field, "* Email invalid");
          }
          $subemail = stripslashes($subemail);
@@ -746,7 +752,7 @@ class Session
    }
 };
 
-
+date_default_timezone_set('UTC');
 /**
  * Initialize session object - This must be initialized before
  * the form object because the form uses session variables,

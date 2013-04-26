@@ -288,7 +288,13 @@ Ext.define('VACR.view.MyContainer', {
                         }
                     }
                 }
-            ]
+            ],
+            listeners: {
+                afterlayout: {
+                    fn: me.onContainerAfterLayout,
+                    scope: me
+                }
+            }
         });
 
         me.callParent(arguments);
@@ -421,9 +427,13 @@ Ext.define('VACR.view.MyContainer', {
     },
 
     onPanelAfterRender: function(component, eOpts) {
+
+
+    },
+
+    onContainerAfterLayout: function(container, layout, eOpts) {
         // check if logged in.
         App.checkUserLoggedIn();
-
     }
 
 });

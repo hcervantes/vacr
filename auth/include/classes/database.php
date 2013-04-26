@@ -151,7 +151,9 @@ class MySQLDB
       }else{
          $ulevel = MASTER_LEVEL;
       }
-      $q = "INSERT INTO ".TBL_USERS." VALUES ('$username', '$password', '0', $ulevel, '$email', $time)";
+	  
+      $q = "INSERT INTO ".TBL_USERS." VALUES ('$username', '$password', '0', $ulevel, '$email', $time, '')";
+	  echo $q;
       return mysql_query($q, $this->connection);
    }
    
