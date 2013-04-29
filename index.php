@@ -35,24 +35,10 @@ include ("auth/include/classes/session.php");
 		);
 		echo 'userAccount = ' . json_encode($loggedIn) . '
 		;';
-		// On read
+		// onReady
 		echo 'Ext.onReady(function() {';
 		
-		/*
-		if(!$session->logged_in){			
-			echo 'App.loginWin.show();';
-		} else{}
-		if ($session->isAdmin()) {
-			echo 'Ext.getCmp("adminPanel").show();'
-			';
 		
-			//echo 'Ext.getCmp("headerContainer").setHTML("Welcome ' . $_SESSION['username'] . '!")';
-			echo 'alert("Welcome ' . $_SESSION['username'] . '!");
-			';
-		}
-		 *
-		 */
-		//echo 'App.checkUserLoggedIn();';
 		// Close out the onReady
 		echo '});
 		';

@@ -17,7 +17,8 @@ Ext.define('VACR.view.MyContainer', {
     extend: 'Ext.container.Container',
 
     requires: [
-        'VACR.view.MyForm3'
+        'VACR.view.adminPanel',
+        'VACR.view.Globals'
     ],
 
     height: 612,
@@ -177,26 +178,6 @@ Ext.define('VACR.view.MyContainer', {
                                                             ]
                                                         }
                                                     ]
-                                                },
-                                                {
-                                                    xtype: 'form',
-                                                    flex: 1,
-                                                    itemId: 'testForm',
-                                                    bodyPadding: 10,
-                                                    title: 'My Form',
-                                                    url: 'auth/process.php',
-                                                    items: [
-                                                        {
-                                                            xtype: 'button',
-                                                            text: 'MyButton',
-                                                            listeners: {
-                                                                click: {
-                                                                    fn: me.onButtonClick,
-                                                                    scope: me
-                                                                }
-                                                            }
-                                                        }
-                                                    ]
                                                 }
                                             ]
                                         }
@@ -214,9 +195,74 @@ Ext.define('VACR.view.MyContainer', {
                                     xtype: 'form',
                                     height: 500,
                                     autoScroll: true,
+                                    layout: {
+                                        type: 'hbox'
+                                    },
                                     bodyPadding: 10,
                                     title: '',
                                     items: [
+                                        {
+                                            xtype: 'container',
+                                            flex: 1,
+                                            width: 312,
+                                            layout: {
+                                                type: 'column'
+                                            },
+                                            items: [
+                                                {
+                                                    xtype: 'combobox',
+                                                    anchor: '100%',
+                                                    autoRender: true,
+                                                    itemId: 'cmbChoice',
+                                                    maxWidth: 300,
+                                                    fieldLabel: 'Select correct choice',
+                                                    labelWidth: 150,
+                                                    autoSelect: false,
+                                                    displayField: 'description',
+                                                    queryMode: 'local',
+                                                    store: 'choiceStore',
+                                                    valueField: 'choice',
+                                                    listeners: {
+                                                        select: {
+                                                            fn: me.onCmbChoiceSelect,
+                                                            scope: me
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    xtype: 'button',
+                                                    itemId: 'btnNext',
+                                                    text: 'Next',
+                                                    listeners: {
+                                                        click: {
+                                                            fn: me.onBtnNextClick,
+                                                            scope: me
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    xtype: 'button',
+                                                    itemId: 'btnPrev',
+                                                    text: 'Next',
+                                                    listeners: {
+                                                        click: {
+                                                            fn: me.onBtnPrevClick,
+                                                            scope: me
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    xtype: 'button',
+                                                    text: 'Check',
+                                                    listeners: {
+                                                        click: {
+                                                            fn: me.onButtonClick,
+                                                            scope: me
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
                                         {
                                             xtype: 'dataview',
                                             itemId: 'pictureQuizView',
@@ -224,46 +270,10 @@ Ext.define('VACR.view.MyContainer', {
                                             itemSelector: 'div.thumb-wrap',
                                             itemTpl: [
                                                 '<div style="margin-bottom: 10px;" class="thumb-wrap">',
-                                                '    <img src="images/{picture}" width="200" />',
-                                                '        </div>'
+                                                '    <img src="images/{PICTURE}" width="200" />',
+                                                '</div>'
                                             ],
                                             store: 'quizPictureStore'
-                                        },
-                                        {
-                                            xtype: 'combobox',
-                                            anchor: '100%',
-                                            autoRender: true,
-                                            itemId: 'cmbChoice',
-                                            maxWidth: 300,
-                                            fieldLabel: 'Select correct choice',
-                                            labelWidth: 150,
-                                            autoSelect: false,
-                                            displayField: 'description',
-                                            queryMode: 'local',
-                                            store: 'choiceStore',
-                                            valueField: 'choice'
-                                        },
-                                        {
-                                            xtype: 'button',
-                                            itemId: 'btnNext',
-                                            text: 'Next',
-                                            listeners: {
-                                                click: {
-                                                    fn: me.onBtnNextClick,
-                                                    scope: me
-                                                }
-                                            }
-                                        },
-                                        {
-                                            xtype: 'button',
-                                            itemId: 'btnPrev',
-                                            text: 'Next',
-                                            listeners: {
-                                                click: {
-                                                    fn: me.onBtnPrevClick,
-                                                    scope: me
-                                                }
-                                            }
                                         }
                                     ]
                                 }
@@ -276,7 +286,7 @@ Ext.define('VACR.view.MyContainer', {
                             }
                         },
                         {
-                            xtype: 'myform3',
+                            xtype: 'adminPanel',
                             hidden: true,
                             id: 'adminPanel'
                         }
@@ -320,46 +330,12 @@ Ext.define('VACR.view.MyContainer', {
         descView.store.loadData(descData);
     },
 
-    onButtonClick: function(button, e, eOpts) {
-        /*
-        this.down('#testForm').getForm().submit({
-        method : 'POST',
-        waitTitle : 'Connecting',
-        waitMsg : 'Sending data...',
+    onCmbChoiceSelect: function(combo, records, eOpts) {
+        var quizData = Ext.data.StoreManager.lookup('quizDataStore');
+        var record = quizData.getAt(VACR.view.Globals.currentRecord);
+        record.selectedchoice = records[0].data.choice;
+        // Do we need a store update? save?
 
-        // Functions that fire (success or failure) when the server responds.
-        // The one that executes is determined by the
-        // response that comes from login.asp as seen below. The server would
-        // actually respond with valid JSON,
-        // something like: response.write "{ success: true}" or
-        // response.write "{ success: false, errors: { reason: 'Login failed. Try again.' }}"
-        // depending on the logic contained within your server script.
-        // If a success occurs, the user is notified with an alert messagebox,
-        // and when they click "OK", they are redirected to whatever page
-        // you define as redirect.
-
-        success : function() {
-            if(userAccount.isAdmin)
-            Ext.getCmp("adminPanel").show();
-            App.loginWin.hide();
-        },
-
-        // Failure function, see comment above re: success and failure.
-        // You can see here, if login fails, it throws a messagebox
-        // at the user telling him / her as much.
-
-        failure : function(form, action) {
-            if (action.failureType == 'server') {
-                var msg = action.result.errors.user;
-                Ext.Msg.alert('Login Failed!', msg);
-            } else {
-                Ext.Msg.alert('Warning!', 'Authentication server is unreachable : ' + action.response.responseText);
-            }
-            App.login.getForm().reset();
-        }
-    });
-    */
-    App.checkUserLoggedIn();
     },
 
     onBtnNextClick: function(button, e, eOpts) {
@@ -397,19 +373,33 @@ Ext.define('VACR.view.MyContainer', {
         VACR.view.Globals.doUpdate(this);
     },
 
+    onButtonClick: function(button, e, eOpts) {
+        // check the selected quiz data
+        var quizData = Ext.data.StoreManager.lookup('quizDataStore');
+        quizData.each(function(item, index, count) { 
+            // Compare selected value with correct value
+            VACR.view.Globals.quizResults = [];
+            if(item.id !== item.selectedchoice){ // incorrect
+                VACR.view.Globals.quizResults.push(item);
+            }
+
+        });
+        alert('you missed' + VACR.view.Globals.quizResults.length);
+    },
+
     onPracticePanelExpand: function(p, eOpts) {
         // Build data collection
-        var theData = this.down('#vacrGrid').store;
+        var theData = Ext.data.StoreManager.lookup('listVacrStore');
         var quizData = Ext.data.StoreManager.lookup('quizDataStore');
         theData.each(function(item, index, count) { 
-            var recID = item.data.id;
-            var recDesc = item.data.modelno + " - " + item.data.name;
+            var recID = item.data.ID;
+            var recDesc = item.data.MODELNO + " - " + item.data.NAME;
             quizData.add({id: recID, selectedchoice: -1, choices: 
-                [{choice:0, description: recDesc},
+                [{choice:recID, description: recDesc},
                 {choice:2, description: "C130"},
                 {choice:1, description: "C131"},
                 {choice:3, description: "C132"}],
-                pictures: item.data.pictures
+                pictures: item.data.PICTURES
             });
         });
         VACR.view.Globals.currentRecord = 0;
@@ -424,6 +414,12 @@ Ext.define('VACR.view.MyContainer', {
         var choiceData = record.get('choices');
         choiceStore.loadData(choiceData);
 
+        // If previously selected a value, set that value in the cbbox
+        var cmbChoice = this.down('#cmbChoice');
+        if(record.selectedchoice > 0)
+        {
+            cmbChoice.setValue(record.selectedchoice);
+        }
     },
 
     onPanelAfterRender: function(component, eOpts) {

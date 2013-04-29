@@ -21,7 +21,7 @@
             "listVacrStore"
         ],
         "views": [
-            "MyForm3",
+            "adminPanel",
             "MyContainer"
         ],
         "autoCreateViewport": true,

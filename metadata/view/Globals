@@ -43,10 +43,19 @@
                     "var picData = record.get('pictures');",
                     "pictureQuizView.store.loadData(picData);",
                     "",
-                    "// Load the choiceStore with data",
+                    "// First, clear the combobox",
+                    "var cmbChoice = appBase.down('#cmbChoice');",
+                    "cmbChoice.clearValue();",
+                    "",
+                    "// Load the choiceStore with data to updatet the combobox",
                     "var choiceStore = Ext.data.StoreManager.lookup('choiceStore');",
                     "var choiceData = record.get('choices');",
-                    "choiceStore.loadData(choiceData);"
+                    "choiceStore.loadData(choiceData);",
+                    "// If previously selected a value, set that value in the cbbox",
+                    "if(record.selectedchoice > 0)",
+                    "{",
+                    "    cmbChoice.setValue(record.selectedchoice);",
+                    "}"
                 ]
             },
             "designerId": "e195529a-c14f-48b9-864d-1b1db033fcea"

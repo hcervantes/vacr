@@ -21,7 +21,7 @@ Ext.Loader.setConfig({
 Ext.application({
 
     requires: [
-        'VACR.view.MyForm3',
+        'VACR.view.adminPanel',
         'VACR.view.MyContainer'
     ],
     models: [
@@ -39,7 +39,7 @@ Ext.application({
         'listVacrStore'
     ],
     views: [
-        'MyForm3',
+        'adminPanel',
         'MyContainer'
     ],
     autoCreateViewport: true,

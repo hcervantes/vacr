@@ -28,10 +28,19 @@ Ext.define('VACR.view.Globals', {
         var picData = record.get('pictures');
         pictureQuizView.store.loadData(picData);
 
-        // Load the choiceStore with data
+        // First, clear the combobox
+        var cmbChoice = appBase.down('#cmbChoice');
+        cmbChoice.clearValue();
+
+        // Load the choiceStore with data to updatet the combobox
         var choiceStore = Ext.data.StoreManager.lookup('choiceStore');
         var choiceData = record.get('choices');
         choiceStore.loadData(choiceData);
+        // If previously selected a value, set that value in the cbbox
+        if(record.selectedchoice > 0)
+        {
+            cmbChoice.setValue(record.selectedchoice);
+        }
     }
 
 });

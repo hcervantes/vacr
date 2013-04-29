@@ -130,7 +130,7 @@ class Process {
 	function procLogout() {
 		global $session;
 		$retval = $session->logout();
-		//header("Location: ../index.php");
+		header("Location: ../index.php");
 	}
 
 	/**

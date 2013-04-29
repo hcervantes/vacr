@@ -10,6 +10,9 @@
         "height": 612,
         "width": 800,
         "designer|userClassName": "MyContainer",
+        "requires": [
+            "VACR.view.Globals"
+        ],
         "designer|initialView": true,
         "layout": "vbox"
     },
@@ -27,7 +30,6 @@
                 "layout|margins": "5",
                 "frame": true,
                 "height": 65,
-                "html": null,
                 "id": "headerPanel",
                 "itemId": "headerPanel",
                 "designer|userClassName": "MyPanel11",
@@ -397,96 +399,6 @@
                                                     ]
                                                 }
                                             ]
-                                        },
-                                        {
-                                            "type": "Ext.form.Panel",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "layout|flex": 1,
-                                                "itemId": "testForm",
-                                                "designer|userClassName": "MyForm5",
-                                                "bodyPadding": 10,
-                                                "title": "My Form",
-                                                "url": "auth/process.php"
-                                            },
-                                            "designerId": "fd7e4c4a-80d2-45be-939b-d6600b34fe39",
-                                            "cn": [
-                                                {
-                                                    "type": "Ext.button.Button",
-                                                    "reference": {
-                                                        "name": "items",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "designer|userClassName": "MyButton4",
-                                                        "text": "MyButton"
-                                                    },
-                                                    "designerId": "5dbf2c9b-ea2a-48f5-9ee9-44ebe6f935e4",
-                                                    "cn": [
-                                                        {
-                                                            "type": "basiceventbinding",
-                                                            "reference": {
-                                                                "name": "listeners",
-                                                                "type": "array"
-                                                            },
-                                                            "codeClass": null,
-                                                            "userConfig": {
-                                                                "designer|userClassName": "onButtonClick",
-                                                                "fn": "onButtonClick",
-                                                                "implHandler": [
-                                                                    "/*",
-                                                                    "this.down('#testForm').getForm().submit({",
-                                                                    "    method : 'POST',",
-                                                                    "    waitTitle : 'Connecting',",
-                                                                    "    waitMsg : 'Sending data...',",
-                                                                    "",
-                                                                    "    // Functions that fire (success or failure) when the server responds.",
-                                                                    "    // The one that executes is determined by the",
-                                                                    "    // response that comes from login.asp as seen below. The server would",
-                                                                    "    // actually respond with valid JSON,",
-                                                                    "    // something like: response.write \"{ success: true}\" or",
-                                                                    "    // response.write \"{ success: false, errors: { reason: 'Login failed. Try again.' }}\"",
-                                                                    "    // depending on the logic contained within your server script.",
-                                                                    "    // If a success occurs, the user is notified with an alert messagebox,",
-                                                                    "    // and when they click \"OK\", they are redirected to whatever page",
-                                                                    "    // you define as redirect.",
-                                                                    "",
-                                                                    "    success : function() {",
-                                                                    "        if(userAccount.isAdmin)",
-                                                                    "\t\t\tExt.getCmp(\"adminPanel\").show();",
-                                                                    "        App.loginWin.hide();",
-                                                                    "    },",
-                                                                    "",
-                                                                    "    // Failure function, see comment above re: success and failure.",
-                                                                    "    // You can see here, if login fails, it throws a messagebox",
-                                                                    "    // at the user telling him / her as much.",
-                                                                    "",
-                                                                    "    failure : function(form, action) {",
-                                                                    "        if (action.failureType == 'server') {",
-                                                                    "            var msg = action.result.errors.user;",
-                                                                    "            Ext.Msg.alert('Login Failed!', msg);",
-                                                                    "        } else {",
-                                                                    "            Ext.Msg.alert('Warning!', 'Authentication server is unreachable : ' + action.response.responseText);",
-                                                                    "        }",
-                                                                    "        App.login.getForm().reset();",
-                                                                    "    }",
-                                                                    "});",
-                                                                    "*/",
-                                                                    "App.checkUserLoggedIn();"
-                                                                ],
-                                                                "name": "click",
-                                                                "scope": "me"
-                                                            },
-                                                            "designerId": "1b774f44-9d75-479a-a222-3c0a920c950e"
-                                                        }
-                                                    ]
-                                                }
-                                            ]
                                         }
                                     ]
                                 }
@@ -520,11 +432,214 @@
                                 "height": 500,
                                 "designer|userClassName": "MyForm1",
                                 "autoScroll": true,
+                                "layout": "hbox",
                                 "bodyPadding": 10,
                                 "title": ""
                             },
                             "designerId": "0336894b-689e-4109-976b-ca57519cb523",
                             "cn": [
+                                {
+                                    "type": "Ext.container.Container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|flex": 1,
+                                        "width": 312,
+                                        "designer|userClassName": "MyContainer1",
+                                        "layout": "column"
+                                    },
+                                    "designerId": "4547debe-4303-49ee-b6ec-db52a1fd687a",
+                                    "cn": [
+                                        {
+                                            "type": "Ext.form.field.ComboBox",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "layout|anchor": "100%",
+                                                "autoRender": true,
+                                                "itemId": "cmbChoice",
+                                                "maxWidth": 300,
+                                                "designer|userClassName": "MyComboBox",
+                                                "fieldLabel": "Select correct choice",
+                                                "labelWidth": 150,
+                                                "autoSelect": false,
+                                                "displayField": "description",
+                                                "queryMode": "local",
+                                                "store": "choiceStore",
+                                                "valueField": "choice"
+                                            },
+                                            "designerId": "5b888fd0-18ae-4afd-9803-bb3a31bbdd23",
+                                            "cn": [
+                                                {
+                                                    "type": "basiceventbinding",
+                                                    "reference": {
+                                                        "name": "listeners",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|userClassName": "onCmbChoiceSelect",
+                                                        "fn": "onCmbChoiceSelect",
+                                                        "implHandler": [
+                                                            "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
+                                                            "var record = quizData.getAt(VACR.view.Globals.currentRecord);",
+                                                            "record.selectedchoice = records[0].data.choice;",
+                                                            "// Do we need a store update? save?",
+                                                            "  "
+                                                        ],
+                                                        "name": "select",
+                                                        "scope": "me"
+                                                    },
+                                                    "designerId": "1f806f51-39f1-47cf-b328-5994c026534e"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Ext.button.Button",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "itemId": "btnNext",
+                                                "designer|userClassName": "MyButton",
+                                                "text": "Next"
+                                            },
+                                            "designerId": "7da425f9-1e11-4736-a67c-014a9ee2cb1e",
+                                            "cn": [
+                                                {
+                                                    "type": "basiceventbinding",
+                                                    "reference": {
+                                                        "name": "listeners",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|userClassName": "onBtnNextClick",
+                                                        "fn": "onBtnNextClick",
+                                                        "implHandler": [
+                                                            "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
+                                                            "//Check if at end",
+                                                            "if(VACR.view.Globals.currentRecord >= quizData.getCount() - 1)",
+                                                            "{",
+                                                            "    //Reset current record",
+                                                            "    VACR.view.Globals.currentRecord = 0;    ",
+                                                            "}",
+                                                            "else",
+                                                            "{",
+                                                            "    //Increase current record",
+                                                            "    ++VACR.view.Globals.currentRecord;",
+                                                            "}",
+                                                            "",
+                                                            "VACR.view.Globals.doUpdate(this);",
+                                                            ""
+                                                        ],
+                                                        "name": "click",
+                                                        "scope": "me"
+                                                    },
+                                                    "designerId": "1b83178c-ac05-4505-995e-83d75a542aff"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Ext.button.Button",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "itemId": "btnPrev",
+                                                "designer|userClassName": "MyButton",
+                                                "text": "Next"
+                                            },
+                                            "designerId": "2bbb6c10-a2ae-4fe9-b39c-a436fb6b525f",
+                                            "cn": [
+                                                {
+                                                    "type": "basiceventbinding",
+                                                    "reference": {
+                                                        "name": "listeners",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|userClassName": "onBtnPrevClick",
+                                                        "fn": "onBtnPrevClick",
+                                                        "implHandler": [
+                                                            "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
+                                                            "//Check if at end",
+                                                            "if(VACR.view.Globals.currentRecord === 0)",
+                                                            "{",
+                                                            "    //Reset current record",
+                                                            "    VACR.view.Globals.currentRecord = quizData.getCount() - 1;    ",
+                                                            "}",
+                                                            "else",
+                                                            "{",
+                                                            "    //Increase current record",
+                                                            "    --VACR.view.Globals.currentRecord;",
+                                                            "}",
+                                                            "",
+                                                            "VACR.view.Globals.doUpdate(this);"
+                                                        ],
+                                                        "name": "click",
+                                                        "scope": "me"
+                                                    },
+                                                    "designerId": "f792d270-172e-45da-9320-8f8fd6d7592d"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Ext.button.Button",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|userClassName": "MyButton2",
+                                                "text": "Check"
+                                            },
+                                            "designerId": "5e575aae-6a12-4817-8472-04e8eb33423f",
+                                            "cn": [
+                                                {
+                                                    "type": "basiceventbinding",
+                                                    "reference": {
+                                                        "name": "listeners",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|userClassName": "onButtonClick",
+                                                        "fn": "onButtonClick",
+                                                        "implHandler": [
+                                                            "// check the selected quiz data",
+                                                            "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
+                                                            "quizData.each(function(item, index, count) { ",
+                                                            "    // Compare selected value with correct value",
+                                                            "    VACR.view.Globals.quizResults = [];",
+                                                            "    if(item.id !== item.selectedchoice){ // incorrect",
+                                                            "        VACR.view.Globals.quizResults.push(item);",
+                                                            "    }",
+                                                            "    ",
+                                                            "});",
+                                                            "alert('you missed' + VACR.view.Globals.quizResults.length);"
+                                                        ],
+                                                        "name": "click",
+                                                        "scope": "me"
+                                                    },
+                                                    "designerId": "3c47bd0a-afb9-4a14-bfad-10df5a9e2067"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
                                 {
                                     "type": "Ext.view.View",
                                     "reference": {
@@ -555,130 +670,12 @@
                                                 "designer|userClassName": "itemTpl",
                                                 "implHandler": [
                                                     "<div style=\"margin-bottom: 10px;\" class=\"thumb-wrap\">",
-                                                    "    <img src=\"images/{picture}\" width=\"200\" />",
-                                                    "        </div>"
+                                                    "    <img src=\"images/{PICTURE}\" width=\"200\" />",
+                                                    "</div>"
                                                 ],
                                                 "designer|displayName": "itemTpl"
                                             },
                                             "designerId": "cb18669d-10e3-40b4-b8ae-a4fab38a5848"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.form.field.ComboBox",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "layout|anchor": "100%",
-                                        "autoRender": true,
-                                        "itemId": "cmbChoice",
-                                        "maxWidth": 300,
-                                        "designer|userClassName": "MyComboBox",
-                                        "fieldLabel": "Select correct choice",
-                                        "labelWidth": 150,
-                                        "autoSelect": false,
-                                        "displayField": "description",
-                                        "queryMode": "local",
-                                        "store": "choiceStore",
-                                        "valueField": "choice"
-                                    },
-                                    "designerId": "5b888fd0-18ae-4afd-9803-bb3a31bbdd23"
-                                },
-                                {
-                                    "type": "Ext.button.Button",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "itemId": "btnNext",
-                                        "designer|userClassName": "MyButton",
-                                        "text": "Next"
-                                    },
-                                    "designerId": "7da425f9-1e11-4736-a67c-014a9ee2cb1e",
-                                    "cn": [
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|userClassName": "onBtnNextClick",
-                                                "fn": "onBtnNextClick",
-                                                "implHandler": [
-                                                    "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
-                                                    "//Check if at end",
-                                                    "if(VACR.view.Globals.currentRecord >= quizData.getCount() - 1)",
-                                                    "{",
-                                                    "    //Reset current record",
-                                                    "    VACR.view.Globals.currentRecord = 0;    ",
-                                                    "}",
-                                                    "else",
-                                                    "{",
-                                                    "    //Increase current record",
-                                                    "    ++VACR.view.Globals.currentRecord;",
-                                                    "}",
-                                                    "",
-                                                    "VACR.view.Globals.doUpdate(this);",
-                                                    ""
-                                                ],
-                                                "name": "click",
-                                                "scope": "me"
-                                            },
-                                            "designerId": "1b83178c-ac05-4505-995e-83d75a542aff"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.button.Button",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "itemId": "btnPrev",
-                                        "designer|userClassName": "MyButton",
-                                        "text": "Next"
-                                    },
-                                    "designerId": "2bbb6c10-a2ae-4fe9-b39c-a436fb6b525f",
-                                    "cn": [
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|userClassName": "onBtnPrevClick",
-                                                "fn": "onBtnPrevClick",
-                                                "implHandler": [
-                                                    "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
-                                                    "//Check if at end",
-                                                    "if(VACR.view.Globals.currentRecord === 0)",
-                                                    "{",
-                                                    "    //Reset current record",
-                                                    "    VACR.view.Globals.currentRecord = quizData.getCount() - 1;    ",
-                                                    "}",
-                                                    "else",
-                                                    "{",
-                                                    "    //Increase current record",
-                                                    "    --VACR.view.Globals.currentRecord;",
-                                                    "}",
-                                                    "",
-                                                    "VACR.view.Globals.doUpdate(this);"
-                                                ],
-                                                "name": "click",
-                                                "scope": "me"
-                                            },
-                                            "designerId": "f792d270-172e-45da-9320-8f8fd6d7592d"
                                         }
                                     ]
                                 }
@@ -696,17 +693,17 @@
                                 "fn": "onPracticePanelExpand",
                                 "implHandler": [
                                     "// Build data collection",
-                                    "var theData = this.down('#vacrGrid').store;",
+                                    "var theData = Ext.data.StoreManager.lookup('listVacrStore');",
                                     "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
                                     "theData.each(function(item, index, count) { ",
-                                    "    var recID = item.data.id;",
-                                    "    var recDesc = item.data.modelno + \" - \" + item.data.name;",
+                                    "    var recID = item.data.ID;",
+                                    "    var recDesc = item.data.MODELNO + \" - \" + item.data.NAME;",
                                     "    quizData.add({id: recID, selectedchoice: -1, choices: ",
-                                    "        [{choice:0, description: recDesc},",
+                                    "        [{choice:recID, description: recDesc},",
                                     "        {choice:2, description: \"C130\"},",
                                     "        {choice:1, description: \"C131\"},",
                                     "        {choice:3, description: \"C132\"}],",
-                                    "        pictures: item.data.pictures",
+                                    "        pictures: item.data.PICTURES",
                                     "    });",
                                     "});",
                                     "VACR.view.Globals.currentRecord = 0;",
@@ -720,7 +717,13 @@
                                     "var choiceStore = Ext.data.StoreManager.lookup('choiceStore');",
                                     "var choiceData = record.get('choices');",
                                     "choiceStore.loadData(choiceData);",
-                                    ""
+                                    "",
+                                    "// If previously selected a value, set that value in the cbbox",
+                                    "var cmbChoice = this.down('#cmbChoice');",
+                                    "if(record.selectedchoice > 0)",
+                                    "{",
+                                    "    cmbChoice.setValue(record.selectedchoice);",
+                                    "}"
                                 ],
                                 "name": "expand",
                                 "scope": "me"
