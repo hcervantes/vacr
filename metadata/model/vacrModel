@@ -19,8 +19,7 @@
             "codeClass": null,
             "userConfig": {
                 "mapping": null,
-                "name": "ID",
-                "designer|userClassName": "MyField13"
+                "name": "ID"
             },
             "designerId": "88b1d5ca-6127-404d-bc6e-a1a73244bec0"
         },
@@ -33,8 +32,7 @@
             "codeClass": null,
             "userConfig": {
                 "mapping": null,
-                "name": "NAME",
-                "designer|userClassName": "MyField14"
+                "name": "NAME"
             },
             "designerId": "89635f48-8b3d-45b5-82e4-03d888adaf94"
         },
@@ -47,8 +45,7 @@
             "codeClass": null,
             "userConfig": {
                 "mapping": null,
-                "name": "MODELNO",
-                "designer|userClassName": "MyField15"
+                "name": "MODELNO"
             },
             "designerId": "bf0dcdb4-6b0d-4057-8c5a-7b9c208cb0a3"
         },
@@ -61,7 +58,6 @@
             "codeClass": null,
             "userConfig": {
                 "actionMethods": "POST",
-                "designer|userClassName": "MyAjaxProxy1",
                 "api": [
                     "{",
                     "    read: 'getVACR.php',",
@@ -89,8 +85,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "messageProperty": "message",
-                        "root": "data",
-                        "designer|userClassName": "MyJsonReader2"
+                        "root": "data"
                     },
                     "designerId": "53d5f1d3-d7c9-43af-8a94-6244847fb790"
                 },
@@ -102,7 +97,6 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "designer|userClassName": "MyJsonWriter",
                         "allowSingle": false,
                         "root": "data"
                     },
@@ -119,8 +113,7 @@
             "codeClass": null,
             "userConfig": {
                 "mapping": null,
-                "name": "DESCRIPTIONS",
-                "designer|userClassName": "MyField18"
+                "name": "DESCRIPTIONS"
             },
             "designerId": "5ff4d98c-b7b1-43d6-8549-5255334c17be"
         },
@@ -133,8 +126,7 @@
             "codeClass": null,
             "userConfig": {
                 "mapping": null,
-                "name": "PICTURES",
-                "designer|userClassName": "MyField19"
+                "name": "PICTURES"
             },
             "designerId": "28cb3061-fd89-4ddc-a309-2adfb5c890f0"
         }

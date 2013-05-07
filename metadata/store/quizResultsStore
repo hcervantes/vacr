@@ -1,0 +1,14 @@
+{
+    "type": "Ext.data.Store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "model": "quizResultsModel",
+        "storeId": "quizResultsStore",
+        "designer|userClassName": "quizResultsStore"
+    },
+    "designerId": "2b887564-54c5-4fec-8269-545cf8ce2e01"
+}

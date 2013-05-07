@@ -19,9 +19,6 @@
                 "type": "object"
             },
             "codeClass": null,
-            "userConfig": {
-                "designer|userClassName": "MyMemoryProxy"
-            },
             "designerId": "6a92d646-cd98-4828-b9b3-c8063f70e932",
             "cn": [
                 {
@@ -31,9 +28,6 @@
                         "type": "object"
                     },
                     "codeClass": null,
-                    "userConfig": {
-                        "designer|userClassName": "MyJsonReader1"
-                    },
                     "designerId": "cb89116d-1466-4050-988c-d752724e0076"
                 }
             ]

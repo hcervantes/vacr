@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "designer|userClassName": "css",
         "url": "resources/css/data-view.css"
     },
     "designerId": "542ee118-282e-470e-b7b4-065409d4d010"

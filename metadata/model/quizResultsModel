@@ -6,9 +6,9 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "quizDataModel"
+        "designer|userClassName": "quizResultsModel"
     },
-    "designerId": "672fda46-41f9-46f9-a5a0-95126354f7c1",
+    "designerId": "6fe03f83-e0ff-41a7-bfd8-8a24b8b9061e",
     "cn": [
         {
             "type": "Ext.data.Field",
@@ -18,10 +18,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "id",
-                "type": "int"
+                "name": "aircraft",
+                "type": null
             },
-            "designerId": "76b64ea9-e7b2-4891-aca7-564bb9deb005"
+            "designerId": "926326d5-03c5-48bd-9bec-3ae1aaf99180"
         },
         {
             "type": "Ext.data.Field",
@@ -32,21 +32,9 @@
             "codeClass": null,
             "userConfig": {
                 "name": "selectedchoice",
-                "type": "int"
+                "type": null
             },
-            "designerId": "261f056b-eddd-4cc2-9216-53164f545e69"
-        },
-        {
-            "type": "Ext.data.Field",
-            "reference": {
-                "name": "fields",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "name": "choices"
-            },
-            "designerId": "8e4d3aaf-e14f-4cbe-b6b9-6b25cab9b5b0"
+            "designerId": "c5cf9e10-c19a-4e37-88bf-c06b0e28eace"
         },
         {
             "type": "Ext.data.Field",
@@ -58,7 +46,7 @@
             "userConfig": {
                 "name": "pictures"
             },
-            "designerId": "8e41042b-fa7b-4236-8904-0a328ef3b1b6"
+            "designerId": "4173d657-3bab-4e36-b6a2-53a5dd9cd5b0"
         }
     ]
 }

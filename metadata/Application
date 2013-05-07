@@ -10,7 +10,8 @@
             "ImageData",
             "DescriptionData",
             "choiceModel",
-            "vacrModel"
+            "vacrModel",
+            "quizResultsModel"
         ],
         "stores": [
             "pictureStore",
@@ -18,7 +19,8 @@
             "quizDataStore",
             "choiceStore",
             "quizPictureStore",
-            "listVacrStore"
+            "listVacrStore",
+            "quizResultsStore"
         ],
         "views": [
             "adminPanel",

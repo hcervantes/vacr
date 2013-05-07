@@ -27,8 +27,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "DESCRIPTION",
-                "designer|userClassName": "field2"
+                "name": "DESCRIPTION"
             },
             "designerId": "a8219456-9e35-4ae4-a853-44121f836cfe"
         },
@@ -41,7 +40,6 @@
             "codeClass": null,
             "userConfig": {
                 "actionMethods": "POST",
-                "designer|userClassName": "MyAjaxProxy",
                 "api": [
                     "{",
                     "    read: 'listCharacteristics.php',",
@@ -68,7 +66,6 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "designer|userClassName": "MyJsonWriter1",
                         "allowSingle": false,
                         "root": "data"
                     },
@@ -84,8 +81,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "ID",
-                "designer|userClassName": "MyField16"
+                "name": "ID"
             },
             "designerId": "6b64a907-fad1-4bc3-92a8-ffe259fc7a4c"
         },
@@ -97,8 +93,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "AIRCRAFT_ID",
-                "designer|userClassName": "MyField17"
+                "name": "AIRCRAFT_ID"
             },
             "designerId": "f8e9e2d2-2478-4ab4-a108-42e25259387f"
         }

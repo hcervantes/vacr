@@ -18,8 +18,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "choice",
-                "designer|userClassName": "field10"
+                "name": "choice"
             },
             "designerId": "94ce67b9-7562-456c-9681-2bdd9f37eb77"
         },
@@ -31,8 +30,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "description",
-                "designer|userClassName": "field11"
+                "name": "description"
             },
             "designerId": "82c69e9e-ab9d-4c36-8247-ef640891a9c2"
         }

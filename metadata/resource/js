@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "designer|userClassName": "js",
         "url": "session.js"
     },
     "designerId": "1cd19263-ff2a-46d4-b035-514144b8518d"

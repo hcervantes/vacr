@@ -32,7 +32,6 @@
                 "height": 65,
                 "id": "headerPanel",
                 "itemId": "headerPanel",
-                "designer|userClassName": "MyPanel11",
                 "layout": "column"
             },
             "designerId": "161c4917-af35-4101-99cd-f432ffb9e98d",
@@ -47,7 +46,6 @@
                     "userConfig": {
                         "id": "welcomeLabel",
                         "itemId": "welcomeLabel",
-                        "designer|userClassName": "MyLabel",
                         "text": null
                     },
                     "designerId": "a425504e-260f-4a24-8d30-361f58968287"
@@ -64,7 +62,6 @@
             "userConfig": {
                 "height": 560,
                 "width": 800,
-                "designer|userClassName": "VACR",
                 "layout": "accordion",
                 "title": "Visual Aircraft Recognition"
             },
@@ -79,7 +76,6 @@
                     "codeClass": null,
                     "userConfig": {
                         "itemId": "reviewPanel",
-                        "designer|userClassName": "MyPanel3",
                         "collapsed": false,
                         "title": "Review"
                     },
@@ -95,7 +91,6 @@
                             "userConfig": {
                                 "height": 500,
                                 "itemId": "mainPanel",
-                                "designer|userClassName": "MyForm",
                                 "layout": "border",
                                 "collapsed": false,
                                 "title": ""
@@ -114,7 +109,6 @@
                                         "layout|region": "west",
                                         "itemId": "vacrGrid",
                                         "width": null,
-                                        "designer|userClassName": "MyGridPanel",
                                         "designer|displayName": "AircraftGrid",
                                         "title": null,
                                         "store": "listVacrStore"
@@ -128,9 +122,6 @@
                                                 "type": "object"
                                             },
                                             "codeClass": null,
-                                            "userConfig": {
-                                                "designer|userClassName": "MyGridView"
-                                            },
                                             "designerId": "94b7a127-f2ed-4142-a8c1-645d315686bc"
                                         },
                                         {
@@ -141,7 +132,6 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "designer|userClassName": "onVacrGridSelect",
                                                 "fn": "onVacrGridSelect",
                                                 "implHandler": [
                                                     "// grab a reference to the detailPanel via itemId",
@@ -175,7 +165,6 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "designer|userClassName": "MyColumn2",
                                                 "dataIndex": "NAME",
                                                 "text": "NAME"
                                             },
@@ -189,7 +178,6 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "designer|userClassName": "MyColumn4",
                                                 "dataIndex": "MODELNO",
                                                 "text": "MODELNO"
                                             },
@@ -209,7 +197,6 @@
                                         "layout|region": "center",
                                         "container|align": null,
                                         "itemId": "bottomPanel",
-                                        "designer|userClassName": "MyPanel6",
                                         "layout": "vbox",
                                         "title": "Aircraft Detail"
                                     },
@@ -226,7 +213,6 @@
                                                 "height": null,
                                                 "id": "detailPanel",
                                                 "itemId": "detailPanel",
-                                                "designer|userClassName": "MyPanel4",
                                                 "layout": "fit",
                                                 "title": null
                                             },
@@ -240,7 +226,6 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
-                                                        "designer|userClassName": "tpl",
                                                         "implHandler": [
                                                             "<b>Name: {NAME}</b><br>",
                                                             "<b><i>Model: {MODELNO}</i></b><br>",
@@ -262,7 +247,6 @@
                                             "userConfig": {
                                                 "layout|flex": 1,
                                                 "container|align": "stretch",
-                                                "designer|userClassName": "MyPanel6",
                                                 "layout": "hbox",
                                                 "title": null
                                             },
@@ -280,7 +264,6 @@
                                                         "frame": true,
                                                         "height": 450,
                                                         "width": 230,
-                                                        "designer|userClassName": "MyPanel5",
                                                         "autoScroll": true,
                                                         "title": null
                                                     },
@@ -298,7 +281,6 @@
                                                                 "height": null,
                                                                 "itemId": "pictureView",
                                                                 "width": null,
-                                                                "designer|userClassName": "MyView",
                                                                 "autoScroll": true,
                                                                 "itemSelector": "div.thumb-wrap",
                                                                 "store": "pictureStore"
@@ -313,7 +295,6 @@
                                                                     },
                                                                     "codeClass": null,
                                                                     "userConfig": {
-                                                                        "designer|userClassName": "itemTpl",
                                                                         "implHandler": [
                                                                             "<div style=\"margin-bottom: 10px;\" class=\"thumb-wrap\">",
                                                                             "    <img src=\"images/{PICTURE}\" width=\"200\" />",
@@ -339,7 +320,6 @@
                                                         "layout|flex": null,
                                                         "itemId": "descriptionPanel",
                                                         "width": 300,
-                                                        "designer|userClassName": "MyPanel10",
                                                         "title": ""
                                                     },
                                                     "designerId": "57d122b4-cfba-4253-9146-da8e83da3656",
@@ -353,7 +333,6 @@
                                                             "codeClass": null,
                                                             "userConfig": {
                                                                 "itemId": "descriptionView",
-                                                                "designer|userClassName": "MyView2",
                                                                 "itemSelector": "div.thumb-wrap",
                                                                 "store": "descriptionStore"
                                                             },
@@ -367,7 +346,6 @@
                                                                     },
                                                                     "codeClass": null,
                                                                     "userConfig": {
-                                                                        "designer|userClassName": "itemTpl",
                                                                         "implHandler": [
                                                                             "<div style=\"margin-bottom: 10px;\" class=\"thumb-wrap\">",
                                                                             "    <li>{DESCRIPTION}</li>",
@@ -385,7 +363,6 @@
                                                                     },
                                                                     "codeClass": null,
                                                                     "userConfig": {
-                                                                        "designer|userClassName": "tpl",
                                                                         "implHandler": [
                                                                             "<ul>",
                                                                             "</ul>"
@@ -415,7 +392,6 @@
                     "codeClass": null,
                     "userConfig": {
                         "itemId": "practicePanel",
-                        "designer|userClassName": "MyPanel5",
                         "collapsed": false,
                         "title": "Practice Test"
                     },
@@ -430,7 +406,6 @@
                             "codeClass": null,
                             "userConfig": {
                                 "height": 500,
-                                "designer|userClassName": "MyForm1",
                                 "autoScroll": true,
                                 "layout": "hbox",
                                 "bodyPadding": 10,
@@ -448,7 +423,6 @@
                                     "userConfig": {
                                         "layout|flex": 1,
                                         "width": 312,
-                                        "designer|userClassName": "MyContainer1",
                                         "layout": "column"
                                     },
                                     "designerId": "4547debe-4303-49ee-b6ec-db52a1fd687a",
@@ -461,11 +435,9 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "autoRender": true,
                                                 "itemId": "cmbChoice",
                                                 "maxWidth": 300,
-                                                "designer|userClassName": "MyComboBox",
                                                 "fieldLabel": "Select correct choice",
                                                 "labelWidth": 150,
                                                 "autoSelect": false,
@@ -484,7 +456,6 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
-                                                        "designer|userClassName": "onCmbChoiceSelect",
                                                         "fn": "onCmbChoiceSelect",
                                                         "implHandler": [
                                                             "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
@@ -508,9 +479,53 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
+                                                "itemId": "btnPrev",
+                                                "text": "<- Previous"
+                                            },
+                                            "designerId": "2bbb6c10-a2ae-4fe9-b39c-a436fb6b525f",
+                                            "cn": [
+                                                {
+                                                    "type": "basiceventbinding",
+                                                    "reference": {
+                                                        "name": "listeners",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "fn": "onBtnPrevClick",
+                                                        "implHandler": [
+                                                            "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
+                                                            "//Check if at end",
+                                                            "if(VACR.view.Globals.currentRecord === 0)",
+                                                            "{",
+                                                            "    //Reset current record",
+                                                            "    VACR.view.Globals.currentRecord = quizData.getCount() - 1;    ",
+                                                            "}",
+                                                            "else",
+                                                            "{",
+                                                            "    //Increase current record",
+                                                            "    --VACR.view.Globals.currentRecord;",
+                                                            "}",
+                                                            "",
+                                                            "VACR.view.Globals.doUpdate(this);"
+                                                        ],
+                                                        "name": "click",
+                                                        "scope": "me"
+                                                    },
+                                                    "designerId": "f792d270-172e-45da-9320-8f8fd6d7592d"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Ext.button.Button",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
                                                 "itemId": "btnNext",
-                                                "designer|userClassName": "MyButton",
-                                                "text": "Next"
+                                                "text": "Next ->"
                                             },
                                             "designerId": "7da425f9-1e11-4736-a67c-014a9ee2cb1e",
                                             "cn": [
@@ -522,7 +537,6 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
-                                                        "designer|userClassName": "onBtnNextClick",
                                                         "fn": "onBtnNextClick",
                                                         "implHandler": [
                                                             "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
@@ -556,54 +570,6 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "itemId": "btnPrev",
-                                                "designer|userClassName": "MyButton",
-                                                "text": "Next"
-                                            },
-                                            "designerId": "2bbb6c10-a2ae-4fe9-b39c-a436fb6b525f",
-                                            "cn": [
-                                                {
-                                                    "type": "basiceventbinding",
-                                                    "reference": {
-                                                        "name": "listeners",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "designer|userClassName": "onBtnPrevClick",
-                                                        "fn": "onBtnPrevClick",
-                                                        "implHandler": [
-                                                            "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
-                                                            "//Check if at end",
-                                                            "if(VACR.view.Globals.currentRecord === 0)",
-                                                            "{",
-                                                            "    //Reset current record",
-                                                            "    VACR.view.Globals.currentRecord = quizData.getCount() - 1;    ",
-                                                            "}",
-                                                            "else",
-                                                            "{",
-                                                            "    //Increase current record",
-                                                            "    --VACR.view.Globals.currentRecord;",
-                                                            "}",
-                                                            "",
-                                                            "VACR.view.Globals.doUpdate(this);"
-                                                        ],
-                                                        "name": "click",
-                                                        "scope": "me"
-                                                    },
-                                                    "designerId": "f792d270-172e-45da-9320-8f8fd6d7592d"
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "Ext.button.Button",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|userClassName": "MyButton2",
                                                 "text": "Check"
                                             },
                                             "designerId": "5e575aae-6a12-4817-8472-04e8eb33423f",
@@ -616,20 +582,68 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
-                                                        "designer|userClassName": "onButtonClick",
                                                         "fn": "onButtonClick",
                                                         "implHandler": [
                                                             "// check the selected quiz data",
                                                             "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
+                                                            "var quizResults = Ext.data.StoreManager.lookup('quizResultsStore');",
+                                                            "",
                                                             "quizData.each(function(item, index, count) { ",
-                                                            "    // Compare selected value with correct value",
-                                                            "    VACR.view.Globals.quizResults = [];",
-                                                            "    if(item.id !== item.selectedchoice){ // incorrect",
-                                                            "        VACR.view.Globals.quizResults.push(item);",
+                                                            "    // Compare selected value with correct value    ",
+                                                            "    if(item.data.id !== item.selectedchoice){ // incorrect",
+                                                            "        quizResults.add(item);",
+                                                            "        ",
+                                                            "        var correctDesc = '';",
+                                                            "        var selectedChoice = '';",
+                                                            "        // Get the correct answer",
+                                                            "        item.data.choices.each(function(choice, indx, cnt) {",
+                                                            "\t\t\tif(choice.data.ID === item.data.id)",
+                                                            "            {",
+                                                            "                correctDesc = choice.data.MODELNO + \" - \" + choice.data.NAME;",
+                                                            "            }",
+                                                            "            else if(item.selectedchoice === choice.data.ID) {",
+                                                            "                selectedChoice = choice.data.MODELNO + \" - \" + choice.data.NAME;",
+                                                            "            }",
+                                                            "        });",
+                                                            "\t\tquizResults.add({aircraft: correctDesc, selectedchoice: selectedChoice, pictures: choice.pictures});",
+                                                            "        ",
                                                             "    }",
-                                                            "    ",
                                                             "});",
-                                                            "alert('you missed' + VACR.view.Globals.quizResults.length);"
+                                                            "var missed = quizResults.count();",
+                                                            "var percent = Ext.Number.toFixed(((quizData.count() - missed)/quizData.count()) * 100);",
+                                                            "",
+                                                            "//alert('you missed ' + missed + '\\nFor a ' + percent + '%');",
+                                                            "",
+                                                            "",
+                                                            "",
+                                                            "var dataView = Ext.create('Ext.view.View', {",
+                                                            "            store: quizResults,",
+                                                            "            tpl: [",
+                                                            "                '<tpl for=\".\">',",
+                                                            "                    '<div class=\"thumb-wrap\" id=\"{id}\">',",
+                                                            "                        '<div class=\"thumb\">{selectedchoice}\"</div>',",
+                                                            "                        '<span class=\"x-editable\">{id}</span>',",
+                                                            "                    '</div>',",
+                                                            "                '</tpl>',",
+                                                            "                '<div class=\"x-clear\"></div>'",
+                                                            "            ],",
+                                                            "            multiSelect: false,",
+                                                            "            height: 310,",
+                                                            "            trackOver: true,",
+                                                            "            overItemCls: 'x-item-over',",
+                                                            "            itemSelector: 'div.thumb-wrap',",
+                                                            "            emptyText: 'Nothing to display'",
+                                                            "        });",
+                                                            "",
+                                                            "Ext.create('Ext.window.Window', {",
+                                                            "    title: 'Quiz Results',",
+                                                            "    height: 200,",
+                                                            "    width: 400,",
+                                                            "    layout: 'fit',",
+                                                            "    items: [",
+                                                            "        dataView",
+                                                            "    ]",
+                                                            "}).show();"
                                                         ],
                                                         "name": "click",
                                                         "scope": "me"
@@ -652,7 +666,6 @@
                                         "height": null,
                                         "itemId": "pictureQuizView",
                                         "width": null,
-                                        "designer|userClassName": "MyView",
                                         "autoScroll": true,
                                         "itemSelector": "div.thumb-wrap",
                                         "store": "quizPictureStore"
@@ -667,7 +680,6 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "designer|userClassName": "itemTpl",
                                                 "implHandler": [
                                                     "<div style=\"margin-bottom: 10px;\" class=\"thumb-wrap\">",
                                                     "    <img src=\"images/{PICTURE}\" width=\"200\" />",
@@ -689,23 +701,48 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "designer|userClassName": "onPracticePanelExpand",
                                 "fn": "onPracticePanelExpand",
                                 "implHandler": [
                                     "// Build data collection",
                                     "var theData = Ext.data.StoreManager.lookup('listVacrStore');",
                                     "var quizData = Ext.data.StoreManager.lookup('quizDataStore');",
-                                    "theData.each(function(item, index, count) { ",
-                                    "    var recID = item.data.ID;",
-                                    "    var recDesc = item.data.MODELNO + \" - \" + item.data.NAME;",
-                                    "    quizData.add({id: recID, selectedchoice: -1, choices: ",
-                                    "        [{choice:recID, description: recDesc},",
-                                    "        {choice:2, description: \"C130\"},",
-                                    "        {choice:1, description: \"C131\"},",
-                                    "        {choice:3, description: \"C132\"}],",
-                                    "        pictures: item.data.PICTURES",
+                                    "if(quizData.count() === 0){",
+                                    "    theData.each(function(item, index, count) { ",
+                                    "        var recID = item.data.ID;",
+                                    "        var recDesc = item.data.MODELNO + \" - \" + item.data.NAME;",
+                                    "        var phonyData = [];",
+                                    "    // for(var i=0; i<3; i++){",
+                                    "        var done = false;",
+                                    "        while (done === false){",
+                                    "            ",
+                                    "            var row = VACR.view.Globals.getRandomRow(recID, theData);",
+                                    "            if(row.ID != recID)",
+                                    "            {",
+                                    "                // Check if already in array",
+                                    "                var unique = true;",
+                                    "                for(var x = 0; x < phonyData.length; x++){",
+                                    "                    if(phonyData[x].ID == row.ID)",
+                                    "                    {",
+                                    "                        unique = false;",
+                                    "                        continue;",
+                                    "                    }",
+                                    "                }",
+                                    "                if(unique)",
+                                    "                    phonyData.push(row);",
+                                    "            }",
+                                    "            if(phonyData.length == 3)",
+                                    "                done = true;",
+                                    "        }",
+                                    "    ",
+                                    "        quizData.add({id: recID, selectedchoice: -1, choices: ",
+                                    "            [{choice:recID, description: recDesc},",
+                                    "            {choice: phonyData[0].ID, description: phonyData[0].MODELNO + \" - \" + phonyData[0].NAME},",
+                                    "            {choice:phonyData[1].ID, description: phonyData[1].MODELNO + \" - \" + phonyData[1].NAME},",
+                                    "            {choice:phonyData[2].ID, description: phonyData[2].MODELNO + \" - \" + phonyData[2].NAME}],",
+                                    "            pictures: item.data.PICTURES",
+                                    "        });",
                                     "    });",
-                                    "});",
+                                    "}",
                                     "VACR.view.Globals.currentRecord = 0;",
                                     "var record = quizData.getAt(VACR.view.Globals.currentRecord);",
                                     "var pictureQuizView = this.down('#pictureQuizView');",
@@ -716,6 +753,7 @@
                                     "// Load the choiceStore with data",
                                     "var choiceStore = Ext.data.StoreManager.lookup('choiceStore');",
                                     "var choiceData = record.get('choices');",
+                                    "choiceData.sort(function(a,b){return b.choice-a.choice});",
                                     "choiceStore.loadData(choiceData);",
                                     "",
                                     "// If previously selected a value, set that value in the cbbox",
@@ -723,7 +761,8 @@
                                     "if(record.selectedchoice > 0)",
                                     "{",
                                     "    cmbChoice.setValue(record.selectedchoice);",
-                                    "}"
+                                    "}",
+                                    ""
                                 ],
                                 "name": "expand",
                                 "scope": "me"
@@ -740,7 +779,6 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "designer|userClassName": "onPanelAfterRender",
                         "fn": "onPanelAfterRender",
                         "implHandler": [
                             "",
@@ -775,7 +813,6 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|userClassName": "onContainerAfterLayout",
                 "fn": "onContainerAfterLayout",
                 "implHandler": [
                     "// check if logged in.",
